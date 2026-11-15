@@ -1,0 +1,12 @@
+{
+ "1": ["keep", "The definition decides every number after it; choosing it is the analyst's judgement and the director will ask why"],
+ "2": ["delegate", "Boilerplate with a known right answer; a wrong count shows at once against the source system"],
+ "3": ["assist", "The assistant drafts the filters; the analyst checks the counts removed, because every later number rests on them"],
+ "4": ["assist", "A headline number: the assistant drafts it, the analyst recomputes it another way before anyone sees it"],
+ "5": ["delegate", "Plot code from a table that is already checked; a wrong chart is seen by reading its axes"],
+ "6": ["assist", "A join that can fan out and a comparison that can mislead; the assistant drafts, the analyst checks rows and denominators"],
+ "7": ["keep", "A causal claim: nothing the assistant can run settles it, and the analyst signs it"],
+ "8": ["assist", "Low stakes, but a summary can misstate a city or a language group; each sentence is checked against counts"],
+ "9": ["delegate", "Changes no number; the diff is read in a minute"],
+ "10": ["keep", "The recommendation is the analyst's to make and to defend"]
+}

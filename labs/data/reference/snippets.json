@@ -1,0 +1,4 @@
+{
+ "d2_ok": "CASE WHEN d.delivered_at <= d.promised_by THEN 1 ELSE 0 END",
+ "dispatched": "d.status <> 'cancelled'"
+}

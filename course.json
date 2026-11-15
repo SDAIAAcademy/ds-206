@@ -9,7 +9,7 @@
     "en": "Analysis with AI Assistants: Delegate, Verify, Reproduce",
     "ar": "تحليل البيانات مع المساعدات الذكية: التفويض والتحقق وقابلية إعادة الإنتاج"
   },
-  "tagline": "REPLACE: one line under the title: what participants can do after the course",
+  "tagline": "Delegate analysis steps to an assistant, prove every number another way, and hand over work a peer can rerun",
   "description": "Participants analyse data with a coding assistant or agent in a notebook and stay accountable for every number. For a fictional courier company they decide which steps to delegate, brief the assistant with acceptance checks, prove results by recomputing key numbers another way, measure how answers vary between runs, decide which data may go to which assistant, and package an analysis that a peer reruns from logged prompts, code and data.",
   "track": "data-science",
   "level": 200,
@@ -23,7 +23,8 @@
     "FN-104 SQL and Data Wrangling",
     "FN-106 Responsible Data and AI Practice in the Kingdom",
     "Writes SQL joins and dataframe group-bys without assistance",
-    "Has completed one analysis end to end, from raw table to chart"
+    "Has completed one analysis end to end, from raw table to chart",
+    "Setup: a laptop with uv, or Google Colab. A key for a free hosted model (OpenRouter by default) is optional: every lab also runs on recorded replies. Nothing downloads a model. Run 00_setup_check before Day 1; see labs/README.md."
   ],
   "site": {
     "url": "https://sdaiaacademy.github.io/ds-206/",
@@ -68,8 +69,8 @@
     }
   ],
   "case_study": {
-    "name": "REPLACE: the name of the fictional organisation every lab works on",
-    "summary": "REPLACE: two sentences on the case study and its synthetic data"
+    "name": "Hudhud Parcel",
+    "summary": "Hudhud Parcel is a fictional courier in Riyadh, Jeddah, Dammam and Madinah whose operations director asks why late deliveries jumped in April and which city to fix first. Participants answer with Rafiq, a coding assistant in the notebook, on 500,000 synthetic deliveries over a year with attempt scans, driver shifts, route plans and 20,000 complaint texts in Arabic and English. The data is generated with a fixed seed and carries planted traps: a changed on-time definition, duplicated scans, UTC scan times, test shipments, plan versions that fan out a join, and a complaint export sorted so that a sample misstates one city and one language."
   },
   "format": "intensive",
   "format_note": "Intensive: 3 teaching days of four sessions and a capstone day, with guided pre-work and a tracked follow-up task",
@@ -90,69 +91,158 @@
       "sessions": [
         {
           "title": "What assistants get wrong in analysis",
+          "summary": "Assisted analysis fails quietly: the code runs, and the choices nobody stated decide the number",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Name the five places where an assisted analysis goes wrong without an error",
+            "List the assumptions in an assistant's code, line by line",
+            "Test an assumption by changing it and reading how far the number moves"
           ],
           "lo": [
             "LO1"
           ],
           "lab": {
             "id": "1.1",
-            "title": "Give an assistant a one-line request; list every assumption it made",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "One line in, six assumptions out",
             "minutes": 25,
-            "href": "D1_1_give_assistant_one.ipynb"
+            "summary": "Give an assistant a one-line request; list every assumption it made, then test three of them with one query each.",
+            "href": "D1_1_one_line_request.ipynb",
+            "steps": [
+              {
+                "text": "Send the one-line request and run the reply",
+                "minutes": 5
+              },
+              {
+                "text": "List every assumption in the reply's code",
+                "minutes": 8
+              },
+              {
+                "text": "Test three assumptions with one query each",
+                "minutes": 8
+              },
+              {
+                "text": "Write the verification note",
+                "minutes": 4
+              }
+            ],
+            "stretch": "Send the same line to your own assistant and compare its assumptions"
           }
         },
         {
           "title": "Delegate, assist or keep",
+          "summary": "Three questions sort the steps of a plan: is it cheap to check, is judgement the product, are the stakes high",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Distinguish delegating a step, being assisted on it and keeping it",
+            "Sort the steps of an analysis plan with a reason for each",
+            "Explain what unchecked delegation costs the analyst's own skill"
           ],
           "lo": [
             "LO1"
           ],
           "lab": {
             "id": "1.2",
-            "title": "Sort a ten-step plan into delegate, assist or keep, with reasons",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Delegate, assist or keep",
             "minutes": 25,
-            "href": "D1_2_sort_ten_step.ipynb"
+            "summary": "Sort a ten-step plan into delegate, assist or keep, with reasons, and score the marks against the reference.",
+            "href": "D1_2_delegate_assist_keep.ipynb",
+            "steps": [
+              {
+                "text": "Read the plan and the three questions",
+                "minutes": 5
+              },
+              {
+                "text": "Mark the ten steps, with a reason each",
+                "minutes": 9
+              },
+              {
+                "text": "Write the rule as a function and compare",
+                "minutes": 7
+              },
+              {
+                "text": "Write the note: the check for each delegated step",
+                "minutes": 4
+              }
+            ],
+            "stretch": "Sort the steps of an analysis you did last month"
           }
         },
         {
           "title": "The delegation brief",
+          "summary": "A brief states the question, the data, the definitions, the constraints and the checks before the assistant runs",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Write the five parts of a delegation brief",
+            "Write acceptance checks that a reviewer can apply without asking the author",
+            "Turn a failed check into a precise follow-up request"
           ],
           "lo": [
             "LO2"
           ],
           "lab": {
             "id": "1.3",
-            "title": "Write a brief with acceptance checks for three steps and run it",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "A brief with acceptance checks",
             "minutes": 25,
-            "href": "D1_3_write_brief_acceptance.ipynb"
+            "summary": "Write a brief with acceptance checks for three steps and run it: one check fails, one follow-up fixes it.",
+            "href": "D1_3_delegation_brief.ipynb",
+            "steps": [
+              {
+                "text": "Complete the brief until it has no gaps",
+                "minutes": 8
+              },
+              {
+                "text": "Write three acceptance checks as functions",
+                "minutes": 8
+              },
+              {
+                "text": "Run the brief, apply the checks, follow up once",
+                "minutes": 5
+              },
+              {
+                "text": "Write the verification note",
+                "minutes": 4
+              }
+            ],
+            "stretch": "Add a check that would have caught the flag's two definitions"
           }
         },
         {
           "title": "Context files for a project",
+          "summary": "A context file carries what holds for every request in a project; it lowers the number of errors and finds none",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Decide what belongs in a project context file and what belongs in a brief",
+            "Write the definitions, checks and prohibitions of an analysis project as rules",
+            "Compare two runs of one brief on code, numbers and checks"
           ],
           "lo": [
             "LO2"
           ],
           "lab": {
             "id": "1.4",
-            "title": "Add a project context file, rerun a brief and compare outputs",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "A project context file",
             "minutes": 25,
-            "href": "D1_4_add_project_context.ipynb"
+            "summary": "Add a project context file, rerun a brief and compare the outputs on code, numbers and acceptance checks.",
+            "href": "D1_4_context_file.ipynb",
+            "steps": [
+              {
+                "text": "Read the starting context file and find its gaps",
+                "minutes": 4
+              },
+              {
+                "text": "Write the three missing sections",
+                "minutes": 8
+              },
+              {
+                "text": "Rerun the brief without and with the file; compare",
+                "minutes": 9
+              },
+              {
+                "text": "Write the verification note",
+                "minutes": 4
+              }
+            ],
+            "stretch": "Add the check the remaining error would fail by name"
           }
         }
-      ]
+      ],
+      "subtitle": "What an assistant decides for you when you do not, which steps to hand over, and how to brief them"
     },
     {
       "id": "day2",
@@ -162,69 +252,162 @@
       "sessions": [
         {
           "title": "Recompute it another way",
+          "summary": "A number is verified when a second, independent path reaches it, and every point of the gap has a named cause",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Choose a recomputation path that shares as little as possible with the first",
+            "Recompute a headline rate in SQL without an assistant",
+            "Reconcile two numbers by applying one difference at a time"
           ],
           "lo": [
             "LO3"
           ],
           "lab": {
             "id": "2.1",
-            "title": "Recompute an assistant's on-time rate in SQL and reconcile the gap",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Recompute and reconcile",
             "minutes": 25,
-            "href": "D2_1_recompute_assistant_s.ipynb"
+            "summary": "Recompute an assistant's on-time rate in SQL and reconcile the gap, one cause per row.",
+            "href": "D2_1_recompute_in_sql.ipynb",
+            "steps": [
+              {
+                "text": "Run the assisted analysis and read its number",
+                "minutes": 4
+              },
+              {
+                "text": "Recompute the rate yourself in SQL, without an assistant",
+                "minutes": 8
+              },
+              {
+                "text": "Reconcile the gap, one cause per row",
+                "minutes": 9
+              },
+              {
+                "text": "Write the verification note",
+                "minutes": 4
+              }
+            ],
+            "stretch": "Recompute a third time in pandas from the parquet file"
           }
         },
         {
           "title": "Joins, filters and denominators",
+          "summary": "Most wrong numbers in assisted SQL come from rows that were multiplied, rows that were dropped, and a denominator nobody stated",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Count rows before and after each join to find a fan-out",
+            "Find the rows a filter dropped with an anti-join",
+            "State the denominator of a rate in one sentence and test the code against it"
           ],
           "lo": [
             "LO3"
           ],
           "lab": {
             "id": "2.2",
-            "title": "Find seeded join and filter errors in an assisted analysis",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Four seeded errors",
             "minutes": 25,
-            "href": "D2_2_find_seeded_join.ipynb"
+            "summary": "Find the seeded join and filter errors in an assisted analysis, and name the check that found each.",
+            "href": "D2_2_joins_filters.ipynb",
+            "steps": [
+              {
+                "text": "Run the assisted analysis and read its claim",
+                "minutes": 4
+              },
+              {
+                "text": "Count rows before and after each join",
+                "minutes": 7
+              },
+              {
+                "text": "Find the rows each filter dropped",
+                "minutes": 6
+              },
+              {
+                "text": "State the denominator and recompute",
+                "minutes": 4
+              },
+              {
+                "text": "Write the verification note",
+                "minutes": 4
+              }
+            ],
+            "stretch": "Repair the query and confirm the corrected comparison"
           }
         },
         {
           "title": "Charts and words",
+          "summary": "A chart is a set of encodings and a summary is a list of claims: each one is checked against a query",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Read a chart's axis, measure and time window against the table behind it",
+            "Split a written summary into claims and test each with a query",
+            "Check that a summary does not misstate one city or language group"
           ],
           "lo": [
             "LO3"
           ],
           "lab": {
             "id": "2.3",
-            "title": "Check an assistant's chart and complaint summary against the data",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "A chart and a summary against the data",
             "minutes": 25,
-            "href": "D2_3_check_assistant_s.ipynb"
+            "summary": "Check an assistant's chart and complaint summary against the data, claim by claim.",
+            "href": "D2_3_charts_and_words.ipynb",
+            "steps": [
+              {
+                "text": "Recompute the charted series and read its encodings",
+                "minutes": 8
+              },
+              {
+                "text": "Redraw the chart from the checked table",
+                "minutes": 4
+              },
+              {
+                "text": "Test each sentence of the complaint summary",
+                "minutes": 9
+              },
+              {
+                "text": "Write the verification note",
+                "minutes": 4
+              }
+            ],
+            "stretch": "Compute complaints per 1,000 parcels by city and language"
           }
         },
         {
           "title": "Ask it twice",
+          "summary": "The same request gives different code and different numbers on different runs: only conclusions that hold in every run are reported as found",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Explain why one request yields different analyses between runs",
+            "Tabulate the analytic choices, numbers and conclusions of repeated runs",
+            "Separate the conclusions that held in every run from those that did not"
           ],
           "lo": [
             "LO4"
           ],
           "lab": {
             "id": "2.4",
-            "title": "Repeat one request five times; tabulate differences in code, numbers and conclusions",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Five runs of one request",
             "minutes": 25,
-            "href": "D2_4_repeat_one_request.ipynb"
+            "summary": "Repeat one request five times; tabulate differences in code, numbers and conclusions.",
+            "href": "D2_4_ask_it_twice.ipynb",
+            "steps": [
+              {
+                "text": "Run five replies to one fixed request",
+                "minutes": 5
+              },
+              {
+                "text": "Tabulate choices, code and numbers per run",
+                "minutes": 8
+              },
+              {
+                "text": "Decide which conclusions held in every run",
+                "minutes": 8
+              },
+              {
+                "text": "Write the verification note",
+                "minutes": 4
+              }
+            ],
+            "stretch": "Run the request five times live at temperature 0 and compare"
           }
         }
-      ]
+      ],
+      "subtitle": "Recompute the headline another way, count rows around every join, read charts and summaries against the data, and ask twice"
     },
     {
       "id": "day3",
@@ -234,81 +417,176 @@
       "sessions": [
         {
           "title": "Which data may go where",
+          "summary": "The classification level of a table and the organisation's assistant policy decide its destination: hosted, local or neither",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Classify the tables of an analysis by their most sensitive column",
+            "Assign each table to a hosted assistant, a local assistant or neither under a written policy",
+            "Enforce the assignment with a guard that runs before any prompt leaves"
           ],
           "lo": [
             "LO5"
           ],
           "lab": {
             "id": "3.1",
-            "title": "Decide which tables a local or a hosted assistant may process",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Hosted, local or neither",
             "minutes": 25,
-            "href": "D3_1_decide_which_tables.ipynb"
+            "summary": "Decide which tables a local or a hosted assistant may process, prove one decision on the data and enforce all of them in code.",
+            "href": "D3_1_which_data_where.ipynb",
+            "steps": [
+              {
+                "text": "Read the assistant policy and the table catalogue",
+                "minutes": 5
+              },
+              {
+                "text": "Classify each table and choose its destination",
+                "minutes": 8
+              },
+              {
+                "text": "Find the personal data in the complaint texts",
+                "minutes": 4
+              },
+              {
+                "text": "Write the guard and test it",
+                "minutes": 4
+              },
+              {
+                "text": "Write the verification note",
+                "minutes": 4
+              }
+            ],
+            "stretch": "Build an aggregate of complaints that may go to the hosted assistant"
           }
         },
         {
           "title": "Logging assisted work",
+          "summary": "A rerun needs the prompt, the context, the model and its settings, the code, a fingerprint of the data and the output",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "List what a log record must hold for a step to be rerun",
+            "Write a log record with a data fingerprint for one assisted step",
+            "Find what an incomplete log lacks before someone else has to"
           ],
           "lo": [
-            "LO6"
+            "LO6",
+            "LO4"
           ],
           "lab": {
             "id": "3.2",
-            "title": "Log prompts, model settings and outputs for one analysis",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "A run log",
             "minutes": 25,
-            "href": "D3_2_log_prompts_model.ipynb"
+            "summary": "Log prompts, model settings and outputs for one analysis, with a fingerprint of the data it ran on.",
+            "href": "D3_2_run_log.ipynb",
+            "steps": [
+              {
+                "text": "Read an incomplete log and list what a rerun lacks",
+                "minutes": 5
+              },
+              {
+                "text": "Write the log record and the data fingerprint",
+                "minutes": 9
+              },
+              {
+                "text": "Run one analysis through the logger and check the log",
+                "minutes": 7
+              },
+              {
+                "text": "Write the verification note",
+                "minutes": 4
+              }
+            ],
+            "stretch": "Change one row of a table and show that the fingerprint changes"
           }
         },
         {
           "title": "The peer rerun",
+          "summary": "A package is reproducible when a peer reaches the same headline numbers from its logs alone, and every reported number has a logged step",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Rerun a package from its log without asking its author",
+            "Classify each headline number as matched, drifted or without a step",
+            "Write a rerun log that an assessor can read in two minutes"
           ],
           "lo": [
             "LO6"
           ],
           "lab": {
             "id": "3.3",
-            "title": "Rerun a supplied package from its logs; check the numbers match",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Rerun a supplied package",
             "minutes": 25,
-            "href": "D3_3_rerun_supplied_package.ipynb"
+            "summary": "Rerun a supplied package from its logs and check that the numbers match its README.",
+            "href": "D3_3_peer_rerun.ipynb",
+            "steps": [
+              {
+                "text": "Read the package's README and its log",
+                "minutes": 4
+              },
+              {
+                "text": "Rerun every logged step on your data",
+                "minutes": 8
+              },
+              {
+                "text": "Compare with the claimed numbers and trace each one",
+                "minutes": 9
+              },
+              {
+                "text": "Write the rerun log as the note",
+                "minutes": 4
+              }
+            ],
+            "stretch": "Write the missing step and log it so the package passes"
           }
         },
         {
           "title": "Disclosing assistance",
+          "summary": "A report says which steps were assisted, by what, on which data, how they were verified and who answers for the numbers",
           "outcomes": [
-            "REPLACE: what a participant can do after this session"
+            "Derive the assisted steps of an analysis from its log",
+            "Write a method and disclosure paragraph that the log supports",
+            "Choose a capstone question and route its tables before starting"
           ],
           "lo": [
-            "LO6"
+            "LO6",
+            "LO5"
           ],
           "lab": {
             "id": "3.4",
-            "title": "Write the method and disclosure paragraph; choose the capstone question",
-            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "title": "Method, disclosure and the capstone question",
             "minutes": 25,
-            "href": "D3_4_write_method_disclosure.ipynb"
+            "summary": "Write the method and disclosure paragraph from the log, test it against the log, and choose the capstone question.",
+            "href": "D3_4_disclosure.ipynb",
+            "steps": [
+              {
+                "text": "List the assisted steps from the log",
+                "minutes": 5
+              },
+              {
+                "text": "Write the method and disclosure paragraph",
+                "minutes": 8
+              },
+              {
+                "text": "Test the paragraph against the log; write the note",
+                "minutes": 5
+              },
+              {
+                "text": "Choose the capstone question and route its tables",
+                "minutes": 7
+              }
+            ],
+            "stretch": "Rewrite the paragraph in Arabic for an Arabic report"
           }
         }
-      ]
+      ],
+      "subtitle": "Which table may reach which assistant, what a rerun needs from a log, and what a report says about the assistance"
     },
     {
       "id": "capstone",
       "kind": "capstone",
-      "title": "Capstone project presentations",
+      "title": "Capstone: the assisted analysis package and its defence",
       "deck": "slides/capstone.html",
-      "subtitle": "REPLACE: the catalog gives 8 minutes for each presentation and nothing about questions; decide whether the questions are inside those minutes, set capstone.talk_minutes and capstone.qa_minutes in course.json and the timers of the now-presenting slide, and remove this line"
+      "subtitle": "A new question, a two-hour budget, a package a peer reruns, and eight minutes to defend it without an assistant"
     }
   ],
   "capstone": {
-    "summary": "An assisted analysis package for a new question in a public repository with prompts, agent transcripts, code, verification notes and a README of headline numbers a peer reproduced; eight-minute defence",
-    "submission": "REPLACE: what participants submit and how: a public repository link, or a shared folder for a course without code",
+    "summary": "An individual assisted analysis of a new question about Hudhud Parcel, built in two hours from the course starter (labs/capstone/): a delegation plan and brief, a project context file, the assistant's transcripts and a run log, the code, a verification note per headline number, a variability table of five runs, a data-handling table and a method and disclosure paragraph. A peer reruns the package from its log before the defence.",
+    "submission": "A public repository whose README states the headline numbers a peer reproduced, with the prompts, agent transcripts, code, verification notes, run log and peer rerun log committed. Then an eight-minute defence without the assistant: five minutes on the delegation choices and what verification found, then the participant recomputes one headline number the assessor selects, live.",
     "talk_minutes": 8,
     "rubric": [
       {
@@ -373,6 +651,104 @@
       "examples": [
         "Git with a hosted service",
         "Git with a self-hosted server"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "group": "Evidence on assisted work and skill",
+      "items": [
+        {
+          "title": "Shen and Tamkin: How AI Impacts Skill Formation (2026)",
+          "url": "https://arxiv.org/abs/2601.20245"
+        },
+        {
+          "title": "Becker et al. (METR): Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity",
+          "url": "https://arxiv.org/abs/2507.09089"
+        },
+        {
+          "title": "Lee et al.: The Impact of Generative AI on Critical Thinking (Microsoft Research, CHI 2025)",
+          "url": "https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking-self-reported-reductions-in-cognitive-effort-and-confidence-effects-from-a-survey-of-knowledge-workers/"
+        }
+      ]
+    },
+    {
+      "group": "Assistants and agents in data analysis",
+      "items": [
+        {
+          "title": "DABstep: Data Agent Benchmark for Multi-step Reasoning",
+          "url": "https://arxiv.org/abs/2506.23719"
+        },
+        {
+          "title": "BLADE: Benchmarking Language Model Agents for Data-Driven Science",
+          "url": "https://arxiv.org/abs/2408.09667"
+        },
+        {
+          "title": "Silberzahn et al.: Many Analysts, One Data Set (2018)",
+          "url": "https://doi.org/10.1177/2515245917747646"
+        }
+      ]
+    },
+    {
+      "group": "Tools and conventions",
+      "items": [
+        {
+          "title": "AGENTS.md, the context-file convention",
+          "url": "https://agents.md/"
+        },
+        {
+          "title": "marimo: in-editor AI assistance",
+          "url": "https://docs.marimo.io/guides/editor_features/ai_completion/"
+        },
+        {
+          "title": "OpenCode documentation",
+          "url": "https://opencode.ai/docs/"
+        },
+        {
+          "title": "DuckDB documentation",
+          "url": "https://duckdb.org/docs/"
+        },
+        {
+          "title": "Ollama",
+          "url": "https://ollama.com/"
+        },
+        {
+          "title": "llama.cpp",
+          "url": "https://github.com/ggml-org/llama.cpp"
+        },
+        {
+          "title": "OpenRouter: models",
+          "url": "https://openrouter.ai/models"
+        }
+      ]
+    },
+    {
+      "group": "National references",
+      "items": [
+        {
+          "title": "Generative AI Guidelines for Government (SDAIA)",
+          "url": "https://sdaia.gov.sa/en/SDAIA/about/Files/GenAIGuidelinesForGovernmentENCompressed.pdf"
+        },
+        {
+          "title": "Generative AI Guidelines for the Public (SDAIA)",
+          "url": "https://sdaia.gov.sa/en/SDAIA/about/Files/GenerativeAIPublicEN.pdf"
+        },
+        {
+          "title": "Data Classification Policy (NDMO, SDAIA)",
+          "url": "https://sdaia.gov.sa/en/SDAIA/about/Documents/DataClassificationPolicy.pdf"
+        },
+        {
+          "title": "Personal Data Protection Law (SDAIA)",
+          "url": "https://sdaia.gov.sa/en/SDAIA/about/Documents/PersonalDataProtectionLaw.pdf"
+        },
+        {
+          "title": "Implementing Regulation of the Personal Data Protection Law (SDAIA)",
+          "url": "https://sdaia.gov.sa/en/SDAIA/about/Documents/ImplementingRegulationPersonalDataProtectionLaw.pdf"
+        },
+        {
+          "title": "AI Ethics Principles (SDAIA)",
+          "url": "https://sdaia.gov.sa/en/SDAIA/about/Documents/ai-principles.pdf"
+        }
       ]
     }
   ]

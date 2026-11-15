@@ -1,0 +1,9 @@
+{
+ "definitions": "On time is D-2 for every month: delivered_at at or before promised_by; a dispatched parcel that was never delivered is late. Do not use on_time_flag.",
+ "constraints": "SQL in DuckDB, one query per step. No test shipments (segment TEST), no cancelled orders. Stop after each step and show its row count before the next.",
+ "acceptance_checks": [
+  "The deliveries of the 12 months sum to the number of dispatched, non-test parcels, which I count myself",
+  "Exactly 12 rows, one per month from 2025-10 to 2026-09, none missing and none extra",
+  "Every rate is between 0 and 1, and no month differs from the month before by more than 5 points"
+ ]
+}

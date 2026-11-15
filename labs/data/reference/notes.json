@@ -1,0 +1,22 @@
+{
+ "1.1": {
+  "produced": "One SQL query and the sentence 'on-time rate is 85.3%' for a one-line request.",
+  "checked": "Read the code line by line, listed six assumptions, then changed three of them one query at a time against definitions.md.",
+  "wrong": "The flag mixes D-1 and D-2, failed parcels and duplicated scans distort the count, tests were kept: under D-2 on dispatched parcels the rate is 0.7942."
+ },
+ "1.2": {
+  "produced": "Nothing yet: a plan of ten steps, three delegated (2, 5, 9), four assisted (3, 4, 6, 8) and three kept (1, 7, 10).",
+  "checked": "Step 2 against the source system's row counts, step 5 by reading axes against the checked table, step 9 by reading the diff; assisted steps by recomputation.",
+  "wrong": "My marks matched the reference on 10 of 10 steps; the definition, the causal claim and the recommendation stay with the analyst."
+ },
+ "1.3": {
+  "produced": "A monthly on-time table under D-2; first reply 0.7782 for the year, second reply 0.7942.",
+  "checked": "Three acceptance checks written before the run: the total against my own count of dispatched parcels, twelve months, rates in range without a 5-point jump.",
+  "wrong": "The first reply kept cancelled orders: its table summed to 496,046 against 486,078 dispatched parcels; one follow-up fixed it."
+ },
+ "1.4": {
+  "produced": "Two replies to one short brief: 0.8673 without the context file and 0.8194 with it.",
+  "checked": "The three acceptance checks of Lab 1.3 on both results, and a read of each query against definitions.md.",
+  "wrong": "Without the file: UTC scans against local promises, tests kept, a join to scans (7.3 points off). With it: delivered parcels only, so failed parcels left the denominator (2.5 points off); the true rate is 0.7942."
+ }
+}
