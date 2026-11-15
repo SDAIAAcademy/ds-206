@@ -1,0 +1,8 @@
+[
+ {"id": "Q1", "question": "Do cash-on-delivery parcels need a second delivery attempt more often, and is it the same in every city?", "tables": ["deliveries", "customers"]},
+ {"id": "Q2", "question": "Do drivers on split shifts have more failed deliveries than drivers on single shifts?", "tables": ["deliveries", "customers", "driver_shifts"]},
+ {"id": "Q3", "question": "Do express parcels meet their earlier cut-off as often as standard parcels meet theirs, by city?", "tables": ["deliveries", "customers"]},
+ {"id": "Q4", "question": "Which complaint categories follow late parcels, and which follow parcels that were on time?", "tables": ["deliveries", "customers", "complaints"]},
+ {"id": "Q5", "question": "Did replanned routes (more than one plan version) deliver on time less often than routes planned once?", "tables": ["deliveries", "customers", "route_plans"]},
+ {"id": "Q6", "question": "Which merchant segment has the most failed and returned parcels per 1,000 dispatched, and did it change over the year?", "tables": ["deliveries", "customers"]}
+]

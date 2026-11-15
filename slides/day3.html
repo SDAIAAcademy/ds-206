@@ -1,158 +1,560 @@
 <section class="slide title" id="title" data-auto="title">
-  <aside class="notes">REPLACE: welcome; introduce yourself; one question to the room that calibrates the pace; the rhythm of the day</aside>
+  <aside class="notes"><p>Two days of work now exist only in your notebooks: a checked finding about Dammam, four seeded errors found, a variability table. Ask: if you were away next week, could a colleague defend the Dammam number to the board from what you left behind? Today builds what you would have to leave: a data-handling table, a log, a package a peer can rerun, and a disclosure. The last lab ends with your capstone question chosen.</p></aside>
 </section>
 
 <section class="slide" id="agenda" data-auto="agenda"></section>
 
-<!-- Session 1 -->
-
-<section class="slide section" id="s1" data-auto="section" data-session="1"></section>
-
-<section class="slide" id="s1-idea" data-lo="LO5">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
-  <div class="cols cols-2">
-    <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
-    </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+<section class="slide" id="check-day2-review" data-lo="LO3">
+  <div class="kicker">Review · Day 2</div>
+  <h2>Which check finds which error?</h2>
+  <div class="quiz" data-type="single" data-lo="LO3">
+    <p class="lead">An assisted query reports 91% on time for Madinah in September. Its last line filters <code>created_at BETWEEN '2026-09-01' AND '2026-09-30'</code>. Which check shows what that filter did?</p>
+    <div class="opts">
+      <div class="opt" data-ok>An anti-join of the September scope against the query's rows</div>
+      <div class="opt" data-why="Rows against distinct keys finds rows that were multiplied; this filter removed rows and multiplied none">Rows against distinct parcels after each join</div>
+      <div class="opt" data-why="Repetition shows variation between runs; one run's filter is found by checking that run">Running the request five times and comparing</div>
+      <div class="opt" data-why="The axis of a chart is an encoding of the result, not a test of which rows produced it">Reading the y axis of the chart</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> The filter ends at midnight at the start of the last day. The anti-join lists the parcels of 30 September as missing.</div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>Answer: the anti-join. Two minutes. It recalls the 236 parcels of the last day in Lab 2.2. If someone says "read the code", agree, and ask how many parcels reading tells you were lost.</p></aside>
 </section>
 
-<section class="slide" id="s1-steps" data-lo="LO5">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<!-- ======================= SESSION 1 ======================= -->
+<section class="slide section" id="s1" data-auto="section" data-session="1"></section>
+
+<section class="slide" id="levels-in-one-slide" data-lo="LO5" data-label="From FN-106">
+  <div class="kicker">What you already know</div>
+  <h2>The level decides the destination. Today the unit is a table of your analysis</h2>
+  <div class="cols cols-2">
+    <div class="card c-navy tint"><h4>From Responsible Data and AI Practice (FN-106)</h4>
+      <ul class="bullets small tight"><li>Four national levels: Top Secret, Secret, Restricted, Public</li><li>The level follows the impact of unauthorised disclosure</li><li>Generative AI tools: data classified Public only</li><li>Three destinations: a hosted service, a model you run, or no model</li></ul></div>
+    <div class="card c-teal"><h4>What an analysis adds</h4>
+      <ul class="bullets small tight"><li>Eight tables, joined, each with its own owner</li><li>An assistant that reads whatever the notebook hands it</li><li>Results, samples and error messages that travel back into prompts</li><li>Aggregates you create, which need a level too</li></ul></div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <aside class="notes"><p>One slide of recap as a pointer; FN-106 is not taught again. The national guidelines for government say not to enter data classified Restricted or higher into generative AI tools and to limit data analysis with them to public or open data; Hudhud is a private company in the case and adopts the strict reading for anything that leaves it. Sources: Generative AI Guidelines for Government (SDAIA); Data Classification Policy (NDMO).</p></aside>
+</section>
+
+<section class="slide" id="a-table-takes-its-highest-column" data-lo="LO5" data-label="Highest column">
+  <div class="kicker">Rules P-1 and P-2 of Hudhud's policy</div>
+  <h2>A table takes the level of its most sensitive column</h2>
+  <div class="cols cols-2">
+    <table class="t small">
+      <tr><th>Column of <code>deliveries</code></th><th>Kind</th></tr>
+      <tr><td><code>delivery_id</code>, <code>status</code>, <code>created_at</code> …</td><td>operational</td></tr>
+      <tr><td><code>cod_amount</code></td><td>commercial</td></tr>
+      <tr><td><code>district</code></td><td><em>location of a person</em></td></tr>
+      <tr><td><code>recipient_phone</code></td><td><em>contact</em></td></tr>
+      <tr class="hl"><td>The table</td><td>Restricted, personal data</td></tr>
+    </table>
+    <ul class="bullets small">
+      <li>Sixteen operational columns do not dilute two personal ones.</li>
+      <li>A <b>commercial</b> column also makes a table Restricted: a contract rate, a route plan.</li>
+      <li>A table nobody has classified is treated as Restricted.</li>
+      <li>The <b>data owner</b> classifies. The analyst applies and records.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The policy in the lab is the policy of a fictional company, written for the course, and says so. It names eight rules, P-1 to P-8. The kinds of column come from the table catalogue that each owner keeps. Remind the room that all course data is synthetic and describes nobody: in this session it is treated as if it were real.</p></aside>
+</section>
+
+<section class="slide" id="the-data-handling-table" data-lo="LO5" data-label="Handling table">
+  <div class="kicker">Lab 3.1, the reference result</div>
+  <h2>Ten items, three destinations</h2>
+  <table class="t small">
+    <tr><th>Item</th><th>Level</th><th>Personal</th><th>Rows may go to</th><th>Item</th><th>Level</th><th>Personal</th><th>Rows may go to</th></tr>
+    <tr><td>hubs</td><td>Public</td><td>no</td><td><span class="pill c-teal">hosted</span></td><td>deliveries</td><td>Restricted</td><td>yes</td><td><span class="pill c-cyan">local</span></td></tr>
+    <tr><td>customers</td><td>Restricted</td><td>yes</td><td><span class="pill c-cyan">local</span></td><td>scans</td><td>Restricted</td><td>yes</td><td><span class="pill c-cyan">local</span></td></tr>
+    <tr><td>drivers</td><td>Restricted</td><td>yes</td><td><span class="pill c-coral">neither</span></td><td>complaints</td><td>Restricted</td><td>yes</td><td><span class="pill c-cyan">local</span></td></tr>
+    <tr><td>driver_shifts</td><td>Restricted</td><td>yes</td><td><span class="pill c-cyan">local</span></td><td>on-time by city and month</td><td>Public</td><td>no</td><td><span class="pill c-teal">hosted</span></td></tr>
+    <tr><td>route_plans</td><td>Restricted</td><td>no</td><td><span class="pill c-cyan">local</span></td><td>complaints by district</td><td>Restricted</td><td>yes</td><td><span class="pill c-cyan">local</span></td></tr>
+  </table>
+  <div class="callout note mt"><b>The course's main table is Restricted.</b> Every request you sent in two days was about <code>deliveries</code>. The next slide says why that was allowed.</div>
+  <aside class="notes"><p>This is the evidence of the fifth course outcome: a data-handling table consistent with the classification policy. Show it briefly before the lab, or after it for a strong room. Drivers goes to no assistant because it holds a government identity number (P-7); analysis that needs drivers uses a view without that column.</p></aside>
+</section>
+
+<section class="slide" id="schema-is-not-rows" data-lo="LO5" data-label="Schema and rows">
+  <div class="kicker">Rule P-5</div>
+  <h2>The assistant wrote code about data it never saw</h2>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>What left the notebook in every lab</h4>
+      <ul class="bullets small tight"><li>The request</li><li>The context file</li><li>Table and column names with their types</li></ul></div>
+    <div class="card c-coral"><h4>What sends rows without your noticing</h4>
+      <ul class="bullets small tight"><li>"Here are the first five rows, what is wrong?"</li><li>An error message that quotes a value</li><li>An example in the context file</li><li>An agent allowed to run queries and read their output</li></ul></div>
+  </div>
+  <div class="callout warn mt"><b>An agent with a database connection reads rows by design.</b> For Restricted tables that agent is local, or it does not get the connection.</div>
+  <aside class="notes"><p>The helper of the course sends the schema and nothing else, and the model replies with code that the notebook runs locally. That split, a hosted model that writes and a local machine that runs, is what made two days of work on a Restricted table compatible with the policy. It breaks the moment results are pasted back for interpretation. Ask who has pasted a dataframe into a chat window this month.</p></aside>
+</section>
+
+<section class="slide" id="an-aggregate-is-not-automatically-safe" data-lo="LO5" data-label="Aggregates">
+  <div class="kicker">Rule P-3</div>
+  <h2>An aggregate is not safe because it is an aggregate</h2>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>On-time rate by city and month</h4><p class="small">No personal column. Smallest cell: 3,200 parcels.</p><p class="small mb0"><b>Public</b>, once its owner says so. May go to the hosted assistant.</p></div>
+    <div class="card c-coral"><h4>Complaints by district and category</h4><p class="small">A district is where a person lives. Smallest cell: 4 complaints.</p><p class="small mb0"><b>Restricted.</b> Four complaints about one driver in one district describe people.</p></div>
+  </div>
+  <div class="callout tip mt"><b>Two tests before an aggregate leaves:</b> no column that locates or describes a person, and no cell built from fewer than 20 parcels. Then the owner classifies it.</div>
+  <aside class="notes"><p>The threshold of 20 is the fictional company's own; the principle that small cells can identify people is the point, and FN-106 showed it on school data. A practical consequence for analysts: the cleanest way to use a hosted assistant for interpretation is to hand it an aggregate that an owner has classified Public, not a sample of rows.</p></aside>
+</section>
+
+<section class="slide" id="free-text-carries-people" data-lo="LO5" data-label="Free text">
+  <div class="kicker">Lab 3.1, measured</div>
+  <h2>A third of the complaint texts carry a phone number</h2>
+  <div class="cols cols-2">
+    <div class="stack">
+      <div class="stat"><div class="big">31.5%</div><div class="lbl">of 20,000 complaint texts contain a mobile number: about 6,300 texts</div></div>
+      <div class="stat"><div class="big">about 157</div><div class="lbl">of them in the 500 texts that the summary of Lab 2.3 read</div></div>
+    </div>
+    <ul class="bullets small">
+      <li>A pattern finds numbers. <b>No pattern lists every name.</b></li>
+      <li>Masking lowers the harm of a leak. It does not change the table's level.</li>
+      <li>Texts written by customers stay on a <b>local</b> assistant, or are read by people.</li>
+      <li>The labels in <code>category</code> can be counted without reading a text.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The share is computed in the lab with one regular expression and without printing a text. This is the course's responsible-use rule: personal data in complaint texts stays on a local model. Be plain about the classroom: no lab downloads or runs a local model. The course teaches the routing decision and enforces it in code; pointing the helper at a model served on your own machine is documented in the labs README for those whose organisation has one.</p></aside>
+</section>
+
+<section class="slide" id="a-guard-before-every-request" data-lo="LO5" data-label="The guard">
+  <div class="kicker">From document to code</div>
+  <h2>A guard runs before every request, on good days and bad</h2>
+  <div class="cols cols-2">
+    <pre class="code s" data-file="Lab 3.1 · guard"><code class="language-python">def guard(tables, to, what):
+    if what == "schema":
+        return True                        # P-5
+    for t in tables:
+        if DEST[t] == "neither":
+            raise PermissionError(f"P-7: {t}")
+        if to == "hosted" and DEST[t] != "hosted":
+            raise PermissionError(f"P-4: {t}")
+    return True</code></pre>
+    <table class="t small">
+      <tr><th>Request</th><th>Result</th></tr>
+      <tr><td>Schema of deliveries, to hosted</td><td>allowed</td></tr>
+      <tr><td>Rows of hubs, to hosted</td><td>allowed</td></tr>
+      <tr><td>Rows of complaints, to hosted</td><td><em>blocked, P-4</em></td></tr>
+      <tr><td>Rows of complaints, to local</td><td>allowed</td></tr>
+      <tr><td>Rows of drivers, to local</td><td><em>blocked, P-7</em></td></tr>
+    </table>
+  </div>
+  <aside class="notes"><p>Nine lines. The refusal names the rule, so the analyst who is blocked knows what to read and whom to ask. The third row is the summary request of Lab 2.3: it would have sent 500 complaint texts to a hosted model, and nothing in that lab stopped it. Real tools offer the same control as permission settings; the principle is that the policy is executed, not remembered.</p></aside>
+</section>
+
+<section class="slide" id="check-destination" data-lo="LO5">
+  <div class="kicker">Checkpoint</div>
+  <h2>What may the hosted assistant receive?</h2>
+  <div class="quiz" data-type="single" data-lo="LO5">
+    <p class="lead">You want a hosted assistant to help explain why split-shift drivers have more failed deliveries. Under Hudhud's policy, what may you send it?</p>
+    <div class="opts">
+      <div class="opt" data-why="Assumes pseudonymous ids make rows Public: driver_shifts holds a person's working hours and stays Restricted">Rows of driver_shifts, since driver_id is not a name</div>
+      <div class="opt" data-why="A sample is rows: P-5 allows names of columns, not example values of a Restricted table">Twenty sample rows of deliveries joined to shifts</div>
+      <div class="opt" data-why="The drivers table holds a government identity number and goes to no assistant, masked or not, under P-7">The drivers table with names masked</div>
+      <div class="opt" data-ok>The schema of both tables, and an aggregate its owner classified Public</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> P-5 lets the schema of any table be shown, and P-4 lets rows of Public data go: an approved aggregate is the way to share results.</div>
+  </div>
+  <aside class="notes"><p>Answer: the schema and a Public aggregate. The first option is the common belief to correct: removing names does not make a table of one person's working hours anything but personal data. FN-106 covered why pseudonymising does not open the hosted route.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-3-1" data-auto="lab" data-lab="3.1">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>AI-off. Nothing is sent to any model. The lab starts from the supplied policy and catalogue. Expected: hubs and one aggregate hosted, drivers neither, seven items local; 31.5% of texts with a phone number; two of six requests blocked. Watch task 2: people classify by table name and intuition. Send them back to the column kinds and the rule numbers. No complaint text is printed in this lab either.</p></aside>
 </section>
 
-<!-- Session 2 -->
-
+<!-- ======================= SESSION 2 ======================= -->
 <section class="slide section" id="s2" data-auto="section" data-session="2"></section>
 
-<section class="slide" id="s2-idea" data-lo="LO6">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
-  <div class="cols cols-2">
-    <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
-    </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
-  </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+<section class="slide" id="what-a-rerun-needs" data-lo="LO6" data-label="Nine fields">
+  <div class="kicker">The run log</div>
+  <h2>A rerun needs nine things from every assisted step</h2>
+  <table class="t small">
+    <tr><th>Field</th><th>Why a peer needs it</th><th>Field</th><th>Why a peer needs it</th></tr>
+    <tr><td><b>step</b></td><td>To match it to a number in the report</td><td><b>code</b></td><td>The thing that is rerun</td></tr>
+    <tr><td><b>request</b></td><td>Word for word: what was asked</td><td><b>data</b></td><td>A fingerprint: was it this data?</td></tr>
+    <tr><td><b>context</b></td><td>A hash of the context file in force</td><td><b>headline</b></td><td>What the step produced then</td></tr>
+    <tr><td><b>model</b></td><td>Name and version: services change</td><td><b>verified by</b></td><td>The check, or its absence</td></tr>
+    <tr><td><b>settings</b></td><td>Temperature, a seed if supported</td><td></td><td></td></tr>
+  </table>
+  <div class="callout tip mt"><b>Logged by the notebook, not typed afterwards.</b> A log written from memory is a story about a log.</div>
+  <aside class="notes"><p>The national guidelines for government list keeping a clear record of the analysis process among the practices for analysing data with generative AI; this table is what that record holds for one step. In the lab one function builds the record at the moment the step runs. Sources: Generative AI Guidelines for Government (SDAIA), the section on using generative AI to analyse data.</p></aside>
 </section>
 
-<section class="slide" id="s2-steps" data-lo="LO6">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="a-log-that-cannot-be-rerun" data-lo="LO6" data-label="An incomplete log">
+  <div class="kicker">Lab 3.2, the supplied log</div>
+  <h2>Each line made sense on the day it was written</h2>
+  <table class="t small">
+    <tr><th>Step</th><th>What the log says</th><th>What a rerun lacks</th></tr>
+    <tr><td>monthly_rate</td><td>A request, a query, "the notebook assistant"</td><td>Settings, context, data fingerprint, any check</td></tr>
+    <tr><td>by_city</td><td>The request is "same but by city"</td><td>The code, context, data fingerprint; verified by "looked right"</td></tr>
+    <tr><td>chart</td><td>The code is "see notebook cell 14"</td><td>The request, the temperature, the data, the headline, any check</td></tr>
+  </table>
+  <div class="callout warn mt"><b>"Same but by city" is a request only inside one conversation.</b> A log line must stand without the lines around it.</div>
+  <aside class="notes"><p>From the lab's first task: the helper lists the missing fields of each record. Nothing here is careless by the standards of a normal working week, which is the point. The third line shows the most common failure in notebooks: the code is "in the notebook", and the notebook has since been edited.</p></aside>
+</section>
+
+<section class="slide" id="fingerprint-the-data" data-lo="LO6" data-label="Fingerprint">
+  <div class="kicker">Was it this data?</div>
+  <h2>A fingerprint identifies the data without storing it</h2>
+  <div class="cols cols-2">
+    <pre class="code s" data-file="Lab 3.2 · fingerprint"><code class="language-python">def fingerprint(table):
+    row = con.sql("""
+        SELECT COUNT(*), SUM(delivery_id),
+               CAST(MIN(created_at) AS VARCHAR),
+               CAST(MAX(created_at) AS VARCHAR)
+        FROM deliveries""").fetchall()[0]
+    return {"rows": int(row[0]),
+            "sha": U.sha([str(x) for x in row])}</code></pre>
+    <table class="t small">
+      <tr><th>The peer's rerun gives</th><th>Fingerprint</th><th>So</th></tr>
+      <tr><td>The same number</td><td>same</td><td>Reproduced</td></tr>
+      <tr><td>Another number</td><td>same</td><td>The code or the environment differs</td></tr>
+      <tr><td>Another number</td><td>different</td><td>The data changed: late corrections, a new export</td></tr>
+      <tr><td>The same number</td><td>different</td><td>Luck. Look again</td></tr>
+    </table>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <aside class="notes"><p>A row count and a hash of a few totals is enough to tell two exports apart, costs one query, and contains no row. The helper's own version hashes every column. Operational tables change: parcels are corrected, scans arrive late. Without a fingerprint, a peer whose number differs cannot tell an error from an update.</p></aside>
+</section>
+
+<section class="slide" id="one-log-record" data-lo="LO6 LO4" data-label="A record">
+  <div class="kicker">Lab 3.2, the record you write</div>
+  <h2>One line per step, complete on its own</h2>
+  <pre class="code s" data-file="run_log.jsonl · one line, shown on several"><code class="language-json">{"step": "monthly_rate",
+ "request": "Follow the brief below. Do step 2: the monthly on-time rate.",
+ "context_sha": "a699f7c0c555",
+ "model": "google/gemma-4-31b-it:free",
+ "settings": {"temperature": 0.7},
+ "code": "result = con.sql(\"\"\"SELECT strftime(d.created_at, '%Y-%m') AS month, ...",
+ "data": {"deliveries": {"rows": 500000, "sha": "..."}, "customers": {"rows": 3005, "sha": "..."}},
+ "headline": {"on_time_rate": 0.7942},
+ "verified_by": "three acceptance checks passed (3 of 3): total, months, rates"}</code></pre>
+  <aside class="notes"><p>The model line shows what a live run records; with the recorded replies of the lab it reads rafiq-recorded-1, the name the course gives its scripted replies, so that nobody mistakes them for a product's output. Model names and free tiers change: this one was listed on the day the course was written, and the labs README says how to choose another. The settings are also what makes yesterday's variability table repeatable.</p></aside>
+</section>
+
+<section class="slide" id="rerun-from-the-line-alone" data-lo="LO6" data-label="Proving the log">
+  <div class="kicker">The test of a log</div>
+  <h2>Prove the log by rerunning from the line alone</h2>
+  <div class="flow">
+    <div class="step c-teal"><b>1 · Read the line</b>back from the file, not from memory</div>
+    <div class="arrow">→</div>
+    <div class="step c-cyan"><b>2 · Run its code</b>in a fresh connection</div>
+    <div class="arrow">→</div>
+    <div class="step c-purple"><b>3 · Compare headlines</b>0.7942 and 0.7942</div>
+    <div class="arrow">→</div>
+    <div class="step c-coral"><b>4 · Compare fingerprints</b>the data is the data</div>
+  </div>
+  <div class="callout tip mt"><b>You are your own first peer.</b> If you cannot rerun your step from its log line today, nobody will next month.</div>
+  <aside class="notes"><p>In the lab this is four lines of code after the record is written. The run is of the code, not of the model: a rerun does not ask the assistant again, because a second request would be a new analysis, as yesterday's last session showed. What is reproduced is the computation; what is logged about the model is there to explain, not to repeat.</p></aside>
+</section>
+
+<section class="slide" id="a-log-is-published" data-lo="LO6 LO5" data-label="Safe to publish">
+  <div class="kicker">The log leaves with the package</div>
+  <h2>A log must be safe to publish</h2>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>In the log</h4>
+      <ul class="bullets small tight"><li>Requests and replies, as sent</li><li>Code</li><li>Fingerprints and headline numbers</li><li>What was sent: "schema only"</li></ul></div>
+    <div class="card c-coral"><h4>Never in the log</h4>
+      <ul class="bullets small tight"><li>Rows or example values of Restricted data</li><li>Keys and tokens</li><li>A transcript in which a row was pasted</li><li>Outputs that print personal data</li></ul></div>
+  </div>
+  <div class="callout note mt"><b>The capstone repository is public.</b> Its transcripts are the evidence of how you worked, and of what the assistant was shown.</div>
+  <aside class="notes"><p>Agent transcripts are part of the capstone's authenticity evidence, with the peer rerun log and the commit history. That makes the data-handling decision of the first session concrete: a transcript that contains a pasted complaint text cannot be published, so the row must never have been pasted. All course data is synthetic; the habit is what is assessed.</p></aside>
+</section>
+
+<section class="slide" id="check-log" data-lo="LO6">
+  <div class="kicker">Checkpoint</div>
+  <h2>What does this log line lack?</h2>
+  <div class="quiz" data-type="single" data-lo="LO6">
+    <p class="lead">A log line holds the step name, the full request, the model, temperature 0.2, the code and the headline number. A peer reruns the code and gets a different number. What can the peer not decide?</p>
+    <div class="opts">
+      <div class="opt" data-why="The model and temperature are logged, and a rerun runs the logged code, not the model">Whether the model's settings were the same</div>
+      <div class="opt" data-ok>Whether the data changed or the computation did</div>
+      <div class="opt" data-why="The request is logged in full, so what was asked is known">Whether the request was the one the report describes</div>
+      <div class="opt" data-why="The code is in the line: the peer ran exactly it">Whether the right code was rerun</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Without a data fingerprint, a different number cannot be told apart from different data.</div>
+  </div>
+  <aside class="notes"><p>Answer: data or computation. The line also lacks how the step was verified and the context file's hash, which a sharp participant may add; the question asks what blocks the peer's diagnosis.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-3-2" data-auto="lab" data-lab="3.2">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>AI-full. The step that is logged is the corrected monthly rate of Lab 1.3, supplied as a recorded reply, so the lab needs nothing from Day 1. Expected: the three old records lack fourteen fields between them; the new record lacks none; the rerun from the line gives 0.7942 with matching fingerprints. The log is written to artifacts/lab_3_2. Common problem: forgetting that context_sha is the hash of the context text, not the text.</p></aside>
 </section>
 
-<!-- Session 3 -->
-
+<!-- ======================= SESSION 3 ======================= -->
 <section class="slide section" id="s3" data-auto="section" data-session="3"></section>
 
-<section class="slide" id="s3-idea" data-lo="LO6">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
-  <div class="cols cols-2">
-    <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
-    </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+<section class="slide" id="reproduced-means" data-lo="LO6" data-label="Reproduced">
+  <div class="kicker">A definition</div>
+  <h2>Reproduced: a peer reaches the headline numbers from the package alone</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>A peer</h4><p class="small mb0">Someone who did not do the work and does not share your notebook's memory.</p></div>
+    <div class="card c-cyan"><h4>The headline numbers</h4><p class="small mb0">The ones in the README and the report: what a reader will quote.</p></div>
+    <div class="card c-purple"><h4>From the package alone</h4><p class="small mb0">The log, the code and the data. No question to the author, no "run cell 14 first".</p></div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <div class="callout note mt"><b>Reproduced is not correct.</b> A rerun shows that the numbers come from the logged steps. The verification notes are what argue that the steps are right.</div>
+  <aside class="notes"><p>Keep the two words apart all session. Day 2 was about correct. This session is about reproduced: can someone else get from the package to the same numbers. A package can be reproduced and wrong, or right and impossible to reproduce; the capstone asks for both and scores them on different rubric lines.</p></aside>
 </section>
 
-<section class="slide" id="s3-steps" data-lo="LO6">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="anatomy-of-a-package" data-lo="LO6" data-label="The package">
+  <div class="kicker">What is in the repository</div>
+  <h2>The package of an assisted analysis</h2>
+  <table class="t small">
+    <tr><th>File</th><th>Holds</th><th>From</th></tr>
+    <tr><td><code>README.md</code></td><td>The question, the headline numbers, the method and disclosure paragraph</td><td>Today</td></tr>
+    <tr><td><code>brief.md</code>, <code>AGENTS.md</code></td><td>What was delegated and under which rules</td><td>Day 1</td></tr>
+    <tr><td><code>run_log.jsonl</code>, <code>transcripts/</code></td><td>Every assisted step, and the conversations as they happened</td><td>Today</td></tr>
+    <tr><td><code>headline.json</code></td><td>Each headline number with the step and key it comes from</td><td>Today</td></tr>
+    <tr><td><code>notes.md</code>, <code>variability.md</code></td><td>A verification note per headline number; five runs of one request</td><td>Day 2</td></tr>
+    <tr><td><code>data_handling.md</code></td><td>Each table's level and destination</td><td>Today</td></tr>
+    <tr><td><code>rerun_log.md</code></td><td>Written by the peer, not by you</td><td>Today</td></tr>
+  </table>
+  <aside class="notes"><p>This is the layout of the capstone starter in labs/capstone. Every file is something the room has already produced once in a lab. The supplied package of this session's lab has four of them: enough to rerun, and enough to find what is missing.</p></aside>
+</section>
+
+<section class="slide" id="three-outcomes-for-a-number" data-lo="LO6" data-label="Three statuses">
+  <div class="kicker">Tracing</div>
+  <h2>Every headline number ends in one of three states</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>Matched</h4><p class="small mb0">A logged step produces it, and the rerun gives the same value.</p></div>
+    <div class="card c-amber"><h4>Drifted</h4><p class="small mb0">A logged step claims to produce it, and the rerun gives another value. The text and the code have parted.</p></div>
+    <div class="card c-coral"><h4>No step</h4><p class="small mb0">Nothing in the log produces it. It was typed, copied or computed somewhere else.</p></div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <div class="callout tip mt"><b>Trace from the report backwards.</b> Start from each number a reader will quote and ask which line of the log made it.</div>
+  <aside class="notes"><p>Rerunning forwards, step by step, answers "does the log run?". Tracing backwards from the README answers "does the report come from the log?". They are different questions, and the lab's package passes the first and fails the second.</p></aside>
+</section>
+
+<section class="slide" id="the-rerun-of-the-dammam-package" data-lo="LO6" data-label="The rerun">
+  <div class="kicker">Lab 3.3, measured</div>
+  <h2>Three steps rerun. Two of four numbers are reproduced</h2>
+  <table class="t">
+    <tr><th>Headline number in the README</th><th class="num">Claimed</th><th class="num">Rerun</th><th>Status</th></tr>
+    <tr><td>Dammam on-time rate, third quarter of 2026</td><td class="num">72.3%</td><td class="num">72.3%</td><td>matched</td></tr>
+    <tr><td>Dammam on-time rate, second quarter of 2026</td><td class="num">79.7%</td><td class="num">79.7%</td><td>matched</td></tr>
+    <tr><td>On-time rate on long routes, July to September</td><td class="num">68.4%</td><td class="num">68.1%</td><td><em>drifted</em></td></tr>
+    <tr><td>Late complaints from Dammam per month since July</td><td class="num">144</td><td class="num"></td><td><em>no step</em></td></tr>
+  </table>
+  <div class="callout warn mt"><b>All three logged steps reran to their logged headline, on data with matching fingerprints.</b> The package is still not reproduced: readers quote the README.</div>
+  <aside class="notes"><p>The package is built by the course from real runs, with two things planted in its README: a long-route rate typed from an earlier version of the query (0.6841 against the log's 0.6805) and a complaints number that no logged step produces. A third finding is in the log itself: the chart step has no verification recorded, which the next session's disclosure has to deal with.</p></aside>
+</section>
+
+<section class="slide" id="probably-right-is-not-reproduced" data-lo="LO6" data-label="Probably right">
+  <div class="kicker">The fourth number</div>
+  <h2>The number with no step is probably right. It still fails</h2>
+  <div class="cols cols-2">
+    <div class="stack">
+      <div class="stat"><div class="big">144</div><div class="lbl">late-delivery complaints from Dammam per month since July: the value Lab 2.3 also found</div></div>
+    </div>
+    <ul class="bullets small">
+      <li>A peer can confirm only what can be rerun.</li>
+      <li>A number with no step rests on the author's word, which is what a package exists to replace.</li>
+      <li>Next quarter someone updates the package: this number will silently stay 144.</li>
+      <li>The repair takes five minutes: write the query, log it.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The room will want to pass it, because they computed 144 themselves yesterday. That is exactly the situation of a helpful reviewer, and it is why the rule is mechanical: no step, no pass. The stretch task of the lab is the repair.</p></aside>
+</section>
+
+<section class="slide" id="numbers-in-text-come-from-the-log" data-lo="LO6" data-label="Preventing drift">
+  <div class="kicker">Preventing drift</div>
+  <h2>Numbers in the text are written by the log, not typed</h2>
+  <div class="cols cols-2">
+    <pre class="code s" data-file="headline.json · one entry"><code class="language-json">{"name": "On-time rate on long routes",
+ "value": 0.6805,
+ "step": "long_short",
+ "key": "long"}</code></pre>
+    <ul class="bullets small">
+      <li>Each headline number names its <b>step</b> and <b>key</b>.</li>
+      <li>The README table is generated from this file, after the last run.</li>
+      <li>A number with no step cannot be entered.</li>
+      <li>A change to a query changes the README in the same commit.</li>
+    </ul>
+  </div>
+  <div class="callout tip mt"><b>Drift is a process problem.</b> Nobody intends to leave an old number in a README. Remove the typing and the drift goes with it.</div>
+  <aside class="notes"><p>The drifted number came from a real sequence: the query was repaired after a peer comment, the log was regenerated, the README was not. In the capstone starter a short script writes the README's table from headline.json, and the peer traces from that file.</p></aside>
+</section>
+
+<section class="slide" id="the-peers-part" data-lo="LO6" data-label="The peer's part">
+  <div class="kicker">How a peer works</div>
+  <h2>The peer reruns, traces and writes. The author repairs</h2>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>The peer</h4>
+      <ul class="bullets small tight"><li>Uses the package only, and asks nothing</li><li>Reruns every logged step</li><li>Traces every headline number</li><li>Writes a rerun log: what matched, what did not</li></ul></div>
+    <div class="card c-coral"><h4>The peer does not</h4>
+      <ul class="bullets small tight"><li>Fix the package quietly</li><li>Pass a number because it "looks right"</li><li>Rerun the request through an assistant</li><li>Judge the conclusion: that is the review, a different task</li></ul></div>
+  </div>
+  <aside class="notes"><p>Tomorrow each participant is a peer for one colleague before the defences, and the rerun log is committed in the author's repository. Thirty minutes is the budget. The assessor reads the rerun log first: it is one of the three pieces of authenticity evidence, with the transcripts and the commit history.</p></aside>
+</section>
+
+<section class="slide" id="check-rerun" data-lo="LO6">
+  <div class="kicker">Checkpoint</div>
+  <h2>Is this package reproduced?</h2>
+  <div class="quiz" data-type="single" data-lo="LO6">
+    <p class="lead">A peer reruns a package. Every logged step runs and gives its logged headline. The README's main number, 18.2%, appears in no step's headline; the nearest is 18.9%. What does the rerun log say?</p>
+    <div class="opts">
+      <div class="opt" data-why="Treats a running log as a reproduced report: the number readers will quote was not reached">Reproduced: all steps rerun to their logged values</div>
+      <div class="opt" data-why="Passes a number on plausibility: 0.7 points apart is a different number, and the peer cannot know which is meant">Reproduced within tolerance: 18.2% and 18.9% are close</div>
+      <div class="opt" data-ok>Not reproduced: the main number does not come from any logged step</div>
+      <div class="opt" data-why="The peer reruns and reports; repairing the README quietly hides the finding from the author and the assessor">Reproduced after the peer corrected the README to 18.9%</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Reproduced means the headline numbers are reached from the package. A report whose main number has no step is not.</div>
+  </div>
+  <aside class="notes"><p>Answer: not reproduced. The last option is the kind one, and the wrong one: the author needs to know, and so does anyone who already quoted 18.2%.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-3-3" data-auto="lab" data-lab="3.3">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>AI-off: a rerun follows the log and asks nothing of an assistant. The package is supplied in data/packages/dammam_q3, built by the course from real runs. Expected: three steps rerun with matching fingerprints; statuses matched, matched, drifted, no step. If a participant's fingerprints do not match, their tables were built by an older generator: delete labs/artifacts and rerun the first cell. The note of this lab is the peer's rerun log.</p></aside>
 </section>
 
-<!-- Session 4 -->
-
+<!-- ======================= SESSION 4 ======================= -->
 <section class="slide section" id="s4" data-auto="section" data-session="4"></section>
 
-<section class="slide" id="s4-idea" data-lo="LO6">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
+<section class="slide" id="why-a-report-says-so" data-lo="LO6" data-label="Why disclose">
+  <div class="kicker">Disclosure</div>
+  <h2>A disclosure lets the reader decide how much to rely on each part</h2>
   <div class="cols cols-2">
     <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
+      <li>Which numbers did an assistant touch?</li>
+      <li>What was it shown?</li>
+      <li>How was each one checked, and which were not?</li>
+      <li>Who answers for them?</li>
     </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+    <div class="stack">
+      <div class="card c-purple flat"><h4>For government entities</h4><p class="small mb0">The national guidelines ask them to be transparent about content created with generative AI.</p></div>
+      <div class="card c-purple flat"><h4>For anyone who writes code with it</h4><p class="small mb0">The guidelines for the public advise marking generated code as such, and verifying it.</p></div>
+    </div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>The course rule is simple: assisted steps are disclosed in every report. The purpose is practical, not ceremonial. Tahani reads a number differently when she knows it was recomputed by hand than when she knows it was not. Sources: Generative AI Guidelines for Government (SDAIA), the responsibilities of government entities; Generative AI Guidelines for the Public (SDAIA), the mitigation measures on generated code.</p></aside>
 </section>
 
-<section class="slide" id="s4-steps" data-lo="LO6">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="five-parts-of-a-disclosure" data-lo="LO6" data-label="Five parts">
+  <div class="kicker">What it states</div>
+  <h2>Five things, in one paragraph</h2>
+  <table class="t">
+    <tr><th>Part</th><th>The question it answers</th><th>From</th></tr>
+    <tr><td><b>Tool</b></td><td>Which assistant, which model, which settings?</td><td>The log</td></tr>
+    <tr><td><b>Steps</b></td><td>What did it draft or produce?</td><td>The log</td></tr>
+    <tr><td><b>Data seen</b></td><td>Schema, aggregates or rows, and of what level?</td><td>The data-handling table</td></tr>
+    <tr><td><b>Verification</b></td><td>How was each step checked? Which was not?</td><td>The verification notes</td></tr>
+    <tr><td><b>Accountability</b></td><td>Who decided, and who signs?</td><td>You</td></tr>
+  </table>
+  <div class="callout tip mt"><b>Four of the five are copied from files you already have.</b> A disclosure is hard to write only when the log does not exist.</div>
+  <aside class="notes"><p>The lab's checker looks for the five parts and compares the paragraph with the log. It is a lint, not a judge: it finds a missing part and an unsupported claim, and it cannot tell a well-written paragraph from a clumsy one.</p></aside>
+</section>
+
+<section class="slide" id="the-draft-against-the-log" data-lo="LO6" data-label="A bad draft">
+  <div class="kicker">Lab 3.4, the draft found in the package</div>
+  <h2>Two sentences, eight problems</h2>
+  <div class="cols cols-2">
+    <div class="chat">
+      <div class="msg ai bad"><span class="who">The draft</span>AI tools were used for minor formatting in this analysis. All numbers were verified by the analyst.</div>
+    </div>
+    <ul class="bullets small tight">
+      <li>Names no assistant and no model</li>
+      <li>Names no step</li>
+      <li>Does not say what the assistant saw</li>
+      <li>Does not say who is accountable</li>
+      <li>Calls assistance on headline numbers "minor"</li>
+      <li>Claims all numbers verified: the chart step has no check</li>
+    </ul>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <div class="callout warn mt"><b>The second sentence is false, and the log proves it.</b> A disclosure that overstates verification is worse than none.</div>
+  <aside class="notes"><p>The checker of the lab lists eight findings on this draft: four missing parts, the model not named, the word minor, the claim that everything was verified, and no mention of the unverified step. Ask who has written the first sentence, or one like it, in a real report. It is the default.</p></aside>
+</section>
+
+<section class="slide" id="a-paragraph-the-log-supports" data-lo="LO6" data-label="A good paragraph">
+  <div class="kicker">The reference paragraph</div>
+  <h2>A paragraph the log supports</h2>
+  <div class="prompt" data-tool="Method and disclosure">
+    <span class="seg c-teal">Three steps of this analysis were drafted by an AI coding assistant (rafiq-recorded-1, temperature 0.2):</span>
+    <span class="seg c-cyan">the quarterly on-time rate for Dammam, the comparison of long and short routes, and the weekly chart.</span>
+    <span class="seg c-purple">The assistant was shown table and column names only; no rows and no personal data left the notebook.</span>
+    <span class="seg c-amber">The quarterly rate was recomputed in SQL without the assistant and reconciled; the route comparison was checked with row counts, an anti-join and a stated denominator. The weekly chart was not independently verified and is illustrative.</span>
+    <span class="seg c-coral">The definition of on time, the reading of the results and the recommendation are the analyst's, who is accountable for every number in this report.</span>
+  </div>
+  <aside class="notes"><p>This is the lab's reference solution. The model name is the one in the package's log; a participant's own paragraph names their own model. Point at the sentence about the chart: it is the least comfortable one and the one that makes the rest credible.</p></aside>
+</section>
+
+<section class="slide" id="an-unverified-step-has-two-honest-options" data-lo="LO6" data-label="Two options">
+  <div class="kicker">When the log shows a gap</div>
+  <h2>An unverified step has two honest options</h2>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>Verify it before the report goes out</h4><p class="small mb0">Recompute the series, read the encodings, write the note. Fifteen minutes for a chart.</p></div>
+    <div class="card c-cyan"><h4>Say that it was not verified</h4><p class="small mb0">Name the step and say how to read it: illustrative, not a source for numbers.</p></div>
+  </div>
+  <div class="callout warn mt"><b>There is no third option.</b> Leaving the step out of the paragraph, or folding it into "all numbers were verified", is the failure the defence looks for.</div>
+  <aside class="notes"><p>The capstone has a two-hour budget, so most packages will contain a step that was not fully verified. That is acceptable and expected. The rubric line on verification notes scores what was checked and how; the line on data handling and disclosure scores whether the paragraph tells the truth about the rest.</p></aside>
+</section>
+
+<section class="slide" id="mark-assisted-code" data-lo="LO6" data-label="In the repository">
+  <div class="kicker">Disclosure below the report</div>
+  <h2>The repository shows which code was assisted, and how</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>In the code</h4><p class="small mb0">A header comment on an assisted query: drafted by the assistant, the log step, the check that passed.</p></div>
+    <div class="card c-cyan"><h4>In the history</h4><p class="small mb0">Commits that separate "assistant draft" from "repair after check", so the diff is the verification.</p></div>
+    <div class="card c-purple"><h4>In the transcripts</h4><p class="small mb0">The conversations as they happened, including the replies that were rejected.</p></div>
+  </div>
+  <div class="callout note mt"><b>The rejected replies are evidence in your favour.</b> A transcript with no failed check suggests no check was run.</div>
+  <aside class="notes"><p>The authenticity evidence of the capstone is exactly this: agent transcripts, a peer rerun log and the commit history. An assessor who sees a draft commit, a failing check in the transcript and a repair commit has seen the course's method without a word of explanation.</p></aside>
+</section>
+
+<section class="slide" id="choosing-the-capstone-question" data-lo="LO6 LO5" data-label="Your question">
+  <div class="kicker">Tomorrow</div>
+  <h2>Choose a question you can verify in two hours</h2>
+  <div class="cols cols-2">
+    <ol class="bullets small">
+      <li>Cash on delivery and second attempts, by city</li>
+      <li>Split shifts and failed deliveries</li>
+      <li>Express against standard, each on its own cut-off</li>
+      <li>Complaint categories after late and after on-time parcels</li>
+      <li>Replanned routes against routes planned once</li>
+      <li>Failed and returned parcels by merchant segment</li>
+    </ol>
+    <div class="stack">
+      <div class="card c-teal flat"><h4>Before you choose</h4><p class="small mb0">Which tables does it need, and where may they go? What is the one rate, and out of what? Which step will you keep?</p></div>
+      <div class="card c-coral flat"><h4>A smaller question, fully verified</h4><p class="small mb0">scores above a larger one with a headline nobody recomputed. The rubric gives verification 30 of 100.</p></div>
+    </div>
+  </div>
+  <aside class="notes"><p>The six questions are in labs/capstone/questions.json with the tables each needs; none was answered in the course. A participant may propose their own question about the Hudhud data, which you approve in the lab. Do not hint at the answers: at least one of the six has a null result, and an honest null result, verified, is a full-marks finding.</p></aside>
+</section>
+
+<section class="slide" id="check-disclosure" data-lo="LO6">
+  <div class="kicker">Checkpoint</div>
+  <h2>Which disclosure is honest?</h2>
+  <div class="quiz" data-type="single" data-lo="LO6">
+    <p class="lead">A log shows two assisted steps: a rate that was recomputed by hand, and a summary of complaint categories that was not checked. Which sentence belongs in the report?</p>
+    <div class="opts">
+      <div class="opt" data-ok>The rate was recomputed without the assistant; the summary was not verified and is indicative</div>
+      <div class="opt" data-why="Overstates: one of the two steps has no check in the log, so the sentence is false">All assisted results were verified by the analyst</div>
+      <div class="opt" data-why="Says nothing a reader can use: no step, no check, no way to weigh either result">AI assistance was used in parts of this analysis</div>
+      <div class="opt" data-why="Hides the weaker step: omitting it leaves the reader believing the summary is the analyst's checked work">The rate was drafted by an assistant and recomputed by hand</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> It names both steps and says of each how far it was checked, which is what the log supports.</div>
+  </div>
+  <aside class="notes"><p>Answer: the first. The fourth is the subtle one: every word of it is true, and it misleads by leaving the summary out. A disclosure is tested against the whole log.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-3-4" data-auto="lab" data-lab="3.4">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>AI-full for drafting; the paragraph is signed by the participant. The lab uses the supplied package log, so it does not need Lab 3.3. Expected: three assisted steps, two verified; the found draft fails on eight points; the participant's paragraph passes the checker in 60 to 150 words. Approve own questions during task 4: they must be answerable from the Hudhud tables in two hours and have one rate with a clear denominator. Every participant leaves with artifacts/capstone/choice.json.</p></aside>
 </section>
 
-<section class="slide" id="wrap-up">
-  <div class="kicker">Day 3 · wrap-up</div>
-  <h2>Three things to keep</h2>
-  <div class="cols cols-3">
-    <div class="card c-teal"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
-    <div class="card c-coral"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
-    <div class="card c-purple"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
+<!-- ======================= CLOSE ======================= -->
+<section class="slide" id="wrap-up" data-label="Day 3 recap">
+  <div class="kicker">Day 3 recap</div>
+  <h2>Leave behind what a colleague needs to stand where you stood</h2>
+  <div class="cols cols-2">
+    <ul class="bullets small">
+      <li><b>Route first:</b> a table takes its highest column; rows of Restricted tables never go to a hosted assistant; a guard enforces it.</li>
+      <li><b>Log as you go:</b> request, context, model, settings, code, data fingerprint, headline, check.</li>
+    </ul>
+    <ul class="bullets small">
+      <li><b>Reproduced</b> means a peer reaches the README's numbers from the package alone: matched, drifted or no step.</li>
+      <li><b>Disclose</b> the tool, the steps, the data seen, the verification and who signs, and say what was not verified.</li>
+    </ul>
   </div>
+  <div class="callout tip mt"><b>Delegate, verify, reproduce.</b> The assistant drafts. You decide what it may do, prove what it did, and own what you sign.</div>
+  <aside class="notes"><p>Ask each participant for their capstone question and the one step they will keep. Write them on the running order. Remind them of the follow-up task after the course: one assisted analysis at work or on open data, with verification notes.</p></aside>
 </section>
 
-<section class="slide dark" id="next" data-label="Next">
-  <div class="kicker">Next</div>
-  <h2>Capstone: Capstone project presentations</h2>
-  <p class="lead">REPLACE: what participants prepare before then; unfinished labs can be finished at home</p>
-  <aside class="notes">REPLACE: accounts, installs or reading participants need before the next unit</aside>
+<section class="slide dark" id="next" data-label="Tomorrow">
+  <div class="kicker">Tomorrow · Capstone</div>
+  <h2>Two hours to build the package, eight minutes to defend it</h2>
+  <p class="lead">Start from labs/capstone. Brief, delegate, verify, repeat five times, log, disclose. A peer reruns your package. In the defence you recompute one headline number, chosen by the assessor, without the assistant.</p>
+  <aside class="notes"><p>Participants need a public repository on a Git hosting service for the submission; ask them to create an empty one tonight. Nothing but synthetic course data goes into it. The supervised, AI-off check of the course is run separately from this deck.</p></aside>
 </section>

@@ -1,0 +1,62 @@
+[
+ {
+  "table": "hubs",
+  "level": "Public",
+  "personal_data": false,
+  "destination": "hosted"
+ },
+ {
+  "table": "customers",
+  "level": "Restricted",
+  "personal_data": true,
+  "destination": "local"
+ },
+ {
+  "table": "drivers",
+  "level": "Restricted",
+  "personal_data": true,
+  "destination": "neither"
+ },
+ {
+  "table": "driver_shifts",
+  "level": "Restricted",
+  "personal_data": true,
+  "destination": "local"
+ },
+ {
+  "table": "route_plans",
+  "level": "Restricted",
+  "personal_data": false,
+  "destination": "local"
+ },
+ {
+  "table": "deliveries",
+  "level": "Restricted",
+  "personal_data": true,
+  "destination": "local"
+ },
+ {
+  "table": "scans",
+  "level": "Restricted",
+  "personal_data": true,
+  "destination": "local"
+ },
+ {
+  "table": "complaints",
+  "level": "Restricted",
+  "personal_data": true,
+  "destination": "local"
+ },
+ {
+  "table": "agg_on_time_by_city_month",
+  "level": "Public",
+  "personal_data": false,
+  "destination": "hosted"
+ },
+ {
+  "table": "agg_complaints_by_district_category",
+  "level": "Restricted",
+  "personal_data": true,
+  "destination": "local"
+ }
+]

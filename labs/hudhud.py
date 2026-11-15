@@ -112,7 +112,7 @@ class Reply:
     code: str
     request: str = ""
     context: str = ""
-    model: str = "scripted stand-in"
+    model: str = "rafiq-recorded-1"
     settings: dict = field(default_factory=dict)
     name: str = ""
     live: bool = False
@@ -330,3 +330,49 @@ def draw(table: pd.DataFrame, spec: dict, name: str):
     plt.close(fig)
     print(f"chart saved: artifacts/charts/{name}.png")
     return ax
+
+
+# ------------------------------------------------------------------ Day 3: fingerprints, log records, disclosure
+def fingerprint(c, table: str) -> dict:
+    """Rows and a short hash of a table's content, built from integers and dates only so it is stable everywhere."""
+    cols = {name: typ for name, typ, *_ in c.sql(f"DESCRIBE {table}").fetchall()}
+    parts = ["COUNT(*)"]
+    for name, typ in cols.items():
+        if typ in ("BIGINT", "INTEGER", "HUGEINT"):
+            parts.append(f"SUM(CAST({name} AS HUGEINT))")
+        elif typ.startswith("TIMESTAMP") or typ == "DATE":
+            parts.append(f"CAST(MIN({name}) AS VARCHAR) || '|' || CAST(MAX({name}) AS VARCHAR)")
+        elif typ == "VARCHAR":
+            parts.append(f"SUM(CAST(hash({name}) % 1000003 AS HUGEINT))")
+    row = c.sql(f"SELECT {', '.join(parts)} FROM {table}").fetchall()[0]
+    return {"rows": int(row[0]), "sha": sha([str(x) for x in row])}
+
+
+def log_record(step: str, reply: Reply, outcome: Outcome, tables: list[str], c, *, mode: str = "assist",
+               sent: str = "schema only", verified_by: str = "") -> dict:
+    """One line of a run log: everything a peer needs to rerun the step and to see how it was checked."""
+    return {"step": step, "mode": mode, "request": reply.request, "context_sha": sha(reply.context), "model": reply.model,
+            "settings": reply.settings, "sent": sent, "code": reply.code, "data": {t: fingerprint(c, t) for t in tables},
+            "headline": outcome.headline, "verified_by": verified_by}
+
+
+def reply_from(record: dict) -> Reply:
+    """The reply stored in a log record, ready for run_reply."""
+    return Reply(text="", code=record.get("code", ""), request=record.get("request", ""), model=record.get("model", ""),
+                 settings=record.get("settings") or {}, name=record.get("step", ""))
+
+
+def disclosure_check(text: str, log: list[dict]) -> list[str]:
+    """Where a method and disclosure paragraph says more, or less, than its log supports."""
+    problems = [f"does not state: {g}" for g in disclosure_gaps(text)]
+    unverified = [r["step"] for r in log if not r.get("verified_by")]
+    if unverified and re.search(r"\b(all|every|each)\b[^.]*\b(verified|recomputed|checked)", text, re.I):
+        problems.append(f"claims everything was verified, but the log has no check for: {', '.join(unverified)}")
+    if unverified and not re.search(r"not (independently )?(verified|recomputed|checked)|unverified", text, re.I):
+        problems.append(f"does not say which step was not verified: {', '.join(unverified)}")
+    for model in {r["model"] for r in log}:
+        if model not in text:
+            problems.append(f"does not name the model in the log: {model}")
+    if re.search(r"minor|formatting only|only for formatting", text, re.I) and any(r.get("mode") == "assist" for r in log):
+        problems.append("calls the assistance minor, but the log shows assisted steps that produced headline numbers")
+    return problems

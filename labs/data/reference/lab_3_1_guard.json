@@ -1,0 +1,8 @@
+{
+ "deliveries,customers|hosted|schema": "",
+ "hubs|hosted|rows": "",
+ "complaints|hosted|rows": "P-4: rows of complaints are Restricted and may not go to a hosted assistant",
+ "complaints|local|rows": "",
+ "drivers|local|rows": "P-7: rows of drivers go to no assistant",
+ "agg_on_time_by_city_month|hosted|rows": ""
+}

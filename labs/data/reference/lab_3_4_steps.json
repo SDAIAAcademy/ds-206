@@ -1,0 +1,23 @@
+[
+ {
+  "step": "dammam_quarters",
+  "mode": "assist",
+  "model": "rafiq-recorded-1",
+  "sent": "schema only",
+  "verified": true
+ },
+ {
+  "step": "long_short",
+  "mode": "assist",
+  "model": "rafiq-recorded-1",
+  "sent": "schema only",
+  "verified": true
+ },
+ {
+  "step": "weekly_chart",
+  "mode": "delegate",
+  "model": "rafiq-recorded-1",
+  "sent": "schema only",
+  "verified": false
+ }
+]

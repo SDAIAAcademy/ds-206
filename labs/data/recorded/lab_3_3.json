@@ -1,0 +1,32 @@
+{
+ "dammam_quarters": {
+  "request": "Follow the brief: on-time rate for Dammam by quarter, D-2, dispatched parcels, no test shipments.",
+  "context": "the project's AGENTS.md",
+  "text": "Dammam by quarter under D-2 on dispatched parcels, test shipments removed, quarter of created_at.",
+  "settings": {
+   "temperature": 0.2,
+   "top_p": 1.0
+  },
+  "code": "result = con.sql(\"\"\"\n    SELECT year(d.created_at) || 'Q' || quarter(d.created_at) AS quarter,\n           COUNT(*) AS deliveries,\n           AVG(CASE WHEN d.delivered_at <= d.promised_by THEN 1.0 ELSE 0.0 END) AS on_time_rate\n    FROM deliveries d\n    JOIN customers c ON c.customer_id = d.customer_id\n    WHERE d.city = 'Dammam' AND c.segment <> 'TEST' AND d.status <> 'cancelled'\n    GROUP BY 1 ORDER BY 1\n\"\"\").df()\nrates = result.set_index(\"quarter\").on_time_rate\nheadline = {\"q2_2026\": rates[\"2026Q2\"], \"q3_2026\": rates[\"2026Q3\"]}"
+ },
+ "long_short": {
+  "request": "Follow the brief: Dammam, July to September 2026, on-time rate on routes above 60 planned stops against the rest.",
+  "context": "the project's AGENTS.md",
+  "text": "Long against short routes, each parcel counted once, classified by the plan in force.",
+  "settings": {
+   "temperature": 0.2,
+   "top_p": 1.0
+  },
+  "code": "result = con.sql(\"\"\"\n    WITH plan AS (SELECT * FROM route_plans\n                  QUALIFY version = MAX(version) OVER (PARTITION BY hub_id, plan_date, route_id))\n    SELECT p.planned_stops > 60 AS long_route, COUNT(*) AS parcels,\n           AVG(CASE WHEN d.delivered_at <= d.promised_by THEN 1.0 ELSE 0.0 END) AS on_time_rate\n    FROM deliveries d\n    JOIN customers c ON c.customer_id = d.customer_id\n    JOIN plan p ON p.hub_id = d.hub_id AND p.plan_date = d.route_date AND p.route_id = d.route_id\n    WHERE d.city = 'Dammam' AND c.segment <> 'TEST' AND d.status <> 'cancelled'\n      AND d.created_at >= DATE '2026-07-01' AND d.created_at < DATE '2026-10-01'\n    GROUP BY 1 ORDER BY 1\n\"\"\").df()\nheadline = {\"short\": result.on_time_rate[0], \"long\": result.on_time_rate[1], \"parcels\": int(result.parcels.sum())}"
+ },
+ "weekly_chart": {
+  "request": "Chart the weekly late rate for Riyadh and Dammam since July, complete weeks, axis from zero.",
+  "context": "the project's AGENTS.md",
+  "text": "Weekly late rate for the two cities, complete weeks only.",
+  "settings": {
+   "temperature": 0.2,
+   "top_p": 1.0
+  },
+  "code": "result = con.sql(\"\"\"\n    SELECT CAST(date_trunc('week', d.created_at) AS DATE) AS week, d.city,\n           AVG(CASE WHEN d.delivered_at <= d.promised_by THEN 0.0 ELSE 1.0 END) AS late_rate\n    FROM deliveries d\n    JOIN customers c ON c.customer_id = d.customer_id\n    WHERE d.created_at >= DATE '2026-07-06' AND d.created_at < DATE '2026-09-28'\n      AND d.city IN ('Riyadh', 'Dammam') AND c.segment <> 'TEST' AND d.status <> 'cancelled'\n    GROUP BY ALL ORDER BY week, d.city\n\"\"\").df()\nheadline = {\"weeks\": int(result.week.nunique()), \"dammam_mean_late_rate\": float(result[result.city == \"Dammam\"].late_rate.mean())}"
+ }
+}

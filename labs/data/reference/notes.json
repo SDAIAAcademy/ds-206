@@ -38,5 +38,25 @@
   "produced": "Five replies to one request with the same context, model and settings: five different measures, code similarity to the first run from 0.37 to 1.0.",
   "checked": "Ran all five on the data, tabulated measure, worst city, Dammam's value and cities marked worse, and counted the runs supporting each of three conclusions.",
   "wrong": "Only 'Dammam got worse' held in all five; 'Dammam is worst' held in 4 and 'no other city got worse' in 3. The departing runs counted late parcels or used the system flag, against the context file."
+ },
+ "3.1": {
+  "produced": "No assistant output: a data-handling table for eight tables and two aggregates, and a guard that enforces it.",
+  "checked": "Each row against rules P-1 to P-7 of the assistant policy; the complaint texts by counting phone numbers (31.5% of texts); the guard on six requests.",
+  "wrong": "Nothing in the table. Lab 2.3's summary request would have sent 500 complaint texts to a hosted assistant: the guard blocks it under P-4."
+ },
+ "3.2": {
+  "produced": "A log record for the monthly on-time step: request, model, settings, code, fingerprints of two tables and the headline {'on_time_rate': 0.7942}.",
+  "checked": "U.log_gaps on the record, then a rerun from the log line alone: same headline, same data fingerprint.",
+  "wrong": "Nothing in my record. The old log could not be rerun: its three records lacked 13 fields between them, among them settings, code and every data fingerprint."
+ },
+ "3.3": {
+  "produced": "A package with three logged steps and four headline numbers in its README; I reran it as the peer on tables with matching fingerprints.",
+  "checked": "Ran the code of every log line, compared each rerun headline with the logged one, then traced each README number to its step and key.",
+  "wrong": "All three steps rerun. Two README numbers match. The long-route rate drifted: README 0.6841, log 0.6805. The complaints number has no logged step. One step, weekly_chart, has no verification recorded. Not reproduced until those are fixed."
+ },
+ "3.4": {
+  "produced": "A two-sentence draft disclosure: 'AI tools were used for minor formatting. All numbers were verified by the analyst.'",
+  "checked": "Listed the assisted steps from the run log and tested the draft and my own paragraph against the log with U.disclosure_check.",
+  "wrong": "The draft named no model, called assistance on headline numbers minor, and claimed all numbers verified while weekly_chart has no check. My paragraph says which step was not verified."
  }
 }

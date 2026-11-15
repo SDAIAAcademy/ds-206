@@ -1,0 +1,26 @@
+[
+ {
+  "name": "Dammam on-time rate, third quarter of 2026",
+  "value": 0.7226,
+  "step": "dammam_quarters",
+  "key": "q3_2026"
+ },
+ {
+  "name": "Dammam on-time rate, second quarter of 2026",
+  "value": 0.7967,
+  "step": "dammam_quarters",
+  "key": "q2_2026"
+ },
+ {
+  "name": "On-time rate on long routes, Dammam, July to September",
+  "value": 0.6841,
+  "step": "long_short",
+  "key": "long"
+ },
+ {
+  "name": "Late-delivery complaints from Dammam per month since July",
+  "value": 144,
+  "step": null,
+  "key": null
+ }
+]
