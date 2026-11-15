@@ -160,7 +160,10 @@ print(out2.result.round(4).to_string(index=False))
 if live:
     print("\nYour live reply against the same checks:")
     lo = U.run_reply(live, con)
-    print(lo.error or apply_checks(lo.result).to_string(index=False))
+    try:
+        print(lo.error or apply_checks(lo.result).to_string(index=False))
+    except Exception as e:           # a live reply in another shape is a finding, not a crash
+        print(f"The checks could not be applied ({type(e).__name__}: {e}): the reply did not return the table the brief asks for.")
 
 # %% [markdown]
 # **Look at** the two headline numbers. Both replies were fluent, and both said "under D-2, without test

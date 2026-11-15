@@ -53,7 +53,10 @@ outs = {name: U.run_reply(r, con) for name, r in runs.items()}
 for name, r in runs.items():
     print(f"{name}: {r.text}")
 
-live = [U.ask(first.request, c=con, temperature=0.7) for _ in range(U.pick(5, 2))] if U.has_key() else []
+# The live runs get the same request, the same context file (the reference AGENTS.md of Lab 1.4) and the
+# same temperature as the recorded ones
+CONTEXT = U.load("context/AGENTS_start.md").rstrip() + "\n" + U.load("reference/AGENTS_sections.md")
+live = [U.ask(first.request, CONTEXT, c=con, temperature=first.settings["temperature"]) for _ in range(U.pick(5, 2))] if U.has_key() else []
 for i, r in enumerate(x for x in live if x):
     o = U.run_reply(r, con)
     print(f"live {i + 1}:", o.error or o.headline)

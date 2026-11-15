@@ -21,10 +21,13 @@ expected results are at the bottom of this page; look only after you have a numb
 
 If a question took more than five minutes, use the next part on that topic.
 
-## 3 · An assistant as a tutor (60 minutes)
+## 3 · The course assistant as a tutor (60 minutes)
 
-The pre-work is AI-tutor: the assistant explains and asks, and you write. Paste this instruction at the
-start of a conversation with any assistant you are allowed to use, then work on the topics you missed.
+The pre-work is AI-tutor: the assistant explains and asks, and you write. On the course page, open
+**Ask AI**, choose the scope **whole course** and the task **Pre-work tutor**, then pick the assistant
+you are allowed to use: the panel copies the course material and the tutor instruction below, and the
+assistant knows the Hudhud tables you will work on. Without the course page, paste this instruction at
+the start of a conversation with that assistant. Then work on the topics you missed.
 
 > Act as a tutor for SQL and pandas. I am preparing for a course and must be able to write joins and
 > group-bys without help. Do not write the solution to my exercise. Ask me what I expect the result to

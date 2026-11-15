@@ -75,7 +75,8 @@ An assisted analysis package for a new question in a public repository with prom
 
 ## Before and after the course
 
-- **Pre-work (two hours):** the setup check, an entry quiz on joins and group-bys, and an hour with an assistant used as a tutor: `labs/prework/README.md`.
+- **Pre-work (two hours):** the setup check, an entry quiz on joins and group-bys, and an hour with the course assistant in tutor mode (the "Pre-work tutor" task of the Ask AI panel on the course page): `labs/prework/README.md`.
+- **AI use:** AI-off in the supervised check and in the first recomputation of each verification lab (Labs 2.1 to 2.3); AI-full in the delegation labs and the capstone, where every number is still defended without the assistant; AI-tutor in the pre-work. The labs README gives the mode of each lab.
 - **Follow-up task:** one assisted analysis at work or on open data, with a verification note for each headline number, sent to the trainer.
 - **Practice questions:** `assessments/bank.json`, 32 questions across the six outcomes, published on the practice page of the course site.
 - **The supervised check** (AI-off: find the errors in a printed assisted analysis and recompute two numbers in SQL) is an exam and is not in this repository.

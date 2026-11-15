@@ -615,6 +615,20 @@
     "kind": "notebooks",
     "base": "labs/"
   },
+  "ai": {
+    "tasks": [
+      {
+        "id": "prework-tutor",
+        "audience": "trainee",
+        "label": {"en": "Pre-work tutor"},
+        "hint": {"en": "The pre-work: a tutor for SQL joins and pandas group-bys that asks and hints, and never writes the answer."},
+        "brief": {"en": "Tutor me for the pre-work of this course on SQL joins and pandas group-bys, without writing my solutions."},
+        "prompt": {"en": "Act as a tutor for the pre-work of {course}, using {scope} for the case and its tables. I must be able to write SQL joins and pandas group-bys without help. Do not write the solution to my exercise. Ask me what I expect the result to be before I run anything. When my query is wrong, tell me which clause to look at, not the fix. Use small invented tables of five rows for your explanations. After each topic, give me one exercise and wait for my answer."},
+        "ask": false,
+        "quiz": true
+      }
+    ]
+  },
   "tools": [
     {
       "slot": "Coding assistant or agent with notebook access",
