@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-ax="page" data-track="data-science">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analysis with AI Assistants: Delegate, Verify, Reproduce · SDAIA Academy</title>
+<meta name="generator" content="SDAIA Academy engine 1.0.0">
+<meta name="description" content="Delegate analysis steps to an assistant, prove every number another way, and hand over work a peer can rerun">
+<link rel="icon" href="_engine/icon.svg">
+<link rel="alternate" type="text/markdown" href="index.md">
+<link rel="describedby" href="llms.txt">
+<link rel="stylesheet" href="_engine/academy.css">
+</head>
+<body>
+<header>
+<div class="wrap">
+<div class="top"><div class="logo" id="logo"></div><nav><a href="slides/day1.html">Slides</a><a href="practice.html">Practice</a><a href="index.md" type="text/markdown">Markdown</a></nav></div>
+<div class="kicker">Data Science Track · SDAIA Academy · DS-206</div>
+<h1>Analysis with AI Assistants: Delegate, Verify, Reproduce<span class="sub ar" lang="ar" dir="rtl">تحليل البيانات مع المساعدات الذكية: التفويض والتحقق وقابلية إعادة الإنتاج</span></h1>
+<p>Delegate analysis steps to an assistant, prove every number another way, and hand over work a peer can rerun</p>
+<div class="meta"><span class="track">Data Science Track</span><span>3 teaching days + capstone day</span><span>21 hours</span><span>Level 200</span><span>Data Science · Assistant badge</span></div>
+</div>
+</header>
+<main class="wrap">
+<h2>About the course</h2>
+<p>Participants analyse data with a coding assistant or agent in a notebook and stay accountable for every number. For a fictional courier company they decide which steps to delegate, brief the assistant with acceptance checks, prove results by recomputing key numbers another way, measure how answers vary between runs, decide which data may go to which assistant, and package an analysis that a peer reruns from logged prompts, code and data.</p>
+<p><b>Who it is for:</b> Practitioners. Graduates and early-career analysts who have completed the FN courses or passed the placement test, and analysts moving into data science.</p>
+<p><b>Format:</b> Intensive: 3 teaching days of four sessions and a capstone day, with guided pre-work and a tracked follow-up task</p>
+<h2>The case study</h2>
+<div class="note info"><b>Hudhud Parcel.</b> Hudhud Parcel is a fictional courier in Riyadh, Jeddah, Dammam and Madinah whose operations director asks why late deliveries jumped in April and which city to fix first. Participants answer with Rafiq, a coding assistant in the notebook, on 500,000 synthetic deliveries over a year with attempt scans, driver shifts, route plans and 20,000 complaint texts in Arabic and English. The data is generated with a fixed seed and carries planted traps: a changed on-time definition, duplicated scans, UTC scan times, test shipments, plan versions that fan out a join, and a complaint export sorted so that a sample misstates one city and one language.</div>
+<h2>The course</h2>
+<div class="day">
+<div class="day-head c-teal"><div><div class="t">Day 1 · 4 sessions · 4 labs</div><h3>Delegate with intent</h3></div><a class="btn" href="slides/day1.html">Open the slides</a></div>
+<div class="scroll"><table>
+<tr><th>Session</th><th>Topic</th><th>Lab</th></tr>
+<tr><td>1</td><td><b>What assistants get wrong in analysis</b><br>Assisted analysis fails quietly: the code runs, and the choices nobody stated decide the number<ul><li>Name the five places where an assisted analysis goes wrong without an error</li><li>List the assumptions in an assistant's code, line by line</li><li>Test an assumption by changing it and reading how far the number moves</li></ul></td><td><a href="labs/D1_1_one_line_request.ipynb">Lab 1.1 · One line in, six assumptions out</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-206/blob/main/labs/D1_1_one_line_request.ipynb">Open in Colab</a></td></tr>
+<tr><td>2</td><td><b>Delegate, assist or keep</b><br>Three questions sort the steps of a plan: is it cheap to check, is judgement the product, are the stakes high<ul><li>Distinguish delegating a step, being assisted on it and keeping it</li><li>Sort the steps of an analysis plan with a reason for each</li><li>Explain what unchecked delegation costs the analyst's own skill</li></ul></td><td><a href="labs/D1_2_delegate_assist_keep.ipynb">Lab 1.2 · Delegate, assist or keep</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-206/blob/main/labs/D1_2_delegate_assist_keep.ipynb">Open in Colab</a></td></tr>
+<tr><td>3</td><td><b>The delegation brief</b><br>A brief states the question, the data, the definitions, the constraints and the checks before the assistant runs<ul><li>Write the five parts of a delegation brief</li><li>Write acceptance checks that a reviewer can apply without asking the author</li><li>Turn a failed check into a precise follow-up request</li></ul></td><td><a href="labs/D1_3_delegation_brief.ipynb">Lab 1.3 · A brief with acceptance checks</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-206/blob/main/labs/D1_3_delegation_brief.ipynb">Open in Colab</a></td></tr>
+<tr><td>4</td><td><b>Context files for a project</b><br>A context file carries what holds for every request in a project; it lowers the number of errors and finds none<ul><li>Decide what belongs in a project context file and what belongs in a brief</li><li>Write the definitions, checks and prohibitions of an analysis project as rules</li><li>Compare two runs of one brief on code, numbers and checks</li></ul></td><td><a href="labs/D1_4_context_file.ipynb">Lab 1.4 · A project context file</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-206/blob/main/labs/D1_4_context_file.ipynb">Open in Colab</a></td></tr>
+</table></div>
+</div>
+<div class="day">
+<div class="day-head c-cyan"><div><div class="t">Day 2 · 4 sessions · 4 labs</div><h3>Verify</h3></div><a class="btn" href="slides/day2.html">Open the slides</a></div>
+<div class="scroll"><table>
+<tr><th>Session</th><th>Topic</th><th>Lab</th></tr>
+<tr><td>1</td><td><b>Recompute it another way</b><br>A number is verified when a second, independent path reaches it, and every point of the gap has a named cause<ul><li>Choose a recomputation path that shares as little as possible with the first</li><li>Recompute a headline rate in SQL without an assistant</li><li>Reconcile two numbers by applying one difference at a time</li></ul></td><td><a href="labs/D2_1_recompute_in_sql.ipynb">Lab 2.1 · Recompute and reconcile</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-206/blob/main/labs/D2_1_recompute_in_sql.ipynb">Open in Colab</a></td></tr>
+<tr><td>2</td><td><b>Joins, filters and denominators</b><br>Most wrong numbers in assisted SQL come from rows that were multiplied, rows that were dropped, and a denominator nobody stated<ul><li>Count rows before and after each join to find a fan-out</li><li>Find the rows a filter dropped with an anti-join</li><li>State the denominator of a rate in one sentence and test the code against it</li></ul></td><td><a href="labs/D2_2_joins_filters.ipynb">Lab 2.2 · Four seeded errors</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-206/blob/main/labs/D2_2_joins_filters.ipynb">Open in Colab</a></td></tr>
+<tr><td>3</td><td><b>Charts and words</b><br>A chart is a set of encodings and a summary is a list of claims: each one is checked against a query<ul><li>Read a chart's axis, measure and time window against the table behind it</li><li>Split a written summary into claims and test each with a query</li><li>Check that a summary does not misstate one city or language group</li></ul></td><td><a href="labs/D2_3_charts_and_words.ipynb">Lab 2.3 · A chart and a summary against the data</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-206/blob/main/labs/D2_3_charts_and_words.ipynb">Open in Colab</a></td></tr>
+<tr><td>4</td><td><b>Ask it twice</b><br>The same request gives different code and different numbers on different runs: only conclusions that hold in every run are reported as found<ul><li>Explain why one request yields different analyses between runs</li><li>Tabulate the analytic choices, numbers and conclusions of repeated runs</li><li>Separate the conclusions that held in every run from those that did not</li></ul></td><td><a href="labs/D2_4_ask_it_twice.ipynb">Lab 2.4 · Five runs of one request</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-206/blob/main/labs/D2_4_ask_it_twice.ipynb">Open in Colab</a></td></tr>
+</table></div>
+</div>
+<div class="day">
+<div class="day-head c-coral"><div><div class="t">Day 3 · 4 sessions · 4 labs</div><h3>Reproduce and disclose</h3></div><a class="btn" href="slides/day3.html">Open the slides</a></div>
+<div class="scroll"><table>
+<tr><th>Session</th><th>Topic</th><th>Lab</th></tr>
+<tr><td>1</td><td><b>Which data may go where</b><br>The classification level of a table and the organisation's assistant policy decide its destination: hosted, local or neither<ul><li>Classify the tables of an analysis by their most sensitive column</li><li>Assign each table to a hosted assistant, a local assistant or neither under a written policy</li><li>Enforce the assignment with a guard that runs before any prompt leaves</li></ul></td><td><a href="labs/D3_1_which_data_where.ipynb">Lab 3.1 · Hosted, local or neither</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-206/blob/main/labs/D3_1_which_data_where.ipynb">Open in Colab</a></td></tr>
+<tr><td>2</td><td><b>Logging assisted work</b><br>A rerun needs the prompt, the context, the model and its settings, the code, a fingerprint of the data and the output<ul><li>List what a log record must hold for a step to be rerun</li><li>Write a log record with a data fingerprint for one assisted step</li><li>Find what an incomplete log lacks before someone else has to</li></ul></td><td><a href="labs/D3_2_run_log.ipynb">Lab 3.2 · A run log</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-206/blob/main/labs/D3_2_run_log.ipynb">Open in Colab</a></td></tr>
+<tr><td>3</td><td><b>The peer rerun</b><br>A package is reproducible when a peer reaches the same headline numbers from its logs alone, and every reported number has a logged step<ul><li>Rerun a package from its log without asking its author</li><li>Classify each headline number as matched, drifted or without a step</li><li>Write a rerun log that an assessor can read in two minutes</li></ul></td><td><a href="labs/D3_3_peer_rerun.ipynb">Lab 3.3 · Rerun a supplied package</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-206/blob/main/labs/D3_3_peer_rerun.ipynb">Open in Colab</a></td></tr>
+<tr><td>4</td><td><b>Disclosing assistance</b><br>A report says which steps were assisted, by what, on which data, how they were verified and who answers for the numbers<ul><li>Derive the assisted steps of an analysis from its log</li><li>Write a method and disclosure paragraph that the log supports</li><li>Choose a capstone question and route its tables before starting</li></ul></td><td><a href="labs/D3_4_disclosure.ipynb">Lab 3.4 · Method, disclosure and the capstone question</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-206/blob/main/labs/D3_4_disclosure.ipynb">Open in Colab</a></td></tr>
+</table></div>
+</div>
+<div class="day">
+<div class="day-head c-amber"><div><div class="t">Capstone</div><h3>Capstone: the assisted analysis package and its defence</h3></div><a class="btn" href="slides/capstone.html">Open the slides</a></div>
+<div class="scroll"><table><tr><td>A new question, a two-hour budget, a package a peer reruns, and eight minutes to defend it without an assistant</td></tr></table></div>
+</div>
+<h2>Capstone</h2>
+<div class="two">
+<div><p>An individual assisted analysis of a new question about Hudhud Parcel, built in two hours from the course starter (labs/capstone/): a delegation plan and brief, a project context file, the assistant's transcripts and a run log, the code, a verification note per headline number, a variability table of five runs, a data-handling table and a method and disclosure paragraph. A peer reruns the package from its log before the defence.</p><p><b>What you submit:</b> A public repository whose README states the headline numbers a peer reproduced, with the prompts, agent transcripts, code, verification notes, run log and peer rerun log committed. Then an eight-minute defence without the assistant: five minutes on the delegation choices and what verification found, then the participant recomputes one headline number the assessor selects, live.</p><p><b>Format:</b> 8 min talk and demo</p></div>
+<div><h3>Rubric</h3><div class="bar c-teal"><span>Brief and delegation choices<i style="--w:50%"></i></span><b>15%</b></div><div class="bar c-cyan"><span>Verification notes<i style="--w:100%"></i></span><b>30%</b></div><div class="bar c-coral"><span>Variability and reproducibility<i style="--w:83%"></i></span><b>25%</b></div><div class="bar c-purple"><span>Data handling and disclosure<i style="--w:50%"></i></span><b>15%</b></div><div class="bar c-amber"><span>Findings<i style="--w:50%"></i></span><b>15%</b></div></div>
+</div>
+<h2>Outcomes</h2>
+<p>By the end of the course, participants can:</p>
+<div class="day"><div class="scroll"><table>
+<tr><th></th><th>Outcomes</th><th>Level</th><th>Evidence</th></tr>
+<tr><td><b>LO1</b></td><td>Identify which analysis steps suit delegation and which need the analyst's own judgement, with a reason for each, given a ten-step plan for the courier's late-delivery question</td><td>Awareness</td><td>the plan marked delegate, assist or keep, at least eight of ten matching the reference</td></tr>
+<tr><td><b>LO2</b></td><td>Prepare a delegation brief stating question, data, definitions, constraints and acceptance checks before the assistant runs, given the operations director's request and the delivery tables</td><td>Applied</td><td>a brief whose checks a reviewer can apply without asking the author</td></tr>
+<tr><td><b>LO3</b></td><td>Test assisted analyses by recomputing headline numbers another way and checking joins, filters, denominators and chart encodings, given three assisted analyses with seeded errors</td><td>Applied</td><td>a verification note per analysis naming each error and the check that found it</td></tr>
+<tr><td><b>LO4</b></td><td>Measure run-to-run variability by repeating one request five times and comparing code, numbers and conclusions, given a fixed prompt, dataset and model settings</td><td>Applied</td><td>a variability table stating which conclusions held in every run</td></tr>
+<tr><td><b>LO5</b></td><td>Classify analysis data by sensitivity and assign each table to a local assistant, a hosted assistant or neither, given the courier tables and the organisation's assistant policy</td><td>Applied</td><td>a data-handling table consistent with the classification policy</td></tr>
+<tr><td><b>LO6</b></td><td>Deliver an assisted analysis package that another analyst can rerun and audit from logged prompts, code, data and verification notes, given a new question and a two-hour budget</td><td>Performance</td><td>a repository that a peer reruns to the same headline numbers, defended live</td></tr>
+</table></div></div>
+<h2>Tools</h2>
+<div class="grid">
+<div class="card c-teal"><h3>Coding assistant or agent with notebook access</h3><p>OpenCode with an open-weight model · a notebook with a connected assistant, such as marimo · a commercial coding agent</p></div>
+<div class="card c-cyan"><h3>Local model server</h3><p>llama.cpp · Ollama</p></div>
+<div class="card c-coral"><h3>Analysis environment and notebooks</h3><p>Python with uv and marimo or JupyterLab · R with Quarto</p></div>
+<div class="card c-purple"><h3>Dataframes and analytical SQL engine</h3><p>DuckDB · Polars · pandas</p></div>
+<div class="card c-green"><h3>Version control</h3><p>Git with a hosted service · Git with a self-hosted server</p></div>
+</div>
+<h2>Before you start</h2>
+<h3>Prerequisites</h3>
+<ul><li>FN-101 Python for Data and AI Work</li><li>FN-104 SQL and Data Wrangling</li><li>FN-106 Responsible Data and AI Practice in the Kingdom</li><li>Writes SQL joins and dataframe group-bys without assistance</li><li>Has completed one analysis end to end, from raw table to chart</li><li>Setup: a laptop with uv, or Google Colab. A key for a free hosted model (OpenRouter by default) is optional: every lab also runs on recorded replies. Nothing downloads a model. Run 00_setup_check before Day 1; see labs/README.md.</li></ul>
+<div class="note tip">The labs are notebooks. Open each one in Google Colab from the table above, or clone the repository and run them locally.</div>
+<h2>Sources</h2>
+<h3>Evidence on assisted work and skill</h3>
+<ul><li><a href="https://arxiv.org/abs/2601.20245">Shen and Tamkin: How AI Impacts Skill Formation (2026)</a></li><li><a href="https://arxiv.org/abs/2507.09089">Becker et al. (METR): Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity</a></li><li><a href="https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking-self-reported-reductions-in-cognitive-effort-and-confidence-effects-from-a-survey-of-knowledge-workers/">Lee et al.: The Impact of Generative AI on Critical Thinking (Microsoft Research, CHI 2025)</a></li></ul>
+<h3>Assistants and agents in data analysis</h3>
+<ul><li><a href="https://arxiv.org/abs/2506.23719">DABstep: Data Agent Benchmark for Multi-step Reasoning</a></li><li><a href="https://arxiv.org/abs/2408.09667">BLADE: Benchmarking Language Model Agents for Data-Driven Science</a></li><li><a href="https://doi.org/10.1177/2515245917747646">Silberzahn et al.: Many Analysts, One Data Set (2018)</a></li></ul>
+<h3>Tools and conventions</h3>
+<ul><li><a href="https://agents.md/">AGENTS.md, the context-file convention</a></li><li><a href="https://docs.marimo.io/guides/editor_features/ai_completion/">marimo: in-editor AI assistance</a></li><li><a href="https://opencode.ai/docs/">OpenCode documentation</a></li><li><a href="https://duckdb.org/docs/">DuckDB documentation</a></li><li><a href="https://ollama.com/">Ollama</a></li><li><a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a></li><li><a href="https://openrouter.ai/models">OpenRouter: models</a></li></ul>
+<h3>National references</h3>
+<ul><li><a href="https://sdaia.gov.sa/en/SDAIA/about/Files/GenAIGuidelinesForGovernmentENCompressed.pdf">Generative AI Guidelines for Government (SDAIA)</a></li><li><a href="https://sdaia.gov.sa/en/SDAIA/about/Files/GenerativeAIPublicEN.pdf">Generative AI Guidelines for the Public (SDAIA)</a></li><li><a href="https://sdaia.gov.sa/en/SDAIA/about/Documents/DataClassificationPolicy.pdf">Data Classification Policy (NDMO, SDAIA)</a></li><li><a href="https://sdaia.gov.sa/en/SDAIA/about/Documents/PersonalDataProtectionLaw.pdf">Personal Data Protection Law (SDAIA)</a></li><li><a href="https://sdaia.gov.sa/en/SDAIA/about/Documents/ImplementingRegulationPersonalDataProtectionLaw.pdf">Implementing Regulation of the Personal Data Protection Law (SDAIA)</a></li><li><a href="https://sdaia.gov.sa/en/SDAIA/about/Documents/ai-principles.pdf">AI Ethics Principles (SDAIA)</a></li></ul>
+<h2>Files and links</h2>
+<div class="files">
+<a href="practice.html"><b>practice.html</b><span>Practice questions with feedback</span></a>
+<a href="index.md"><b>index.md</b><span>This page as Markdown, for an AI assistant</span></a>
+<a href="llms.txt"><b>llms.txt</b><span>The course for AI assistants (llms.txt)</span></a>
+<a href="https://github.com/SDAIAAcademy/ds-206"><b>SDAIAAcademy/ds-206</b><span>The course repository</span></a>
+</div>
+</main>
+<footer><div class="wrap">SDAIA Academy · Data Science Track · Analysis with AI Assistants: Delegate, Verify, Reproduce<br><span class="muted">Course version 2027.1.0 · engine 1.0.0 · built 2026-11-15 · commit 2e1881e</span></div></footer>
+<script type="application/json" id="academy-data">{"v":1,"engine":"1.0.0","build":{"at":"2026-11-15T11:06:15Z","version":"2027.1.0","commit":"2e1881e"},"course":{"id":"ds-206","code":"DS-206","title":"Analysis with AI Assistants: Delegate, Verify, Reproduce","track":"data-science","lang":"en","dir":"ltr","url":"https://sdaiaacademy.github.io/ds-206/","repo":"SDAIAAcademy/ds-206","home":"index.html"},"ai":{"context":{"course":"context/course.md","courseJs":"context/course.js","day":null,"llms":"llms.txt"},"tasks":[{"id":"prework-tutor","audience":"trainee","label":{"en":"Pre-work tutor"},"hint":{"en":"The pre-work: a tutor for SQL joins and pandas group-bys that asks and hints, and never writes the answer."},"brief":{"en":"Tutor me for the pre-work of this course on SQL joins and pandas group-bys, without writing my solutions."},"prompt":{"en":"Act as a tutor for the pre-work of {course}, using {scope} for the case and its tables. I must be able to write SQL joins and pandas group-bys without help. Do not write the solution to my exercise. Ask me what I expect the result to be before I run anything. When my query is wrong, tell me which clause to look at, not the fix. Use small invented tables of five rows for your explanations. After each topic, give me one exercise and wait for my answer."},"ask":false,"quiz":true}],"tools":[]},"features":{},"strings":{}}</script>
+<script src="_engine/academy.js"></script>
+</body>
+</html>

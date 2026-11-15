@@ -1,0 +1,22 @@
+[
+ {
+  "quarter": "2025Q4",
+  "deliveries": 19507,
+  "on_time_rate": 0.7962269954375353
+ },
+ {
+  "quarter": "2026Q1",
+  "deliveries": 19731,
+  "on_time_rate": 0.8002635446758908
+ },
+ {
+  "quarter": "2026Q2",
+  "deliveries": 21002,
+  "on_time_rate": 0.7966860299019141
+ },
+ {
+  "quarter": "2026Q3",
+  "deliveries": 22082,
+  "on_time_rate": 0.7225794764966942
+ }
+]

@@ -1,0 +1,16 @@
+[
+ {
+  "run": "no_context",
+  "on_time_rate": 0.8673,
+  "gap_points": 7.3,
+  "total": 483324,
+  "checks_passed": 2
+ },
+ {
+  "run": "with_context",
+  "on_time_rate": 0.8194,
+  "gap_points": 2.5,
+  "total": 471099,
+  "checks_passed": 2
+ }
+]

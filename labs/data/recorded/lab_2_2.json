@@ -1,0 +1,11 @@
+{
+ "long_routes": {
+  "request": "Dammam, July to September 2026: are parcels on long routes (more than 60 planned stops) on time less often?",
+  "context": "",
+  "text": "Yes: 70.3% of parcels on long routes are on time against 81.4% on the others. I joined each parcel to its route plan and its driver's shift, kept full shifts, and compared routes above 60 planned stops with the rest.",
+  "settings": {
+   "temperature": 0.7
+  },
+  "code": "result = con.sql(\"\"\"\n    WITH j AS (\n        SELECT d.delivery_id,\n               p.planned_stops > 60 AS long_route,\n               d.delivered_at <= d.promised_by AS ok\n        FROM deliveries d\n        JOIN customers c ON c.customer_id = d.customer_id\n        JOIN route_plans p\n          ON p.hub_id = d.hub_id AND p.plan_date = d.route_date AND p.route_id = d.route_id\n        LEFT JOIN driver_shifts s\n          ON s.driver_id = d.driver_id AND s.shift_date = d.route_date\n        WHERE d.city = 'Dammam'\n          AND c.segment <> 'TEST'\n          AND d.created_at BETWEEN '2026-07-01' AND '2026-09-30'\n          AND d.status = 'delivered'\n          AND s.hours >= 8\n    )\n    SELECT long_route, COUNT(*) AS parcels, AVG(CASE WHEN ok THEN 1.0 ELSE 0.0 END) AS on_time_rate\n    FROM j GROUP BY long_route ORDER BY long_route\n\"\"\").df()\nheadline = {\"short\": result.on_time_rate[0], \"long\": result.on_time_rate[1], \"parcels\": int(result.parcels.sum())}"
+ }
+}

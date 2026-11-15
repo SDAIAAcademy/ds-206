@@ -1,0 +1,41 @@
+# Analysis with AI Assistants: Delegate, Verify, Reproduce
+
+> Delegate analysis steps to an assistant, prove every number another way, and hand over work a peer can rerun. SDAIA Academy course DS-206, version 2027.1.0, in English.
+
+Each slide is a heading such as "#### [day1#slide-id] Title": cite slides by that id, and each citation is a link (slides/day1.html#slide-id). These files are what a trainee sees: no speaker notes and no answer keys.
+
+## Course
+
+- [Course page](https://sdaiaacademy.github.io/ds-206/index.md): overview, outcomes, schedule and labs; the page itself is https://sdaiaacademy.github.io/ds-206/index.html
+- [The whole course](https://sdaiaacademy.github.io/ds-206/llms-full.txt): every unit, session and slide in one file, about 19,152 tokens
+- [Practice questions](https://sdaiaacademy.github.io/ds-206/practice.html): questions to check yourself, with feedback after each answer
+
+## Slides
+
+- [Day 1: Delegate with intent](https://sdaiaacademy.github.io/ds-206/slides/day1.md): What an assistant decides for you when you do not, which steps to hand over, and how to brief them; sessions: What assistants get wrong in analysis, Delegate, assist or keep, The delegation brief, Context files for a project; page: https://sdaiaacademy.github.io/ds-206/slides/day1.html; about 5,402 tokens
+- [Day 2: Verify](https://sdaiaacademy.github.io/ds-206/slides/day2.md): Recompute the headline another way, count rows around every join, read charts and summaries against the data, and ask twice; sessions: Recompute it another way, Joins, filters and denominators, Charts and words, Ask it twice; page: https://sdaiaacademy.github.io/ds-206/slides/day2.html; about 5,702 tokens
+- [Day 3: Reproduce and disclose](https://sdaiaacademy.github.io/ds-206/slides/day3.md): Which table may reach which assistant, what a rerun needs from a log, and what a report says about the assistance; sessions: Which data may go where, Logging assisted work, The peer rerun, Disclosing assistance; page: https://sdaiaacademy.github.io/ds-206/slides/day3.html; about 6,350 tokens
+- [Capstone: Capstone: the assisted analysis package and its defence](https://sdaiaacademy.github.io/ds-206/slides/capstone.md): A new question, a two-hour budget, a package a peer reruns, and eight minutes to defend it without an assistant; page: https://sdaiaacademy.github.io/ds-206/slides/capstone.html; about 1,149 tokens
+
+## Labs
+
+- [Lab 1.1: One line in, six assumptions out](https://sdaiaacademy.github.io/ds-206/labs/D1_1_one_line_request.ipynb): Day 1, Session 1, 25 min
+- [Lab 1.2: Delegate, assist or keep](https://sdaiaacademy.github.io/ds-206/labs/D1_2_delegate_assist_keep.ipynb): Day 1, Session 2, 25 min
+- [Lab 1.3: A brief with acceptance checks](https://sdaiaacademy.github.io/ds-206/labs/D1_3_delegation_brief.ipynb): Day 1, Session 3, 25 min
+- [Lab 1.4: A project context file](https://sdaiaacademy.github.io/ds-206/labs/D1_4_context_file.ipynb): Day 1, Session 4, 25 min
+- [Lab 2.1: Recompute and reconcile](https://sdaiaacademy.github.io/ds-206/labs/D2_1_recompute_in_sql.ipynb): Day 2, Session 1, 25 min
+- [Lab 2.2: Four seeded errors](https://sdaiaacademy.github.io/ds-206/labs/D2_2_joins_filters.ipynb): Day 2, Session 2, 25 min
+- [Lab 2.3: A chart and a summary against the data](https://sdaiaacademy.github.io/ds-206/labs/D2_3_charts_and_words.ipynb): Day 2, Session 3, 25 min
+- [Lab 2.4: Five runs of one request](https://sdaiaacademy.github.io/ds-206/labs/D2_4_ask_it_twice.ipynb): Day 2, Session 4, 25 min
+- [Lab 3.1: Hosted, local or neither](https://sdaiaacademy.github.io/ds-206/labs/D3_1_which_data_where.ipynb): Day 3, Session 1, 25 min
+- [Lab 3.2: A run log](https://sdaiaacademy.github.io/ds-206/labs/D3_2_run_log.ipynb): Day 3, Session 2, 25 min
+- [Lab 3.3: Rerun a supplied package](https://sdaiaacademy.github.io/ds-206/labs/D3_3_peer_rerun.ipynb): Day 3, Session 3, 25 min
+- [Lab 3.4: Method, disclosure and the capstone question](https://sdaiaacademy.github.io/ds-206/labs/D3_4_disclosure.ipynb): Day 3, Session 4, 25 min
+
+## Context files
+
+- [context/course.md](https://sdaiaacademy.github.io/ds-206/context/course.md): the whole course, for an assistant that takes a file, about 19,152 tokens
+- [context/day1.md](https://sdaiaacademy.github.io/ds-206/context/day1.md): Day 1, about 5,402 tokens
+- [context/day2.md](https://sdaiaacademy.github.io/ds-206/context/day2.md): Day 2, about 5,702 tokens
+- [context/day3.md](https://sdaiaacademy.github.io/ds-206/context/day3.md): Day 3, about 6,350 tokens
+- [context/capstone.md](https://sdaiaacademy.github.io/ds-206/context/capstone.md): Capstone, about 1,149 tokens

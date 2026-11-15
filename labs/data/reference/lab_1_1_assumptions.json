@@ -1,0 +1,8 @@
+[
+ "It took on_time_flag as the meaning of on time: the flag mixes definition D-1 before April with D-2 after",
+ "It joined deliveries to scans: a parcel whose scan was uploaded twice is counted twice",
+ "It kept only parcels with a delivered scan: failed and returned parcels left the denominator",
+ "It kept test shipments: the customers table and its TEST segment were never read",
+ "It pooled the whole year into one number: no month, no before and after April",
+ "It pooled four cities and both services, standard and express"
+]

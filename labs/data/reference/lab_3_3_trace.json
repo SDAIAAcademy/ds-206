@@ -1,0 +1,26 @@
+[
+ {
+  "name": "Dammam on-time rate, third quarter of 2026",
+  "claimed": 0.7226,
+  "rerun": 0.7226,
+  "status": "matched"
+ },
+ {
+  "name": "Dammam on-time rate, second quarter of 2026",
+  "claimed": 0.7967,
+  "rerun": 0.7967,
+  "status": "matched"
+ },
+ {
+  "name": "On-time rate on long routes, Dammam, July to September",
+  "claimed": 0.6841,
+  "rerun": 0.6805,
+  "status": "drifted"
+ },
+ {
+  "name": "Late-delivery complaints from Dammam per month since July",
+  "claimed": 144.0,
+  "rerun": null,
+  "status": "no step"
+ }
+]

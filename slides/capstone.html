@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-ax="deck" data-track="data-science">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capstone · Capstone: the assisted analysis package and its defence · Analysis with AI Assistants: Delegate, Verify, Reproduce</title>
+<meta name="generator" content="SDAIA Academy engine 1.0.0">
+<link rel="icon" href="../_engine/icon.svg">
+<link rel="alternate" type="text/markdown" href="capstone.md">
+<link rel="describedby" href="../llms.txt">
+<link rel="stylesheet" href="../_engine/academy.css">
+</head>
+<body>
+<div class="deck" data-course="Analysis with AI Assistants: Delegate, Verify, Reproduce" data-track="data-science" data-day="Capstone">
+<section class="slide title" id="title" data-auto="title" data-label="Welcome" data-n="1">
+  <div class="kicker">SDAIA Academy · Analysis with AI Assistants: Delegate, Verify, Reproduce</div>
+  <h1>Capstone: the assisted analysis package and its defence</h1>
+  <p class="lead mt">Capstone: A new question, a two-hour budget, a package a peer reruns, and eight minutes to defend it without an assistant</p>
+  <div class="meta"><span class="track">Data Science Track</span><span>3 teaching days + capstone day</span><span>8 min talk and demo</span><span>DS-206</span></div>
+  <aside class="notes"><p>Today is theirs: keep your own talking to the opening and the closing. Before the room arrives, confirm that every participant has a public repository and a question, either one of the six or one you approved yesterday. The supervised, AI-off check of the course is run separately from this deck.</p></aside>
+</section>
+
+<section class="slide" id="agenda" data-label="Agenda" data-n="2">
+  <div class="kicker">Capstone</div>
+  <h2>How the day runs</h2>
+  <div class="agenda">
+    <div class="item now"><div><b>Build the package</b><small>two hours, with the assistant: brief, delegate, verify, five runs, log, disclose</small></div></div>
+    <div class="item"><div><b>Peer rerun</b><small>thirty minutes on a colleague's package, from its log alone</small></div></div>
+    <div class="item"><div><b>Defences</b><small>eight minutes each, without the assistant, one number recomputed live</small></div></div>
+    <div class="item"><div><b>Review and closing</b><small>what the packages showed, the follow-up task</small></div></div>
+  </div>
+  <aside class="notes"><p>Say the order aloud and write the pairs for the peer rerun on the board now, so that nobody reruns the package of the person who reruns theirs if the numbers allow it. Breaks are not slides: press B when the room needs one.</p></aside>
+</section>
+
+<section class="slide" id="the-package" data-label="The package" data-n="3">
+  <div class="kicker">What you hand over</div>
+  <h2>One question, one package, in a public repository</h2>
+  <div class="cols cols-2">
+    <ul class="bullets small">
+      <li><b>Start from</b> <code>labs/capstone/starter</code> and your choice from Lab 3.4.</li>
+      <li><b>Route first:</b> fill <code>data_handling.md</code> before the first request.</li>
+      <li><b>Log as you go:</b> every assisted step, with its transcript.</li>
+      <li><b>Recompute</b> each headline number without the assistant, and write its note.</li>
+      <li><b>Five runs</b> of one request, compared.</li>
+      <li><b>README:</b> numbers written from <code>headline.json</code>, and the disclosure paragraph.</li>
+    </ul>
+    <div class="stack">
+      <div class="card c-coral flat"><h4>Never in the repository</h4><p class="small mb0">A key, or a row or example value of a Restricted table, in any file or transcript.</p></div>
+      <div class="card c-teal flat"><h4>Before you hand it over</h4><p class="small mb0">Run <code>capstone/package.py check</code>. It lists what the package still lacks.</p></div>
+    </div>
+  </div>
+  <aside class="notes"><p>The two-hour plan, minute by minute, is in labs/capstone/README.md. The usual failure is spending ninety minutes on the analysis and leaving thirty for everything that is scored: say so now. A participant with no working key writes the code themselves, logs it as written by the analyst and says so in the disclosure; the package is scored the same way.</p></aside>
+</section>
+
+<section class="slide" id="rubric" data-label="The rubric" data-n="4">
+  <div class="kicker">How packages are scored</div>
+  <h2>The rubric</h2>
+  <div class="bars">
+    <div class="row"><span>Brief and delegation choices</span><div class="bar c-teal" style="--w:50%"></div><span class="val">15%</span></div>
+    <div class="row"><span>Verification notes</span><div class="bar c-cyan" style="--w:100%"></div><span class="val">30%</span></div>
+    <div class="row"><span>Variability and reproducibility</span><div class="bar c-coral" style="--w:83%"></div><span class="val">25%</span></div>
+    <div class="row"><span>Data handling and disclosure</span><div class="bar c-purple" style="--w:50%"></div><span class="val">15%</span></div>
+    <div class="row"><span>Findings</span><div class="bar c-amber" style="--w:50%"></div><span class="val">15%</span></div>
+  </div>
+  <div class="callout tip mt"><b>Findings are 15 of 100.</b> A smaller question with every headline number recomputed scores above a larger one that nobody checked.</div>
+  <aside class="notes"><p>Walk through each criterion with what full marks look like; the table is in labs/capstone/README.md. Verification: every headline number recomputed another way, with joins, filters and denominators checked. Reproducibility: the peer reaches every headline number from the log. A verified null result earns full marks for findings.</p></aside>
+</section>
+
+<section class="slide dark" id="build" data-label="Build" data-n="5">
+  <div class="kicker">Build the package</div>
+  <h1>Two hours</h1>
+  <div class="timer" data-minutes="120"></div>
+  <p class="lead">Commit as you go: the history is part of the evidence. Stop analysing when forty minutes remain.</p>
+  <aside class="notes"><p>Press T to start the timer. Walk the room in the first fifteen minutes and read briefs: a brief without a denominator now is a wrong number in an hour. Announce the forty-minute mark. Do not debug anyone's SQL for them; ask which check would find the problem.</p></aside>
+</section>
+
+<section class="slide dark" id="final-prep" data-label="Peer rerun" data-n="6">
+  <div class="kicker">Before the first defence</div>
+  <h1>Peer rerun · 30 minutes</h1>
+  <div class="timer" data-minutes="30"></div>
+  <p class="lead">Clone your colleague's repository. Run <code>capstone/package.py rerun</code>. Ask nothing. Commit the rerun log to their repository.</p>
+  <aside class="notes"><p>Press T to start the timer. The peer reports and does not repair. An author whose package is not reproduced may fix it before the defence, and the rerun log stays as it was written: a drift found and repaired is a good story for the defence, not a penalty.</p></aside>
+</section>
+
+<section class="slide" id="format" data-label="Format" data-n="7">
+  <div class="kicker">Format</div>
+  <h2>8 minutes for each defence, without the assistant</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>1 · Choices · 2 minutes</h4><p class="small mb0">The question. What you delegated, what you kept, and where the data went.</p></div>
+    <div class="card c-cyan"><h4>2 · Evidence · 3 minutes</h4><p class="small mb0">What verification found, which conclusion held in five runs, what your peer's rerun said.</p></div>
+    <div class="card c-coral"><h4>3 · One number, live · 3 minutes</h4><p class="small mb0">The assessor chooses a headline number. You recompute it in SQL and explain any difference.</p></div>
+  </div>
+  <div class="callout note mt"><b>Peer feedback.</b> After each defence, everyone writes one strength, one question and one suggestion.</div>
+  <aside class="notes"><p>The assistant is closed for the whole defence. Choose the number to recompute from the README before the participant starts speaking, and prefer the one the findings lean on. A recomputation that differs from the README is not a failure by itself: what is scored is whether the participant can explain the difference.</p></aside>
+</section>
+
+<section class="slide order" id="running-order" data-label="Running order" data-n="8">
+  <div class="kicker">Running order</div>
+  <h2>Who defends when</h2>
+  <table class="t small">
+    <tr><th>#</th><th>Presenter</th><th>Question</th></tr>
+    <tr><td>1</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>2</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>3</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>4</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>5</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>6</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>7</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>8</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+  </table>
+  <aside class="notes"><p>Type the names in at the start; the fields can be edited live and are not saved, so keep the list in your notes too.</p></aside>
+</section>
+
+<section class="slide dark presenting" id="now-presenting" data-label="Now presenting" data-n="9">
+  <div class="kicker center">Now presenting</div>
+  <div class="center"><input placeholder="Presenter · question"></div>
+  <div class="timers mt">
+    <div><h3>Defence and live recomputation</h3><div class="timer" data-minutes="8"></div></div>
+  </div>
+  <aside class="notes"><p>Type the presenter's name and press T to start the timer. Reuse this slide for every presenter. Name the headline number to recompute when five minutes have passed.</p></aside>
+</section>
+
+<section class="slide" id="review" data-label="Trainer review" data-n="10">
+  <div class="kicker">Trainer review</div>
+  <h2>What the packages showed</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>Strongest patterns</h4><p class="small mb0">Checks that found something, and disclosures that said what was not verified.</p></div>
+    <div class="card c-coral"><h4>Common gaps</h4><p class="small mb0">Numbers with no step, denominators left unstated, steps logged from memory.</p></div>
+    <div class="card c-purple"><h4>One surprise</h4><p class="small mb0">A conclusion that did not hold in five runs, or a null result that did.</p></div>
+  </div>
+  <aside class="notes"><p>Replace the three texts aloud with what you saw, from your scoring notes during the last break. Name packages for strengths; keep gaps anonymous.</p></aside>
+</section>
+
+<section class="slide" id="what-next" data-label="After the course" data-n="11">
+  <div class="kicker">After the course</div>
+  <h2>Keep going</h2>
+  <ul class="bullets">
+    <li><b>The follow-up task:</b> one assisted analysis at work or on open data, with a verification note for each headline number, sent to your trainer</li>
+    <li><b>Your package stays yours:</b> its layout is the template for the next analysis you sign</li>
+    <li><b>At work:</b> your organisation's own classification and assistant policy decide what may go where; the course's policy was written for a fictional company</li>
+    <li><b>Next in the Academy:</b> the other courses of the Data Science track at level 200, which lead to the DS Assistant badge</li>
+  </ul>
+  <aside class="notes"><p>Say when the follow-up task is due and how it reaches you. Work data stays under the participant's own organisation's rules: recommend open data when there is any doubt.</p></aside>
+</section>
+
+<section class="slide dark" id="thanks" data-label="Thank you" data-n="12">
+  <div class="kicker">SDAIA Academy</div>
+  <h1>Thank you</h1>
+  <p class="lead">Analysis with AI Assistants: Delegate, Verify, Reproduce</p>
+</section>
+</div>
+<script type="application/json" id="academy-data">{"v":1,"engine":"1.0.0","build":{"at":"2026-11-15T11:06:15Z","version":"2027.1.0","commit":"2e1881e"},"course":{"id":"ds-206","code":"DS-206","title":"Analysis with AI Assistants: Delegate, Verify, Reproduce","track":"data-science","lang":"en","dir":"ltr","url":"https://sdaiaacademy.github.io/ds-206/","repo":"SDAIAAcademy/ds-206","home":"../index.html"},"deck":{"id":"capstone","kind":"capstone","day":4,"label":"Capstone","title":"Capstone: the assisted analysis package and its defence","prev":"day3.html","next":null,"md":"capstone.md","alt":{}},"sessions":[],"slides":[{"id":"title","n":1,"title":"Capstone: the assisted analysis package and its defence","kind":"title","session":0,"hash":"34b28109","md":"#### [capstone#title] Capstone: the assisted analysis package and its defence\n\n*SDAIA Academy · Analysis with AI Assistants: Delegate, Verify, Reproduce*\n\nCapstone: A new question, a two-hour budget, a package a peer reruns, and eight minutes to defend it without an assistant\n\nData Science Track · 3 teaching days + capstone day · 8 min talk and demo · DS-206","notes":"Today is theirs: keep your own talking to the opening and the closing. Before the room arrives, confirm that every participant has a public repository and a question, either one of the six or one you approved yesterday. The supervised, AI-off check of the course is run separately from this deck.","minutes":null,"lo":[]},{"id":"agenda","n":2,"title":"How the day runs","kind":"content","session":0,"hash":"79c695dc","md":"#### [capstone#agenda] How the day runs\n\n*Capstone*\n\n- **Build the package**: two hours, with the assistant: brief, delegate, verify, five runs, log, disclose\n- **Peer rerun**: thirty minutes on a colleague's package, from its log alone\n- **Defences**: eight minutes each, without the assistant, one number recomputed live\n- **Review and closing**: what the packages showed, the follow-up task","notes":"Say the order aloud and write the pairs for the peer rerun on the board now, so that nobody reruns the package of the person who reruns theirs if the numbers allow it. Breaks are not slides: press B when the room needs one.","minutes":null,"lo":[]},{"id":"the-package","n":3,"title":"One question, one package, in a public repository","kind":"content","session":0,"hash":"f2174b41","md":"#### [capstone#the-package] One question, one package, in a public repository\n\n*What you hand over*\n\n- **Start from** `labs/capstone/starter` and your choice from Lab 3.4.\n- **Route first:** fill `data_handling.md` before the first request.\n- **Log as you go:** every assisted step, with its transcript.\n- **Recompute** each headline number without the assistant, and write its note.\n- **Five runs** of one request, compared.\n- **README:** numbers written from `headline.json`, and the disclosure paragraph.\n\n- **Never in the repository.** A key, or a row or example value of a Restricted table, in any file or transcript.\n- **Before you hand it over.** Run `capstone/package.py check`. It lists what the package still lacks.","notes":"The two-hour plan, minute by minute, is in labs/capstone/README.md. The usual failure is spending ninety minutes on the analysis and leaving thirty for everything that is scored: say so now. A participant with no working key writes the code themselves, logs it as written by the analyst and says so in the disclosure; the package is scored the same way.","minutes":null,"lo":[]},{"id":"rubric","n":4,"title":"The rubric","kind":"content","session":0,"hash":"4e320674","md":"#### [capstone#rubric] The rubric\n\n*How packages are scored*\n\n| Item | Value |\n| --- | --- |\n| Brief and delegation choices | 15% |\n| Verification notes | 30% |\n| Variability and reproducibility | 25% |\n| Data handling and disclosure | 15% |\n| Findings | 15% |\n\n> **Findings are 15 of 100.** A smaller question with every headline number recomputed scores above a larger one that nobody checked.","notes":"Walk through each criterion with what full marks look like; the table is in labs/capstone/README.md. Verification: every headline number recomputed another way, with joins, filters and denominators checked. Reproducibility: the peer reaches every headline number from the log. A verified null result earns full marks for findings.","minutes":null,"lo":[]},{"id":"build","n":5,"title":"Two hours","kind":"content","session":0,"hash":"118bbbd3","md":"#### [capstone#build] Two hours\n\n*Build the package*\n\nCommit as you go: the history is part of the evidence. Stop analysing when forty minutes remain.","notes":"Press T to start the timer. Walk the room in the first fifteen minutes and read briefs: a brief without a denominator now is a wrong number in an hour. Announce the forty-minute mark. Do not debug anyone's SQL for them; ask which check would find the problem.","minutes":null,"lo":[]},{"id":"final-prep","n":6,"title":"Peer rerun · 30 minutes","kind":"content","session":0,"hash":"9961728e","md":"#### [capstone#final-prep] Peer rerun · 30 minutes\n\n*Before the first defence*\n\nClone your colleague's repository. Run `capstone/package.py rerun`. Ask nothing. Commit the rerun log to their repository.","notes":"Press T to start the timer. The peer reports and does not repair. An author whose package is not reproduced may fix it before the defence, and the rerun log stays as it was written: a drift found and repaired is a good story for the defence, not a penalty.","minutes":null,"lo":[]},{"id":"format","n":7,"title":"8 minutes for each defence, without the assistant","kind":"content","session":0,"hash":"6a93d882","md":"#### [capstone#format] 8 minutes for each defence, without the assistant\n\n*Format*\n\n- **1 · Choices · 2 minutes.** The question. What you delegated, what you kept, and where the data went.\n- **2 · Evidence · 3 minutes.** What verification found, which conclusion held in five runs, what your peer's rerun said.\n- **3 · One number, live · 3 minutes.** The assessor chooses a headline number. You recompute it in SQL and explain any difference.\n\n> **Peer feedback.** After each defence, everyone writes one strength, one question and one suggestion.","notes":"The assistant is closed for the whole defence. Choose the number to recompute from the README before the participant starts speaking, and prefer the one the findings lean on. A recomputation that differs from the README is not a failure by itself: what is scored is whether the participant can explain the difference.","minutes":null,"lo":[]},{"id":"running-order","n":8,"title":"Who defends when","kind":"order","session":0,"hash":"aad6319e","md":"#### [capstone#running-order] Who defends when\n\n*Running order*\n\n| # | Presenter | Question |\n| --- | --- | --- |\n| 1 |  |  |\n| 2 |  |  |\n| 3 |  |  |\n| 4 |  |  |\n| 5 |  |  |\n| 6 |  |  |\n| 7 |  |  |\n| 8 |  |  |","notes":"Type the names in at the start; the fields can be edited live and are not saved, so keep the list in your notes too.","minutes":null,"lo":[]},{"id":"now-presenting","n":9,"title":"Defence and live recomputation","kind":"presenting","session":0,"hash":"3be53dd5","md":"#### [capstone#now-presenting] Defence and live recomputation\n\n*Now presenting*","notes":"Type the presenter's name and press T to start the timer. Reuse this slide for every presenter. Name the headline number to recompute when five minutes have passed.","minutes":null,"lo":[]},{"id":"review","n":10,"title":"What the packages showed","kind":"content","session":0,"hash":"ce0854fc","md":"#### [capstone#review] What the packages showed\n\n*Trainer review*\n\n- **Strongest patterns.** Checks that found something, and disclosures that said what was not verified.\n- **Common gaps.** Numbers with no step, denominators left unstated, steps logged from memory.\n- **One surprise.** A conclusion that did not hold in five runs, or a null result that did.","notes":"Replace the three texts aloud with what you saw, from your scoring notes during the last break. Name packages for strengths; keep gaps anonymous.","minutes":null,"lo":[]},{"id":"what-next","n":11,"title":"Keep going","kind":"content","session":0,"hash":"13237752","md":"#### [capstone#what-next] Keep going\n\n*After the course*\n\n- **The follow-up task:** one assisted analysis at work or on open data, with a verification note for each headline number, sent to your trainer\n- **Your package stays yours:** its layout is the template for the next analysis you sign\n- **At work:** your organisation's own classification and assistant policy decide what may go where; the course's policy was written for a fictional company\n- **Next in the Academy:** the other courses of the Data Science track at level 200, which lead to the DS Assistant badge","notes":"Say when the follow-up task is due and how it reaches you. Work data stays under the participant's own organisation's rules: recommend open data when there is any doubt.","minutes":null,"lo":[]},{"id":"thanks","n":12,"title":"Thank you","kind":"content","session":0,"hash":"c9dcc936","md":"#### [capstone#thanks] Thank you\n\n*SDAIA Academy*\n\nAnalysis with AI Assistants: Delegate, Verify, Reproduce","notes":"","minutes":null,"lo":[]}],"activities":[],"ai":{"context":{"course":"../context/course.md","courseJs":"../context/course.js","day":"capstone.md","llms":"../llms.txt"},"tasks":[{"id":"prework-tutor","audience":"trainee","label":{"en":"Pre-work tutor"},"hint":{"en":"The pre-work: a tutor for SQL joins and pandas group-bys that asks and hints, and never writes the answer."},"brief":{"en":"Tutor me for the pre-work of this course on SQL joins and pandas group-bys, without writing my solutions."},"prompt":{"en":"Act as a tutor for the pre-work of {course}, using {scope} for the case and its tables. I must be able to write SQL joins and pandas group-bys without help. Do not write the solution to my exercise. Ask me what I expect the result to be before I run anything. When my query is wrong, tell me which clause to look at, not the fix. Use small invented tables of five rows for your explanations. After each topic, give me one exercise and wait for my answer."},"ask":false,"quiz":true}],"tools":[]},"bridge":{"allowedOrigins":[]},"features":{},"strings":{}}</script>
+<script src="../_engine/academy.js"></script>
+</body>
+</html>

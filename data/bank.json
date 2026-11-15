@@ -1,0 +1,1391 @@
+{
+  "format": "academy-bank",
+  "version": 1,
+  "course": {
+    "id": "ds-206",
+    "code": "DS-206",
+    "title": "Analysis with AI Assistants: Delegate, Verify, Reproduce",
+    "lang": "en",
+    "version": "2027.1.0"
+  },
+  "questions": [
+    {
+      "id": "check-it-ran-q1",
+      "type": "single",
+      "prompt": "Rafiq returns a query for \"share of parcels with a second delivery attempt\". It runs without error and prints 0.11. What has been established?",
+      "options": [
+        "That 11% is about right, since the value is plausible",
+        "That the query is valid SQL on these tables",
+        "That the denominator is dispatched parcels",
+        "That a second run would print 0.11 again"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Running proves syntax and that the columns exist. The measure, the grain, the filters and the denominator are still to be read.",
+      "misconceptions": [
+        "Treats a plausible value as a verified one: 0.11 is plausible under several different denominators",
+        "",
+        "Assumes the assistant read the definitions: it saw column names, and nothing in the request stated a denominator",
+        "Confuses running once with being reproducible: a second run may choose another join or filter"
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": 1,
+      "session": 1,
+      "slide": "check-it-ran",
+      "pool": "checkpoint",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "check-which-to-keep-q1",
+      "type": "single",
+      "prompt": "Fawaz Al-Habib of customer care asks whether express parcels get more complaints. Four steps follow. Which one is kept?",
+      "options": [
+        "Counting complaints and parcels per service",
+        "Drawing a bar chart of the two rates",
+        "Drafting the query for complaints per 1,000 parcels",
+        "Deciding whether complaints are counted per parcel or per customer"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "The unit of the rate is a definition: it decides every later number, and it is the analyst who will be asked to justify it.",
+      "misconceptions": [
+        "Boilerplate with a known right answer: a wrong count shows against the source system, so it is delegated",
+        "The stakes are low and the axes can be read in a minute: this is delegated, then looked at",
+        "A draft with a number in it is assisted: the analyst recomputes the rate, but need not write the first query",
+        ""
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": 1,
+      "session": 2,
+      "slide": "check-which-to-keep",
+      "pool": "checkpoint",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "check-acceptance-q1",
+      "type": "single",
+      "prompt": "A brief asks for late deliveries per city for the year. Which line can Yasser apply to the result without asking the author anything?",
+      "options": [
+        "Four rows, one per city, and the late counts sum to my own count of late dispatched parcels",
+        "Be careful not to double count parcels with several scans",
+        "Use one query per step and stop after each step",
+        "Have the assistant confirm that its totals are correct"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "It names a count of rows and an expected total that comes from an independent query.",
+      "misconceptions": [
+        "",
+        "A wish: it names no number or condition, so the reviewer must ask what careful means",
+        "A constraint on how the work is done, useful in the brief, but it does not say when the result is right",
+        "Compares the answer with itself: the assistant's confirmation is not an independent value"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": 1,
+      "session": 3,
+      "slide": "check-acceptance",
+      "pool": "checkpoint",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "check-context-file-q1",
+      "type": "single",
+      "prompt": "Your project's context file states the on-time definition and the denominator. A reply arrives that says it followed both. What do you do with the reply's number?",
+      "options": [
+        "Report it, since the file was in place and the reply cites it",
+        "Add a stricter line to the file, then report the number",
+        "Apply the acceptance checks to it, exactly as without the file",
+        "Discard it and write the query yourself from the start"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "The file changes how often errors happen, not whether this reply has one. Only a check on the output answers that.",
+      "misconceptions": [
+        "Takes the reply's sentence as evidence: in the lab the reply said the right words and still broke the denominator rule",
+        "Confuses the file with a check: adding a line lowers the chance of the error and tells you nothing about this reply",
+        "",
+        "Throws away a real gain: with the file three of four errors did not occur"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": 1,
+      "session": 4,
+      "slide": "check-context-file",
+      "pool": "checkpoint",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "check-day1-review-q1",
+      "type": "single",
+      "prompt": "\"What is our on-time delivery rate?\" returned 85.3%; the written definition gives 79.4%. Which part of a brief would have prevented most of the gap?",
+      "options": [
+        "A longer statement of the question",
+        "Constraints on the engine and the number of queries",
+        "A more capable model",
+        "The definitions: which on-time rule, and out of which parcels"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "The definition and the denominator moved the number by up to ten points in Lab 1.1; everything else moved it by less than two.",
+      "misconceptions": [
+        "The question was clear enough: the gap came from what the words meant, not from what was asked",
+        "Constraints shape how the work is done; they do not say which on-time rule or denominator applies",
+        "A stronger model still sees one column named on_time_flag and nothing that says it holds two rules",
+        ""
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": 2,
+      "slide": "check-day1-review",
+      "pool": "checkpoint",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "check-independent-q1",
+      "type": "single",
+      "prompt": "An assistant reports 3.1 failed parcels per 100 dispatched in Jeddah, from a query that joins deliveries to scans. Which second path tells you most?",
+      "options": [
+        "Rewriting the same query in pandas and comparing",
+        "Asking the assistant to review its query for mistakes",
+        "Counting failed and dispatched parcels from deliveries alone, by status",
+        "Running the same query for Riyadh and checking it is similar"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "It starts from the base table and the definition and shares neither the join nor the filters of the first path.",
+      "misconceptions": [
+        "Translating the same query keeps its join and its filters: both versions will agree, right or wrong",
+        "The assistant's review shares its own reading of the tables; agreement with itself is not evidence",
+        "",
+        "A different period answers a different question: a matching rate elsewhere says nothing about this number"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": 2,
+      "session": 1,
+      "slide": "check-independent",
+      "pool": "checkpoint",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "check-fan-out-q1",
+      "type": "single",
+      "prompt": "An assisted query joins complaints to deliveries to scans and reports \"complaints per late parcel\". You suspect a fan-out. What do you run first?",
+      "options": [
+        "Rows against distinct complaint ids after each join",
+        "The final total, compared with last month's report",
+        "An anti-join of complaints against the result",
+        "A careful read of the join conditions"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A fan-out shows as more rows than distinct keys, at the join that causes it.",
+      "misconceptions": [
+        "",
+        "A plausible total hides a fan-out that is partly cancelled by dropped rows, as in the lab's last stage",
+        "An anti-join finds missing rows; a fan-out adds rows and removes none",
+        "Reading may find it, but it does not measure it: the count takes one line and cannot be argued with"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": 2,
+      "session": 2,
+      "slide": "check-fan-out",
+      "pool": "checkpoint",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "check-claim-q1",
+      "type": "single",
+      "prompt": "An assistant writes: \"Refund complaints are rare in Jeddah (742 of 5,573), so cash on delivery works well there.\" What do you check?",
+      "options": [
+        "That 742 of 5,573 is the right count for Jeddah",
+        "The count, and refund complaints per 1,000 cash-on-delivery parcels by city",
+        "A further 500 complaint texts from Jeddah, read by the assistant",
+        "The share of refunds among Jeddah's complaints against other cities"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "The sentence makes two claims. The second, that the service works well, needs a rate out of the parcels that could have produced a refund complaint.",
+      "misconceptions": [
+        "Checks only the first half: a correct count does not make the conclusion follow",
+        "",
+        "More texts repeat the sampling problem and expose personal data; the labelled column covers every complaint",
+        "A share of complaints is not a rate of the service: it moves when other categories move"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": 2,
+      "session": 3,
+      "slide": "check-claim",
+      "pool": "checkpoint",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "check-five-same-q1",
+      "type": "single",
+      "prompt": "You send one request five times with the same settings. All five replies report 31.2% of Madinah's complaints about late delivery. What has been established?",
+      "options": [
+        "That 31.2% is correct, since five independent runs agree",
+        "That any later run of the request will also give 31.2%",
+        "That the number does not depend on this model's run-to-run variation",
+        "That the five replies used the same code"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Repetition measures variation. Whether the number is right is settled by recomputing it another way.",
+      "misconceptions": [
+        "Stability is not correctness: all five can share one misreading, such as a sample of the first rows",
+        "The runs share a model and a request, so they are not independent, and a later version may answer differently",
+        "",
+        "Agreement of outputs says nothing about the code: five different queries can reach one number, or one shared error"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": 2,
+      "session": 4,
+      "slide": "check-five-same",
+      "pool": "checkpoint",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "check-day2-review-q1",
+      "type": "single",
+      "prompt": "An assisted query reports 91% on time for Madinah in September. Its last line filters created_at BETWEEN '2026-09-01' AND '2026-09-30'. Which check shows what that filter did?",
+      "options": [
+        "An anti-join of the September scope against the query's rows",
+        "Rows against distinct parcels after each join",
+        "Running the request five times and comparing",
+        "Reading the y axis of the chart"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "The filter ends at midnight at the start of the last day. The anti-join lists the parcels of 30 September as missing.",
+      "misconceptions": [
+        "",
+        "Rows against distinct keys finds rows that were multiplied; this filter removed rows and multiplied none",
+        "Repetition shows variation between runs; one run's filter is found by checking that run",
+        "The axis of a chart is an encoding of the result, not a test of which rows produced it"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": 3,
+      "slide": "check-day2-review",
+      "pool": "checkpoint",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "check-destination-q1",
+      "type": "single",
+      "prompt": "You want a hosted assistant to help explain why split-shift drivers have more failed deliveries. Under Hudhud's policy, what may you send it?",
+      "options": [
+        "Rows of driver_shifts, since driver_id is not a name",
+        "Twenty sample rows of deliveries joined to shifts",
+        "The drivers table with names masked",
+        "The schema of both tables, and an aggregate its owner classified Public"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "P-5 lets the schema of any table be shown, and P-4 lets rows of Public data go: an approved aggregate is the way to share results.",
+      "misconceptions": [
+        "Assumes pseudonymous ids make rows Public: driver_shifts holds a person's working hours and stays Restricted",
+        "A sample is rows: P-5 allows names of columns, not example values of a Restricted table",
+        "The drivers table holds a government identity number and goes to no assistant, masked or not, under P-7",
+        ""
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": 3,
+      "session": 1,
+      "slide": "check-destination",
+      "pool": "checkpoint",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "check-log-q1",
+      "type": "single",
+      "prompt": "A log line holds the step name, the full request, the model, temperature 0.2, the code and the headline number. A peer reruns the code and gets a different number. What can the peer not decide?",
+      "options": [
+        "Whether the model's settings were the same",
+        "Whether the data changed or the computation did",
+        "Whether the request was the one the report describes",
+        "Whether the right code was rerun"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Without a data fingerprint, a different number cannot be told apart from different data.",
+      "misconceptions": [
+        "The model and temperature are logged, and a rerun runs the logged code, not the model",
+        "",
+        "The request is logged in full, so what was asked is known",
+        "The code is in the line: the peer ran exactly it"
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": 3,
+      "session": 2,
+      "slide": "check-log",
+      "pool": "checkpoint",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "check-rerun-q1",
+      "type": "single",
+      "prompt": "A peer reruns a package. Every logged step runs and gives its logged headline. The README's main number, 18.2%, appears in no step's headline; the nearest is 18.9%. What does the rerun log say?",
+      "options": [
+        "Reproduced: all steps rerun to their logged values",
+        "Reproduced within tolerance: 18.2% and 18.9% are close",
+        "Not reproduced: the main number does not come from any logged step",
+        "Reproduced after the peer corrected the README to 18.9%"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Reproduced means the headline numbers are reached from the package. A report whose main number has no step is not.",
+      "misconceptions": [
+        "Treats a running log as a reproduced report: the number readers will quote was not reached",
+        "Passes a number on plausibility: 0.7 points apart is a different number, and the peer cannot know which is meant",
+        "",
+        "The peer reruns and reports; repairing the README quietly hides the finding from the author and the assessor"
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": 3,
+      "session": 3,
+      "slide": "check-rerun",
+      "pool": "checkpoint",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "check-disclosure-q1",
+      "type": "single",
+      "prompt": "A log shows two assisted steps: a rate that was recomputed by hand, and a summary of complaint categories that was not checked. Which sentence belongs in the report?",
+      "options": [
+        "The rate was recomputed without the assistant; the summary was not verified and is indicative",
+        "All assisted results were verified by the analyst",
+        "AI assistance was used in parts of this analysis",
+        "The rate was drafted by an assistant and recomputed by hand"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "It names both steps and says of each how far it was checked, which is what the log supports.",
+      "misconceptions": [
+        "",
+        "Overstates: one of the two steps has no check in the log, so the sentence is false",
+        "Says nothing a reader can use: no step, no check, no way to weigh either result",
+        "Hides the weaker step: omitting it leaves the reader believing the summary is the analyst's checked work"
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": 3,
+      "session": 4,
+      "slide": "check-disclosure",
+      "pool": "checkpoint",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-del-01",
+      "type": "single",
+      "prompt": "An analyst must decide whether a parcel that was dispatched and never delivered counts as late in the on-time rate. The assistant offers to choose \"the most common convention\". What should the analyst do with this step?",
+      "options": [
+        "Delegate it: a convention is a known right answer that the assistant can look up",
+        "Keep it: the choice changes every later number and the analyst must defend it",
+        "Delegate it, then ask the assistant to confirm the choice it made in a second request",
+        "Skip it: the system flag already encodes a definition, so no decision is needed"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A definition decides every number after it and is a judgement the analyst answers for, so it is kept.",
+      "misconceptions": [
+        "Treats a definition as a fact to look up; the organisation chooses it, and the choice moves the result",
+        "",
+        "A second answer from the same assistant is not an independent check of a judgement",
+        "The system flag follows whatever definition was in force and may mix two; it does not decide which one the analysis needs"
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": 1,
+      "session": 2,
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-del-02",
+      "type": "single",
+      "prompt": "A checked table of monthly on-time rates exists. The next step is plotting it as a line chart with labelled axes. Which mark fits, and why?",
+      "options": [
+        "Keep: charts are what readers see first, so the analyst should always draw them by hand",
+        "Assist: every chart needs its numbers recomputed another way before anyone reads it",
+        "Delegate: an error is cheap to see by reading the axes against the checked table",
+        "Keep: plotting code is long and cannot be reviewed in the time a lab or project allows"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "The input is already checked and a wrong chart shows when its axes and values are read against the table, so the step can be delegated.",
+      "misconceptions": [
+        "Confuses the importance of a step with whether an error in it is cheap to detect",
+        "The numbers were already checked; the chart needs its encoding read, not a recomputation",
+        "",
+        "Plot code is short and its output is inspected directly"
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": 1,
+      "session": 2,
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-del-03",
+      "type": "single",
+      "prompt": "Two steps of a plan: (a) renaming columns to the team's naming style, (b) joining deliveries to route plans to compare long and short routes. An analyst marks both \"delegate\". What is wrong?",
+      "options": [
+        "Nothing is wrong: both steps are code, and code is what assistants write well",
+        "Step (a) should be kept, because column names matter to every reader of the result",
+        "Both should be kept, because any join can fail and any rename can break later code",
+        "Step (b) can multiply rows silently, so its row counts need the analyst's check"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "A join can fan out and change a rate with no error message, so the step is drafted by the assistant and checked by the analyst.",
+      "misconceptions": [
+        "Sorts by the kind of work, not by what an undetected error would cost",
+        "A rename changes no number and its diff is read in a minute",
+        "Keeping everything gives up the help where an error is cheap to catch",
+        ""
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": 1,
+      "session": 2,
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-del-04",
+      "type": "single",
+      "prompt": "Which pair of questions best decides whether an analysis step can be delegated to an assistant?",
+      "options": [
+        "How costly is an undetected error, and how cheaply can I detect one?",
+        "How long would the step take me, and how fast is the assistant?",
+        "Is the step code or prose, and which does the assistant do better?",
+        "Did the assistant do this step well last time, and is the model recent?"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Delegation depends on the cost of an error that slips through and on how cheaply the result can be verified.",
+      "misconceptions": [
+        "",
+        "Time saved says nothing about whether a wrong result would be noticed",
+        "The form of the output does not tell how much an error would cost",
+        "Past success on one run does not bound the error on this one"
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": 1,
+      "session": 2,
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-del-05",
+      "type": "single",
+      "prompt": "An assistant answers \"What is our on-time rate?\" with \"85.3%\" and a query that joins deliveries to scans and averages the system flag. What does the single number hide?",
+      "options": [
+        "Only rounding: the query is the definition, and a query that is shown hides nothing else",
+        "A syntax problem in the join that the notebook would have reported when the cell ran",
+        "Several unstated choices: the definition, the denominator and which parcels were counted",
+        "Nothing, provided the query ran without an error and the number is in a plausible range"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "A one-line request leaves the definition, the population and the denominator open, and the assistant filled each one silently.",
+      "misconceptions": [
+        "Takes the query for the definition; the query embodies choices nobody made on purpose",
+        "The query runs; the problem is in what it means",
+        "",
+        "A query that runs can still count the wrong parcels"
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": 1,
+      "session": 1,
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-brf-01",
+      "type": "single",
+      "prompt": "A brief asks for \"the monthly on-time rate for the last year\". Which acceptance check can a reviewer apply without asking the author?",
+      "options": [
+        "The result looks reasonable for a courier of this size and matches what the team expects",
+        "The assistant confirms in its reply that it followed every instruction of the brief",
+        "The code is well commented, runs without errors and uses the tables named in the brief",
+        "The parcels counted in all months add up to the dispatched parcels of real customers"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "A check must be something a reviewer can compute and compare: a total that must reconcile is one.",
+      "misconceptions": [
+        "\"Reasonable\" has no threshold a reviewer can apply",
+        "The assistant's statement about itself is not evidence",
+        "Running and readable code can still count the wrong rows",
+        ""
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": 1,
+      "session": 3,
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-brf-02",
+      "type": "single",
+      "prompt": "The definition of on time changed in April. A brief for a full-year trend must say which of the following?",
+      "options": [
+        "Use the system's on-time flag for every month",
+        "Apply one named definition to every month, computed from the timestamps",
+        "Report the months before and after April in two separate charts",
+        "Let the assistant choose the definition and state its choice"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A trend across a definition change is comparable only when one stated definition is applied to all months.",
+      "misconceptions": [
+        "The flag follows the definition in force, so the series jumps at the change",
+        "",
+        "Splitting the chart hides the break without making the months comparable",
+        "Stating a choice does not make it the organisation's definition"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": 1,
+      "session": 3,
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-brf-03",
+      "type": "single",
+      "prompt": "A reply to a brief returns a monthly rate on 496,046 parcels. The brief's check says the total must equal the 486,078 dispatched parcels of real customers. What is the most likely cause?",
+      "options": [
+        "Duplicated rows from a join to scans",
+        "A rounding difference between engines",
+        "Cancelled orders were left in the denominator",
+        "Two months were dropped by a date filter"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "The total is about ten thousand too high, which is the size of the cancelled orders that the brief excludes.",
+      "misconceptions": [
+        "A join to scans would add tens of thousands of rows, and duplicates concentrate in two months",
+        "Rounding cannot add ten thousand parcels",
+        "",
+        "A dropped month would make the total smaller, not larger"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": 1,
+      "session": 3,
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-brf-04",
+      "type": "single",
+      "prompt": "What belongs in a project context file such as AGENTS.md, and not in the brief for one request?",
+      "options": [
+        "The question the director asked this week, word for word",
+        "The grain of each table and the standing definitions",
+        "The acceptance checks written for this one request",
+        "The headline numbers that the last analysis reported"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "The context file carries what holds for every request in the project: grain, keys, definitions and rules.",
+      "misconceptions": [
+        "The question belongs to one request, so it goes in the brief",
+        "",
+        "Checks are written for one request and its result",
+        "Past results can anchor the assistant and are not rules of the project"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": 1,
+      "session": 4,
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-brf-05",
+      "type": "single",
+      "prompt": "With a context file, an assistant's rate moved from 7.3 points away from the reference to 2.5 points away. What should the analyst conclude?",
+      "options": [
+        "The context file works, so the acceptance checks can be dropped from later requests",
+        "The context file made no real difference, because the reply is still not on the reference",
+        "The remaining gap of 2.5 points is ordinary noise between two runs of the same request",
+        "Context narrows the gap; the acceptance checks are still needed to find what remains"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "A context file reduces wrong assumptions and does not remove them; the checks found a denominator that was still wrong.",
+      "misconceptions": [
+        "Takes an improvement for a guarantee",
+        "A gap cut by two thirds is a real difference",
+        "The gap has a cause that a check can name: the denominator",
+        ""
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": 1,
+      "session": 4,
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-ver-01",
+      "type": "single",
+      "prompt": "An assistant computed a quarterly rate in pandas. Which check counts as recomputing it another way?",
+      "options": [
+        "Writing the rate in SQL from the raw tables, without reading the assistant's code first",
+        "Running the assistant's code again in a fresh kernel and comparing the two outputs",
+        "Asking the assistant to explain each line of its code and reading the explanation closely",
+        "Asking a second assistant whether the number looks right for a courier in this region"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "An independent recomputation uses another route from the raw data, so the same mistake is unlikely to repeat.",
+      "misconceptions": [
+        "",
+        "The same code repeats the same mistakes",
+        "An explanation describes the code and does not test it",
+        "A plausibility opinion has no access to the data"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": 2,
+      "session": 1,
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-ver-02",
+      "type": "single",
+      "prompt": "After a join of parcels to route plans, the result has 22,699 rows and 21,158 distinct parcels. What does this show?",
+      "options": [
+        "The join dropped the parcels that have no plan, which lowers the number of distinct parcels",
+        "Some parcels matched more than one plan row and are counted more than once",
+        "The filter on dates is too narrow and has removed the parcels of the last days",
+        "Nothing: rows and distinct keys often differ after a join, and the rate is not affected"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "More rows than distinct keys means a fan-out: the join key is not unique on the other side.",
+      "misconceptions": [
+        "Dropped parcels lower both numbers; they do not make rows exceed keys",
+        "",
+        "A date filter removes rows and cannot multiply them",
+        "When one row should be one parcel, a difference is a defect"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": 2,
+      "session": 2,
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-ver-03",
+      "type": "single",
+      "prompt": "A query filters created_at BETWEEN '2026-07-01' AND '2026-09-30' on a timestamp column. Which parcels are lost?",
+      "options": [
+        "Those created during 1 July before the hub opens",
+        "Those with an empty timestamp, and no other parcel",
+        "None: BETWEEN includes both ends of the range",
+        "Those created during 30 September after midnight"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "The upper bound is read as the first instant of 30 September, so the rest of that day falls outside.",
+      "misconceptions": [
+        "The lower bound at midnight includes all of 1 July",
+        "Empty timestamps are lost too, but a whole day of parcels is also dropped",
+        "Both ends are included, and the end is an instant, not a day",
+        ""
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": 2,
+      "session": 2,
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-ver-04",
+      "type": "single",
+      "prompt": "A bar chart shows late parcels per week: Riyadh 847, Dammam 464. The text says \"Riyadh has the worst lateness problem\". Riyadh handles about two and a half times Dammam's volume. What is the right response?",
+      "options": [
+        "Accept the claim: the bars are computed correctly from the deliveries table",
+        "Reject the chart: a bar chart is the wrong chart type for showing lateness",
+        "Compare late rates: the chart encodes counts, which follow volume",
+        "Ask the assistant to change the colours and sort the bars for clarity"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Counts follow volume; the claim is about performance, which needs a rate, and Dammam's late rate is the higher one.",
+      "misconceptions": [
+        "Correct counts can still answer a different question from the one asked",
+        "The chart type is fine; the measure is the problem",
+        "",
+        "Styling does not change what is measured"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": 2,
+      "session": 3,
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-ver-05",
+      "type": "single",
+      "prompt": "An assistant summarises \"what customers complain about\" from the first 500 rows of an export. The export is sorted by channel. What is the main problem?",
+      "options": [
+        "500 texts are too few for any summary",
+        "The first rows of a sorted file are one channel, not a sample of customers",
+        "Summaries of text can never be checked",
+        "The assistant should have read the texts in the original language"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Rows taken from the top of a sorted export represent the sort order, so shares in the summary cannot be trusted.",
+      "misconceptions": [
+        "500 random texts would support a rough summary; the selection is the fault",
+        "",
+        "Each sentence of a summary can be tested against counts of labelled categories",
+        "Language handling matters, and it is not why the shares are wrong here"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": 2,
+      "session": 3,
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-ver-06",
+      "type": "single",
+      "prompt": "Your SQL recomputation gives 72.3% and the assistant gave 84.3% for the same quarter. What is the next step?",
+      "options": [
+        "Report your own number, since you wrote the query by hand and can explain every line",
+        "Average the two numbers and report the mean with a note that sources differ",
+        "Ask the assistant which of the two numbers is right and report the one it chooses",
+        "Reconcile: change one difference at a time until one number becomes the other"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "A reconciliation names each cause of the gap and its size, which shows which number is right and why.",
+      "misconceptions": [
+        "Your own number may hold the error; a gap is unexplained until reconciled",
+        "A mean of a right and a wrong number is wrong",
+        "The assistant cannot settle it without the same checks",
+        ""
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": 2,
+      "session": 1,
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-var-01",
+      "type": "single",
+      "prompt": "The same request is sent five times with the same model and settings. Four runs name Dammam as the worst city and one names Riyadh. What should the analyst look at first?",
+      "options": [
+        "Which measure each run used",
+        "Which run has the longest code",
+        "Which run finished fastest",
+        "Which answer the majority gave"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Runs often differ in the measure chosen; the Riyadh run counted parcels and the others used a rate.",
+      "misconceptions": [
+        "",
+        "Length of code says nothing about the measure",
+        "Speed is unrelated to correctness",
+        "A majority can share a wrong measure; the cause of the split must be found"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": 2,
+      "session": 4,
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-var-02",
+      "type": "single",
+      "prompt": "What does it mean when a conclusion \"held in every run\"?",
+      "options": [
+        "It is proven correct, since five independent runs reached the same conclusion",
+        "The model must have been run at temperature zero, where runs cannot differ",
+        "It is stable under this request; it still needs a check against the data",
+        "The five runs produced identical code, so the result is one run repeated"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Stability across runs is not correctness: five runs can agree on the same wrong assumption.",
+      "misconceptions": [
+        "Agreement between runs is not evidence about the data",
+        "Stability can occur at any temperature",
+        "",
+        "Different code can reach the same conclusion"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": 2,
+      "session": 4,
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-var-03",
+      "type": "single",
+      "prompt": "Which set of columns makes a variability table useful to a reviewer?",
+      "options": [
+        "Run number, time taken, tokens used, cost of the run, whether the run finished",
+        "Run number, code length, model name, number of tables used, number of joins",
+        "Run number, similarity score to the first run, temperature, seed, model name",
+        "Run number, measure used, headline number, conclusion, supported by the data or not"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "The table must let a reader see what each run measured, what it concluded and whether the data supports it.",
+      "misconceptions": [
+        "Cost and time do not show whether the runs agree",
+        "Neither field describes the result of a run",
+        "Similarity of code is a hint, not the comparison of conclusions",
+        ""
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": 2,
+      "session": 4,
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-var-04",
+      "type": "single",
+      "prompt": "Two runs produce code that is 37% similar and the same headline number. Two others are 82% similar and differ by three points. What does code similarity tell you?",
+      "options": [
+        "Similar code means similar results",
+        "Little by itself: results must be compared directly",
+        "Dissimilar code is always the wrong one",
+        "The similarity score should replace the headline comparison"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Different code can agree and similar code can differ in one decisive line, so numbers and conclusions are compared directly.",
+      "misconceptions": [
+        "One changed filter in similar code can move the number",
+        "",
+        "A different route to the same number is a form of confirmation",
+        "Similarity measures text, not meaning"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": 2,
+      "session": 4,
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-var-05",
+      "type": "single",
+      "prompt": "A colleague wants to repeat your variability measurement next month. Which logged items does that need beyond the request?",
+      "options": [
+        "The names of the five output files and the folder they were saved in",
+        "Your notes on which of the five runs you liked best, and why",
+        "The model, its settings and the context file's fingerprint",
+        "A screenshot of the notebook taken after the fifth run"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "To repeat a measurement of run-to-run variation, the model, its settings and the context in force must be known.",
+      "misconceptions": [
+        "File names do not describe the conditions of the runs",
+        "A preference is not a condition of the experiment",
+        "",
+        "A screenshot cannot be rerun"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": 3,
+      "session": 2,
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-dat-01",
+      "type": "single",
+      "prompt": "A table has sixteen operational columns, a district column and a recipient phone column. Under a policy where a table takes the level of its most sensitive column, how is it handled?",
+      "options": [
+        "As Public: most columns are operational",
+        "As Public once the phone column is hidden in the notebook",
+        "As two tables with two levels",
+        "As Restricted personal data: its rows do not go to a hosted assistant"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Two personal columns set the level of the whole table, whatever the other columns hold.",
+      "misconceptions": [
+        "The level follows the most sensitive column, not the majority",
+        "Hiding a column on screen does not change what the table holds",
+        "The level is assigned to the table as stored",
+        ""
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": 3,
+      "session": 1,
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-dat-02",
+      "type": "single",
+      "prompt": "For two days the labs sent requests about a Restricted table to a hosted model. Why was that within the policy?",
+      "options": [
+        "Only table and column names were sent; no row left the notebook",
+        "The data was pseudonymised first, so the rows were no longer personal",
+        "Free hosted models do not store the prompts that they receive",
+        "The table was reclassified as Public for the length of the course"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "The policy lets the schema of any table be shown; the model wrote code that ran locally on the rows.",
+      "misconceptions": [
+        "",
+        "Nothing was pseudonymised, and that would not open the hosted route",
+        "What a service stores is not something the analyst can rely on or verify",
+        "The level did not change; what was sent did"
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": 3,
+      "session": 1,
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-dat-03",
+      "type": "single",
+      "prompt": "An aggregate counts complaints by district and category; its smallest cell holds 4 complaints. May it go to a hosted assistant?",
+      "options": [
+        "Yes: an aggregate is a summary, and summaries are not personal data under any policy",
+        "Yes, provided the district names are replaced by codes before the table is sent",
+        "No: it has a column locating people and cells small enough to describe them",
+        "No: aggregates built from a Restricted table may never leave, whatever they hold"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "An aggregate is safe to share only without columns that locate a person and without small cells, and when its owner classifies it Public.",
+      "misconceptions": [
+        "Small cells with a location can describe identifiable people",
+        "Translation does not change what the cells reveal",
+        "",
+        "An aggregate with no personal column and large cells can be classified Public by its owner"
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": 3,
+      "session": 1,
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-dat-04",
+      "type": "single",
+      "prompt": "A colleague masks every phone number in the complaint texts with a pattern and wants to send the texts to a hosted assistant. What is the right answer?",
+      "options": [
+        "Agree: with the phone numbers masked, the personal data is gone from the texts",
+        "Refuse: names and what a person wrote remain, so the level is unchanged",
+        "Agree, on condition that only the texts written in English are sent",
+        "Refuse: masked text cannot be analysed by any assistant, hosted or local"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Masking one kind of identifier lowers the harm of a leak and leaves free text by a person at its level.",
+      "misconceptions": [
+        "A pattern finds numbers and misses names and other details",
+        "",
+        "The language of a text does not change its level",
+        "Masked text can be analysed, on a local assistant or by people"
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": 3,
+      "session": 1,
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-dat-05",
+      "type": "single",
+      "prompt": "A table of drivers holds a government identity number. A guard written from the policy receives a request to send its rows to a local assistant. What should it do?",
+      "options": [
+        "Allow: a local assistant never leaves the organisation",
+        "Allow after logging the request",
+        "Ask the analyst to confirm, then allow",
+        "Block and name the rule: this table goes to no assistant"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "The policy sends a table with a government identity number to no model; analysis uses a view without the column.",
+      "misconceptions": [
+        "Local lowers exposure, and the policy still excludes this table",
+        "Logging records a breach and does not prevent it",
+        "A guard that an analyst can click through is a reminder, not a control",
+        ""
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": 3,
+      "session": 1,
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-rep-01",
+      "type": "single",
+      "prompt": "A log line reads: request \"same but by city\", code \"see notebook cell 14\". What can a peer do with it?",
+      "options": [
+        "Rerun it by opening the notebook and running cell 14, as the log line says to do",
+        "Rerun it by asking the assistant the same thing and comparing the answer with the report",
+        "Nothing: the request and the code point to a conversation and a notebook state that are gone",
+        "Rerun it after guessing which model was used from the date on which the log was written"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "A log line must stand alone: the full request and the code itself, not pointers to things that change.",
+      "misconceptions": [
+        "The notebook has been edited since; cell 14 is no longer that code",
+        "A new request is a new analysis, not a rerun",
+        "",
+        "The model is one missing field among several"
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": 3,
+      "session": 2,
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-rep-02",
+      "type": "single",
+      "prompt": "A peer reruns your logged code and gets a different number. The data fingerprints match. What follows?",
+      "options": [
+        "The code or the environment differs; the data did not change",
+        "The data was updated between your run and the peer's rerun",
+        "The model has changed since your run and now writes other code",
+        "The fingerprint is unreliable and should be computed another way"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Matching fingerprints rule out a change in the data, which leaves the code as run or the environment.",
+      "misconceptions": [
+        "",
+        "A changed table would change its fingerprint",
+        "A rerun executes logged code and does not call the model",
+        "A match is exactly the information the fingerprint exists to give"
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": 3,
+      "session": 2,
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-rep-03",
+      "type": "single",
+      "prompt": "Every logged step of a package reruns to its logged value. The README states a number that no step produces, and the peer believes it is correct. What does the rerun log say?",
+      "options": [
+        "Reproduced: every step reran",
+        "Not reproduced: one headline number has no logged step",
+        "Reproduced: the peer confirmed the number from experience",
+        "Reproduced, with a note for next time"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Reproduced means the headline numbers are reached from the package; a number with no step rests on the author's word.",
+      "misconceptions": [
+        "Readers quote the README, so the README is what must be reached",
+        "",
+        "A peer's belief is not a rerun",
+        "A note does not change the fact that the number cannot be reached"
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": 3,
+      "session": 3,
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-rep-04",
+      "type": "single",
+      "prompt": "A log shows three assisted steps; one, a chart, has no verification. Which disclosure sentence is honest?",
+      "options": [
+        "All numbers in this report were verified by the analyst before publication",
+        "AI tools assisted with minor formatting of the tables and charts in this analysis",
+        "Two steps were verified as described; the chart was not verified and is illustrative",
+        "An assistant drafted the quarterly rate and the route comparison, both verified"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "A disclosure is tested against the whole log: it names each step and says how far each was checked.",
+      "misconceptions": [
+        "The log has no check for the chart, so the sentence is false",
+        "Understates assistance on headline numbers and names nothing",
+        "",
+        "True in every word, and misleading by leaving the chart out"
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": 3,
+      "session": 4,
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-rep-05",
+      "type": "single",
+      "prompt": "A README says 68.4% and the logged step that it cites gives 68.1%. What is the best prevention for next time?",
+      "options": [
+        "Write the README's numbers from a file that names each number's step and key",
+        "Round every number in the README to whole percentages, so small changes vanish",
+        "Ask a second peer to proofread the README against the log before each release",
+        "Stop quoting numbers in the README and point readers to the log for every value"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "When the text is generated from the log's headline values, it cannot drift from them.",
+      "misconceptions": [
+        "",
+        "Rounding hides small drifts and not large ones",
+        "Proofreading finds some drifts; removing the typing prevents them",
+        "Readers need the headline numbers"
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": 3,
+      "session": 3,
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    },
+    {
+      "id": "q-rep-06",
+      "type": "single",
+      "prompt": "Who is accountable for a number that an assistant computed and an analyst verified?",
+      "options": [
+        "The assistant's provider",
+        "Nobody: it is a joint product",
+        "The reviewer who read the report",
+        "The analyst who signs the report"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Verification is how the analyst earns the right to sign; the assistant signs nothing.",
+      "misconceptions": [
+        "A provider does not know the analysis or its definitions",
+        "Shared production does not remove the signature",
+        "A reviewer checks; the author answers for the work",
+        ""
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": 3,
+      "session": 4,
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 30
+    }
+  ]
+}

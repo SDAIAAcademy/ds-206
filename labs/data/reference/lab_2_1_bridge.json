@@ -1,0 +1,27 @@
+[
+ {
+  "step": "Rafiq's method",
+  "rate": 0.8427737090942802,
+  "delta": 0.0
+ },
+ {
+  "step": "+ compare in local time",
+  "rate": 0.7473347547974414,
+  "delta": -0.0954389542968388
+ },
+ {
+  "step": "+ quarter of created_at",
+  "rate": 0.7477519236117549,
+  "delta": 0.0004171688143135288
+ },
+ {
+  "step": "+ every dispatched parcel",
+  "rate": 0.7246428892282814,
+  "delta": -0.02310903438347356
+ },
+ {
+  "step": "+ no test shipments",
+  "rate": 0.7225794764966942,
+  "delta": -0.0020634127315871664
+ }
+]

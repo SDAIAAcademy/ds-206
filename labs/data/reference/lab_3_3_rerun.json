@@ -1,0 +1,43 @@
+[
+ {
+  "step": "dammam_quarters",
+  "same_data": true,
+  "logged": {
+   "q2_2026": 0.7967,
+   "q3_2026": 0.7226
+  },
+  "rerun": {
+   "q2_2026": 0.7967,
+   "q3_2026": 0.7226
+  },
+  "same": true
+ },
+ {
+  "step": "long_short",
+  "same_data": true,
+  "logged": {
+   "short": 0.7902,
+   "long": 0.6805,
+   "parcels": 22082.0
+  },
+  "rerun": {
+   "short": 0.7902,
+   "long": 0.6805,
+   "parcels": 22082.0
+  },
+  "same": true
+ },
+ {
+  "step": "weekly_chart",
+  "same_data": true,
+  "logged": {
+   "weeks": 12.0,
+   "dammam_mean_late_rate": 0.2765
+  },
+  "rerun": {
+   "weeks": 12.0,
+   "dammam_mean_late_rate": 0.2765
+  },
+  "same": true
+ }
+]

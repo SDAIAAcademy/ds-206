@@ -1,0 +1,62 @@
+{
+ "1.1": {
+  "produced": "One SQL query and the sentence 'on-time rate is 85.3%' for a one-line request.",
+  "checked": "Read the code line by line, listed six assumptions, then changed three of them one query at a time against definitions.md.",
+  "wrong": "The flag mixes D-1 and D-2, failed parcels and duplicated scans distort the count, tests were kept: under D-2 on dispatched parcels the rate is 0.7942."
+ },
+ "1.2": {
+  "produced": "Nothing yet: a plan of ten steps, three delegated (2, 5, 9), four assisted (3, 4, 6, 8) and three kept (1, 7, 10).",
+  "checked": "Step 2 against the source system's row counts, step 5 by reading axes against the checked table, step 9 by reading the diff; assisted steps by recomputation.",
+  "wrong": "My marks matched the reference on 10 of 10 steps; the definition, the causal claim and the recommendation stay with the analyst."
+ },
+ "1.3": {
+  "produced": "A monthly on-time table under D-2; first reply 0.7782 for the year, second reply 0.7942.",
+  "checked": "Three acceptance checks written before the run: the total against my own count of dispatched parcels, twelve months, rates in range without a 5-point jump.",
+  "wrong": "The first reply kept cancelled orders: its table summed to 496,046 against 486,078 dispatched parcels; one follow-up fixed it."
+ },
+ "1.4": {
+  "produced": "Two replies to one short brief: 0.8673 without the context file and 0.8194 with it.",
+  "checked": "The three acceptance checks of Lab 1.3 on both results, and a read of each query against definitions.md.",
+  "wrong": "Without the file: UTC scans against local promises, tests kept, a join to scans (7.3 points off). With it: delivered parcels only, so failed parcels left the denominator (2.5 points off); the true rate is 0.7942."
+ },
+ "2.1": {
+  "produced": "A pandas analysis of Dammam by quarter: 0.8428 on time in 2026Q3 and the sentence 'a dip of under three points'.",
+  "checked": "Recomputed in SQL from definitions.md without an assistant (0.7226), then reconciled the 12.0-point gap in four steps until both numbers met.",
+  "wrong": "UTC scan times against local promises (-9.5 points), undelivered parcels missing from the denominator (-2.3); quarter and tests moved little. The real fall from Q2 is -7.4 points."
+ },
+ "2.2": {
+  "produced": "A SQL comparison of long and short routes in Dammam: 0.7026 against 0.8139 on 21,620 rows that it counted as parcels.",
+  "checked": "Row counts before and after each join, an anti-join of the scope against the joined rows, and the denominator written as a sentence and recomputed.",
+  "wrong": "Four errors. 1 plan versions fan out the join (row count). 2 a filter on driver_shifts made the left join inner and dropped split-shift drivers (row count, anti-join). 3 BETWEEN dropped the last day (anti-join). 4 delivered-only dropped failed parcels (anti-join, denominator). Corrected: 0.6805 against 0.7902 on 22,082 parcels."
+ },
+ "2.3": {
+  "produced": "A weekly chart titled 'Riyadh is the problem' and a five-sentence summary of complaints written from the first 500 rows of the export.",
+  "checked": "Recomputed the weekly series as rates with days per week, read the three encodings, and tested each sentence against category counts, language shares and complaints per 1,000 parcels.",
+  "wrong": "The chart plots counts on an axis from 300 with two partial weeks; by rate Dammam is worse (0.277 against 0.203). Four of five sentences fail: the sample was 92% English email, so Madinah and Arabic complaints were misstated."
+ },
+ "2.4": {
+  "produced": "Five replies to one request with the same context, model and settings: five different measures, code similarity to the first run from 0.37 to 1.0.",
+  "checked": "Ran all five on the data, tabulated measure, worst city, Dammam's value and cities marked worse, and counted the runs supporting each of three conclusions.",
+  "wrong": "Only 'Dammam got worse' held in all five; 'Dammam is worst' held in 4 and 'no other city got worse' in 3. The departing runs counted late parcels or used the system flag, against the context file."
+ },
+ "3.1": {
+  "produced": "No assistant output: a data-handling table for eight tables and two aggregates, and a guard that enforces it.",
+  "checked": "Each row against rules P-1 to P-7 of the assistant policy; the complaint texts by counting phone numbers (31.5% of texts); the guard on six requests.",
+  "wrong": "Nothing in the table. Lab 2.3's summary request would have sent 500 complaint texts to a hosted assistant: the guard blocks it under P-4."
+ },
+ "3.2": {
+  "produced": "A log record for the monthly on-time step: request, model, settings, code, fingerprints of two tables and the headline {'on_time_rate': 0.7942}.",
+  "checked": "U.log_gaps on the record, then a rerun from the log line alone: same headline, same data fingerprint.",
+  "wrong": "Nothing in my record. The old log could not be rerun: its three records lacked 13 fields between them, among them settings, code and every data fingerprint."
+ },
+ "3.3": {
+  "produced": "A package with three logged steps and four headline numbers in its README; I reran it as the peer on tables with matching fingerprints.",
+  "checked": "Ran the code of every log line, compared each rerun headline with the logged one, then traced each README number to its step and key.",
+  "wrong": "All three steps rerun. Two README numbers match. The long-route rate drifted: README 0.6841, log 0.6805. The complaints number has no logged step. One step, weekly_chart, has no verification recorded. Not reproduced until those are fixed."
+ },
+ "3.4": {
+  "produced": "A two-sentence draft disclosure: 'AI tools were used for minor formatting. All numbers were verified by the analyst.'",
+  "checked": "Listed the assisted steps from the run log and tested the draft and my own paragraph against the log with U.disclosure_check.",
+  "wrong": "The draft named no model, called assistance on headline numbers minor, and claimed all numbers verified while weekly_chart has no check. My paragraph says which step was not verified."
+ }
+}

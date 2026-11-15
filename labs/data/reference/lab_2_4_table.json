@@ -1,0 +1,42 @@
+[
+ {
+  "run": "run_1",
+  "measure": "D-2, dispatched parcels",
+  "worst_city": "Dammam",
+  "dammam_since": 0.7226,
+  "cities_worse": 1,
+  "code_like_run_1": 1.0
+ },
+ {
+  "run": "run_2",
+  "measure": "D-2, delivered parcels",
+  "worst_city": "Dammam",
+  "dammam_since": 0.7458,
+  "cities_worse": 1,
+  "code_like_run_1": 0.82
+ },
+ {
+  "run": "run_3",
+  "measure": "late parcels per month",
+  "worst_city": "Riyadh",
+  "dammam_since": 2042.0,
+  "cities_worse": 4,
+  "code_like_run_1": 0.37
+ },
+ {
+  "run": "run_4",
+  "measure": "system flag",
+  "worst_city": "Dammam",
+  "dammam_since": 0.7226,
+  "cities_worse": 4,
+  "code_like_run_1": 0.73
+ },
+ {
+  "run": "run_5",
+  "measure": "D-2, dispatched, against April to June",
+  "worst_city": "Dammam",
+  "dammam_since": 0.7226,
+  "cities_worse": 1,
+  "code_like_run_1": 0.73
+ }
+]

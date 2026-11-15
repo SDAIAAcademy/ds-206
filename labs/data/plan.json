@@ -1,0 +1,15 @@
+{
+ "question": "Late deliveries jumped since April. Why, and which city do we fix first?",
+ "steps": [
+  {"id": 1, "step": "Decide what late means for this question, and which definition applies across the year", "cheap_to_check": false, "judgement_is_the_product": true, "high_stakes": true},
+  {"id": 2, "step": "Write the code that loads each table and profiles it: row counts, date ranges, empty values", "cheap_to_check": true, "judgement_is_the_product": false, "high_stakes": false},
+  {"id": 3, "step": "Remove test shipments and duplicated scans from the working tables", "cheap_to_check": true, "judgement_is_the_product": false, "high_stakes": true},
+  {"id": 4, "step": "Compute the monthly on-time rate under the agreed definition", "cheap_to_check": true, "judgement_is_the_product": false, "high_stakes": true},
+  {"id": 5, "step": "Draw the monthly chart from the checked table", "cheap_to_check": true, "judgement_is_the_product": false, "high_stakes": false},
+  {"id": 6, "step": "Join the route plans to the deliveries and compare long routes with short ones", "cheap_to_check": false, "judgement_is_the_product": false, "high_stakes": true},
+  {"id": 7, "step": "Decide whether the optimiser plans cause the Dammam rise or only coincide with it", "cheap_to_check": false, "judgement_is_the_product": true, "high_stakes": true},
+  {"id": 8, "step": "Summarise complaint categories by city and language from the labelled category column", "cheap_to_check": false, "judgement_is_the_product": false, "high_stakes": false},
+  {"id": 9, "step": "Tidy the notebook: names, docstrings, table formats", "cheap_to_check": true, "judgement_is_the_product": false, "high_stakes": false},
+  {"id": 10, "step": "Write the recommendation to the director: which city first, and why", "cheap_to_check": false, "judgement_is_the_product": true, "high_stakes": true}
+ ]
+}

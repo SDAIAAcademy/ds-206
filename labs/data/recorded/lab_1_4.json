@@ -1,0 +1,20 @@
+{
+ "no_context": {
+  "request": "Monthly on-time rate for Tahani, whole year.",
+  "context": "",
+  "text": "Here is the monthly on-time rate. I compared each delivery scan with the promised time.",
+  "settings": {
+   "temperature": 0.7
+  },
+  "code": "result = con.sql(\"\"\"\n    SELECT strftime(d.created_at, '%Y-%m') AS month,\n           COUNT(*) AS deliveries,\n           AVG(CASE WHEN s.scan_time_utc <= d.promised_by THEN 1 ELSE 0 END) AS on_time_rate\n    FROM deliveries d\n    JOIN scans s ON s.delivery_id = d.delivery_id AND s.outcome = 'delivered'\n    GROUP BY 1 ORDER BY 1\n\"\"\").df()\nheadline = {\"on_time_rate\": float((result.on_time_rate * result.deliveries).sum() / result.deliveries.sum())}"
+ },
+ "with_context": {
+  "request": "Monthly on-time rate for Tahani, whole year.",
+  "context": "the completed AGENTS.md of Lab 1.4",
+  "text": "Monthly on-time rate under D-2 for every month of created_at, delivered parcels, test shipments removed, local times.",
+  "settings": {
+   "temperature": 0.7
+  },
+  "code": "result = con.sql(\"\"\"\n    WITH base AS (\n        SELECT d.*, (d.delivered_at <= d.promised_by) AS ok\n        FROM deliveries d\n        JOIN customers c ON c.customer_id = d.customer_id\n        WHERE c.segment <> 'TEST' AND d.status = 'delivered'\n    )\n    SELECT strftime(created_at, '%Y-%m') AS month,\n           COUNT(*) AS deliveries,\n           AVG(CASE WHEN ok THEN 1 ELSE 0 END) AS on_time_rate\n    FROM base\n    GROUP BY 1 ORDER BY 1\n\"\"\").df()\nheadline = {\"on_time_rate\": float((result.on_time_rate * result.deliveries).sum() / result.deliveries.sum())}"
+ }
+}
