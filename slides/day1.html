@@ -1,158 +1,490 @@
 <section class="slide title" id="title" data-auto="title">
-  <aside class="notes">REPLACE: welcome; introduce yourself; one question to the room that calibrates the pace; the rhythm of the day</aside>
+  <aside class="notes"><p>Welcome. Ask the room: who has put a number from an assistant into a report this month, and who recomputed it first? Count both hands. The gap between the two counts is the course. Rhythm of each day: four sessions, each about 25 minutes of concepts and a 25-minute lab on one case, Hudhud Parcel. Every lab ends with a three-sentence verification note. The pre-work quiz told you who needs a hand with joins: pair them now.</p></aside>
 </section>
 
 <section class="slide" id="agenda" data-auto="agenda"></section>
 
-<!-- Session 1 -->
-
+<!-- ======================= SESSION 1 ======================= -->
 <section class="slide section" id="s1" data-auto="section" data-session="1"></section>
 
-<section class="slide" id="s1-idea" data-lo="LO1">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
+<section class="slide" id="it-ran-is-all-you-know" data-lo="LO1" data-label="It ran">
+  <div class="kicker">The case</div>
+  <h2>The code ran. That is all you know</h2>
   <div class="cols cols-2">
-    <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
-    </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+    <div class="chat">
+      <div class="msg user"><span class="who">Dareen, analyst</span>What is our on-time delivery rate?</div>
+      <div class="msg ai bad"><span class="who">Rafiq, assistant</span>Your on-time delivery rate is 85.3%. I joined deliveries to their delivery scans and averaged the on-time flag.</div>
+    </div>
+    <div class="stack">
+      <div class="stat"><div class="big">79.4%</div><div class="lbl">the rate under Hudhud's own written definition</div></div>
+      <div class="card c-coral flat"><h4>No error was raised</h4><p class="small mb0">Valid SQL, a number between 0 and 1, a confident sentence. Six points from the answer.</p></div>
+    </div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>Introduce the case: Hudhud Parcel, a fictional courier in Riyadh, Jeddah, Dammam and Madinah; 500,000 synthetic deliveries from October 2025 to September 2026. Tahani Al-Qasim, operations director, asks: late deliveries jumped since April, why, and which city do we fix first? You are Dareen Al-Sulaiman, the analyst. Rafiq is the assistant in your notebook. Both numbers on the slide are from Lab 1.1: 0.8533 from the recorded reply, 0.7942 under definition D-2 on dispatched parcels. Say plainly that Rafiq's replies in the labs are scripted for the course so the whole room checks the same code, and that with a key the same request also goes to a live free model.</p></aside>
 </section>
 
-<section class="slide" id="s1-steps" data-lo="LO1">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="five-quiet-places" data-lo="LO1 LO3" data-label="Five places">
+  <div class="kicker">Where to look</div>
+  <h2>An analysis goes wrong quietly in five places</h2>
+  <table class="t small">
+    <tr><th>Place</th><th>The silent choice</th><th>At Hudhud</th></tr>
+    <tr><td><b>Definition</b></td><td>What the measure means</td><td>The on-time rule changed on 1 April 2026; the system flag follows whichever was in force</td></tr>
+    <tr><td><b>Grain</b></td><td>What one row is, after each join</td><td>A scan can be uploaded twice; a route has several plan versions</td></tr>
+    <tr><td><b>Filter</b></td><td>Which rows left, and why</td><td>Test shipments, cancelled orders, the last day of a period</td></tr>
+    <tr><td><b>Denominator</b></td><td>Out of what</td><td>Delivered parcels, or every parcel that left a hub?</td></tr>
+    <tr><td><b>Time</b></td><td>Which clock, which calendar</td><td>Scan times are UTC, promises are local: three hours apart</td></tr>
+  </table>
+  <aside class="notes"><p>This table is the map of Day 2: each row is a check you will run on someone else's code. None of the five produces an exception. FN-104 taught you to avoid them in your own queries; here the query is not yours, it arrives fluent and complete, and you did not make its choices. Ask: which of the five did the reply on the previous slide touch? Answer: definition, grain, filter and denominator, four of five in one four-line query.</p></aside>
+</section>
+
+<section class="slide" id="one-question-six-numbers" data-lo="LO1" data-label="Six numbers">
+  <div class="kicker">Lab 1.1, measured</div>
+  <h2>One question, six numbers, 9.7 points apart</h2>
+  <div class="bars">
+    <div class="row"><span>D-1 all year, delivered only</span><div class="bar c-coral" style="--w:89.2%"></div><span class="val">89.2%</span></div>
+    <div class="row"><span>The reply: flag, joined to scans</span><div class="bar c-coral" style="--w:85.3%"></div><span class="val">85.3%</span></div>
+    <div class="row"><span>Flag, one row per parcel</span><div class="bar c-amber" style="--w:83.9%"></div><span class="val">83.9%</span></div>
+    <div class="row"><span>Flag, tests removed</span><div class="bar c-amber" style="--w:83.8%"></div><span class="val">83.8%</span></div>
+    <div class="row"><span>D-2 all year, delivered only</span><div class="bar c-cyan" style="--w:81.9%"></div><span class="val">81.9%</span></div>
+    <div class="row"><span>D-2 all year, dispatched</span><div class="bar c-teal" style="--w:79.4%"></div><span class="val">79.4%</span></div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <div class="callout note mt"><b>Every row runs.</b> Each is "the on-time rate" under some reading. Only the last follows the written definition.</div>
+  <aside class="notes"><p>These are the six rows of the table in Lab 1.1, task 3. D-1 is the old rule (delivered on or before the promised date), D-2 the current one (delivered at or before the promised hour, undelivered parcels count as late). Ask which row Tahani would have taken to the board had nobody looked. The point is not that the assistant is bad at SQL. It answered a question that was never fully asked.</p></aside>
+</section>
+
+<section class="slide" id="april-jump-is-the-ruler" data-lo="LO1" data-label="The April jump">
+  <div class="kicker">The director's question, first look</div>
+  <h2>The April jump is a change of ruler, not of deliveries</h2>
+  <div class="cols cols-2">
+    <table class="t">
+      <tr><th>On-time rate</th><th class="num">March 2026</th><th class="num">April 2026</th></tr>
+      <tr><td>Dashboard tile (system flag)</td><td class="num">89.4%</td><td class="num">80.0%</td></tr>
+      <tr class="hl"><td>D-2 applied to both months</td><td class="num">79.9%</td><td class="num">79.8%</td></tr>
+    </table>
+    <div class="stack">
+      <div class="card c-purple flat"><h4>What changed on 1 April</h4><p class="small mb0">On time now means by the promised hour, and a parcel never delivered counts as late.</p></div>
+      <div class="card c-teal flat"><h4>What an assistant sees</h4><p class="small mb0">A column named <code>on_time_flag</code>. Nothing in its name says it holds two rules.</p></div>
+    </div>
+  </div>
+  <aside class="notes"><p>Numbers from the generator's reference and Lab 1.3's table: the flag gives 0.8941 for March and 0.7995 for April; D-2 on dispatched parcels gives 0.7991 and 0.7982. The dashboard tile Tahani looks at is one minus the flag average, so her "late deliveries jumped" is true of the tile and false of the deliveries. Hold back the second half of the story (something real does happen later in the year, in one city): Day 2 finds it.</p></aside>
+</section>
+
+<section class="slide" id="agents-on-analysis-benchmarks" data-lo="LO1" data-label="Benchmarks">
+  <div class="kicker">Beyond one case</div>
+  <h2>Agents are weakest where analysis needs several steps and context</h2>
+  <div class="cols cols-2">
+    <div class="stat"><div class="big">14.55%</div><div class="lbl">accuracy of the best agent on the hardest tasks of DABstep, over 450 multi-step data analysis tasks from a financial analytics platform</div></div>
+    <div class="stack">
+      <div class="card c-coral flat"><h4>BLADE, 12 research datasets</h4><p class="small mb0">Compared with expert analysts, language models were "often limited to basic analyses".</p></div>
+      <div class="card c-teal flat"><h4>What the hard tasks share</h4><p class="small mb0">Several steps, documentation that must be read, and one precise answer.</p></div>
+    </div>
+  </div>
+  <aside class="notes"><p>Benchmark numbers age fast: check the leaderboard before class and say the date. The durable point is the shape of the failure. Easy single-step questions are answered well; tasks that need the domain's documentation and several dependent steps are where accuracy falls, and that describes most real analysis. Sources: DABstep, arXiv 2506.23719 (abstract); BLADE, arXiv 2408.09667 (abstract).</p></aside>
+</section>
+
+<section class="slide" id="read-the-code-as-choices" data-lo="LO1" data-label="Reading for choices">
+  <div class="kicker">The method of Lab 1.1</div>
+  <h2>Read the reply as a list of choices, not as an answer</h2>
+  <div class="flow">
+    <div class="step c-teal"><b>1 · The measure</b>Which column or expression is averaged or counted?</div>
+    <div class="arrow">→</div>
+    <div class="step c-cyan"><b>2 · Each join</b>What is one row before it, and after it?</div>
+    <div class="arrow">→</div>
+    <div class="step c-purple"><b>3 · Each filter</b>Which rows left? Which should have left and stayed?</div>
+    <div class="arrow">→</div>
+    <div class="step c-coral"><b>4 · The pool</b>Which periods and groups are folded into one number?</div>
+  </div>
+  <div class="callout tip mt"><b>Then test.</b> Change one choice, rerun, read how far the number moves. A choice that moves it is an assumption worth stating.</div>
+  <aside class="notes"><p>Demonstrate on the four-line query of the first slide, aloud, in under two minutes: the measure is the flag; the join to scans changes the grain from parcel to scan; the filter keeps delivered scans only, so failed parcels left; the customers table was never read, so tests stayed; one number pools a year, four cities and two services. That is the six-item list the lab asks for.</p></aside>
+</section>
+
+<section class="slide" id="check-it-ran" data-lo="LO1">
+  <div class="kicker">Checkpoint</div>
+  <h2>What do you know when the reply runs?</h2>
+  <div class="quiz" data-type="single" data-lo="LO1">
+    <p class="lead">Rafiq returns a query for "share of parcels with a second delivery attempt". It runs without error and prints 0.11. What has been established?</p>
+    <div class="opts">
+      <div class="opt" data-why="Treats a plausible value as a verified one: 0.11 is plausible under several different denominators">That 11% is about right, since the value is plausible</div>
+      <div class="opt" data-ok>That the query is valid SQL on these tables</div>
+      <div class="opt" data-why="Assumes the assistant read the definitions: it saw column names, and nothing in the request stated a denominator">That the denominator is dispatched parcels</div>
+      <div class="opt" data-why="Confuses running once with being reproducible: a second run may choose another join or filter">That a second run would print 0.11 again</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Running proves syntax and that the columns exist. The measure, the grain, the filters and the denominator are still to be read.</div>
+  </div>
+  <aside class="notes"><p>Answer: valid SQL, nothing more. If many choose "about right", ask what 0.11 would be if cancelled orders were in the denominator, or if the join to scans doubled some parcels. Plausibility is the trap: wrong numbers in analysis are almost always plausible.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-1-1" data-auto="lab" data-lab="1.1">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>AI-full. The first cell builds the synthetic tables once, about 20 seconds. With no key the lab says so in one line and continues on the recorded reply; that is expected, not an error. Watch task 2: participants list two or three assumptions and stop. Push for six by pointing at one line of the query at a time. Task 3 needs two short SQL expressions; anyone stuck can read definitions.md, which the notebook prints. Expected: six numbers from 0.7942 to 0.8916. Nothing from an earlier lab is needed.</p></aside>
 </section>
 
-<!-- Session 2 -->
-
+<!-- ======================= SESSION 2 ======================= -->
 <section class="slide section" id="s2" data-auto="section" data-session="2"></section>
 
-<section class="slide" id="s2-idea" data-lo="LO1">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
-  <div class="cols cols-2">
-    <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
-    </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+<section class="slide" id="three-modes" data-lo="LO1" data-label="Three modes">
+  <div class="kicker">A vocabulary</div>
+  <h2>Every step of a plan is delegated, assisted or kept</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>Delegate</h4><p class="small">The assistant does the step. You check the result with a light check: a count, the axes, a diff.</p><p class="small mb0"><b>Profile the tables.</b></p></div>
+    <div class="card c-cyan"><h4>Assist</h4><p class="small">The assistant drafts. You do the part that decides the number, or you recompute it another way.</p><p class="small mb0"><b>The monthly on-time rate.</b></p></div>
+    <div class="card c-coral"><h4>Keep</h4><p class="small">You do it. The assistant may criticise your draft; it does not decide.</p><p class="small mb0"><b>What "late" means this year.</b></p></div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>The words matter less than having three, not two. Most people think in "use it or do not". The middle mode is where analysts spend most of their assisted time, and it has a price: an assisted step is not finished until the analyst's own part is done. The three examples are steps 2, 4 and 1 of the plan in Lab 1.2.</p></aside>
 </section>
 
-<section class="slide" id="s2-steps" data-lo="LO1">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="three-questions-sort" data-lo="LO1" data-label="Three questions">
+  <div class="kicker">A rule of thumb</div>
+  <h2>Three questions sort most steps</h2>
+  <div class="cols cols-2">
+    <ol class="bullets">
+      <li><b>Is judgement the product?</b> A definition, a causal claim, a recommendation. Then keep.</li>
+      <li><b>Is the result cheap to check?</b> A count against the source, a chart you can read.</li>
+      <li><b>Are the stakes high?</b> Would a wrong result reach a decision before anyone noticed?</li>
+    </ol>
+    <pre class="code s" data-file="Lab 1.2 · suggest"><code class="language-python">def suggest(step):
+    if step["judgement_is_the_product"]:
+        return "keep"
+    if step["cheap_to_check"] and not step["high_stakes"]:
+        return "delegate"
+    return "assist"</code></pre>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <div class="callout note mt"><b>The rule moves the judgement, it does not remove it.</b> Someone still decides what is cheap to check and what is high stakes.</div>
+  <aside class="notes"><p>Walk the function top to bottom. Note what is absent: "can the assistant do it?" is not a question. It can attempt every step. The questions are about you: can you tell whether it went wrong, and what happens if you cannot. A fourth question, whether the data may reach the assistant at all, comes on Day 3.</p></aside>
+</section>
+
+<section class="slide" id="ten-steps-sorted" data-lo="LO1" data-label="The plan, sorted">
+  <div class="kicker">The late-delivery plan</div>
+  <h2>Ten steps: three delegated, four assisted, three kept</h2>
+  <table class="t small">
+    <tr><th>#</th><th>Step</th><th>Mode</th><th>#</th><th>Step</th><th>Mode</th></tr>
+    <tr><td>1</td><td>Decide what late means</td><td><span class="pill c-coral">keep</span></td><td>6</td><td>Join route plans, long against short</td><td><span class="pill c-cyan">assist</span></td></tr>
+    <tr><td>2</td><td>Load and profile the tables</td><td><span class="pill c-teal">delegate</span></td><td>7</td><td>Cause or coincidence in Dammam</td><td><span class="pill c-coral">keep</span></td></tr>
+    <tr><td>3</td><td>Remove tests and duplicate scans</td><td><span class="pill c-cyan">assist</span></td><td>8</td><td>Summarise complaint categories</td><td><span class="pill c-cyan">assist</span></td></tr>
+    <tr><td>4</td><td>Monthly on-time rate</td><td><span class="pill c-cyan">assist</span></td><td>9</td><td>Tidy the notebook</td><td><span class="pill c-teal">delegate</span></td></tr>
+    <tr><td>5</td><td>Chart from the checked table</td><td><span class="pill c-teal">delegate</span></td><td>10</td><td>Recommend which city first</td><td><span class="pill c-coral">keep</span></td></tr>
+  </table>
+  <aside class="notes"><p>Do not dwell: the lab is this slide done by the participants, so show it for a few seconds and move on, or hide it until after the lab if the room is strong. The reference is the view of one experienced analyst (Yasser Al-Madani in the case), with a reason per step in the lab. A different mark with a good reason is welcome. The course outcome asks for eight of ten.</p></aside>
+</section>
+
+<section class="slide" id="skill-formation-evidence" data-lo="LO1" data-label="Skill evidence">
+  <div class="kicker">Why "keep" exists</div>
+  <h2>Learners who delegated everything finished, and learned less</h2>
+  <div class="cols cols-3">
+    <div class="stat"><div class="big">52</div><div class="lbl">developers learning a new library, assigned at random to work with or without an assistant</div></div>
+    <div class="stat"><div class="big">17%</div><div class="lbl">lower score for the assisted group on a quiz of understanding, code reading and debugging</div></div>
+    <div class="stat"><div class="big">3 of 6</div><div class="lbl">ways of using the assistant kept learning intact: the ones with cognitive engagement</div></div>
+  </div>
+  <div class="callout warn mt"><b>The skill that erodes is the one supervision needs.</b> Reading code and finding what is wrong with it is exactly the work of Day 2.</div>
+  <aside class="notes"><p>The study is about programmers learning an asynchronous library, not analysts, and one study is one study: say so. Its relevance is the mechanism. The assisted group did not finish significantly faster on average, and scored lower on the follow-up quiz (a 17% difference on a 27-point quiz); participants who asked for explanations or wrote code themselves and asked conceptual questions kept their scores. Sources: Shen and Tamkin, How AI Impacts Skill Formation, arXiv 2601.20245.</p></aside>
+</section>
+
+<section class="slide" id="felt-faster-measured-slower" data-lo="LO1" data-label="Felt and measured">
+  <div class="kicker">Your own sense of it</div>
+  <h2>Feeling faster is not a measurement</h2>
+  <div class="bars">
+    <div class="row"><span>Forecast before the tasks</span><div class="bar c-teal" style="--w:60%"></div><span class="val">24% faster</span></div>
+    <div class="row"><span>Belief after the tasks</span><div class="bar c-cyan" style="--w:50%"></div><span class="val">20% faster</span></div>
+    <div class="row"><span>Measured</span><div class="bar c-coral" style="--w:47%"></div><span class="val">19% slower</span></div>
+  </div>
+  <p class="small mt">Sixteen experienced open-source developers, 246 tasks in their own projects, each task assigned at random to allow or forbid AI tools (early 2025).</p>
+  <aside class="notes"><p>The bar lengths show size only; the last one points the other way, which is the finding. Do not present this as "assistants slow you down": tools and settings have changed since, and the authors list the conditions. The lesson that lasts is the gap between the middle bar and the last: people could not feel the difference, in either direction. So the decision to delegate a step rests on whether you can check it, not on whether it feels quick. Sources: Becker et al., METR, arXiv 2507.09089.</p></aside>
+</section>
+
+<section class="slide" id="confidence-and-checking" data-lo="LO1" data-label="Confidence">
+  <div class="kicker">Who checks, and who does not</div>
+  <h2>Confidence in the tool goes with less checking</h2>
+  <div class="cols cols-2">
+    <div class="card c-coral"><h4>Higher confidence in the assistant</h4><p class="mb0">went with <b>less</b> critical thinking about its output.</p></div>
+    <div class="card c-teal"><h4>Higher confidence in one's own skill</h4><p class="mb0">went with <b>more</b> critical thinking about its output.</p></div>
+  </div>
+  <p class="small mt">A survey of 319 knowledge workers who described 936 real uses of generative AI at work.</p>
+  <div class="callout tip"><b>The habit this course builds.</b> The check is decided before the run, in the brief, so it does not depend on how confident you feel afterwards.</div>
+  <aside class="notes"><p>Self-reported and correlational: it says who reports checking, not what causes it. It still matches what the room will feel in Lab 1.3, when a fluent reply that says the right words fails a check written in advance. Sources: Lee et al., The Impact of Generative AI on Critical Thinking, CHI 2025, Microsoft Research publication page.</p></aside>
+</section>
+
+<section class="slide" id="keep-is-not-a-ban" data-lo="LO1" data-label="Kept steps">
+  <div class="kicker">Using the assistant on a kept step</div>
+  <h2>On a kept step the assistant argues; you decide</h2>
+  <div class="cols cols-2">
+    <div class="chat">
+      <div class="msg user"><span class="who">You</span>I will apply D-2 to the whole year. Give me the three strongest objections a board member could raise.</div>
+      <div class="msg ai good"><span class="who">Assistant</span>1. The dashboard showed D-1 numbers for six months. 2. Staff were measured on D-1 then. 3. D-2 needs the promised hour, which older exports may lack.</div>
+    </div>
+    <ul class="bullets small">
+      <li><b>Ask for objections</b>, missing cases, a second reading.</li>
+      <li><b>Do not ask</b> "which definition should I use?"</li>
+      <li>The decision and its reason are written by you, in your words.</li>
+      <li>If you cannot defend it without the assistant, it was not kept.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>This is the engaged pattern from the skill study, applied to judgement steps. The capstone defence is the test of the last bullet: the participant defends every number without the assistant, and recomputes one that the assessor selects. The exchange on the slide is an illustration written for the course.</p></aside>
+</section>
+
+<section class="slide" id="check-which-to-keep" data-lo="LO1">
+  <div class="kicker">Checkpoint</div>
+  <h2>Which step does the analyst keep?</h2>
+  <div class="quiz" data-type="single" data-lo="LO1">
+    <p class="lead">Fawaz Al-Habib of customer care asks whether express parcels get more complaints. Four steps follow. Which one is kept?</p>
+    <div class="opts">
+      <div class="opt" data-why="Boilerplate with a known right answer: a wrong count shows against the source system, so it is delegated">Counting complaints and parcels per service</div>
+      <div class="opt" data-why="The stakes are low and the axes can be read in a minute: this is delegated, then looked at">Drawing a bar chart of the two rates</div>
+      <div class="opt" data-why="A draft with a number in it is assisted: the analyst recomputes the rate, but need not write the first query">Drafting the query for complaints per 1,000 parcels</div>
+      <div class="opt" data-ok>Deciding whether complaints are counted per parcel or per customer</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> The unit of the rate is a definition: it decides every later number, and it is the analyst who will be asked to justify it.</div>
+  </div>
+  <aside class="notes"><p>Answer: the unit of counting. If the room splits between that and the query draft, ask which of the two a reviewer could check in one minute. The query can be recomputed; the choice of unit can only be argued.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-1-2" data-auto="lab" data-lab="1.2">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>AI-off for the marking: this is the evidence of the first course outcome, the plan marked with reasons, eight of ten matching the reference. Nothing is sent to a model. Ask for the reasons to be written before the score is run. When someone differs from the reference on steps 3 or 8, have them read both reasons aloud; those two are honestly arguable. The rule function in task 3 reproduces the reference on all ten because the three attributes were filled by the same analyst: make that point.</p></aside>
 </section>
 
-<!-- Session 3 -->
-
+<!-- ======================= SESSION 3 ======================= -->
 <section class="slide section" id="s3" data-auto="section" data-session="3"></section>
 
-<section class="slide" id="s3-idea" data-lo="LO2">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
-  <div class="cols cols-2">
-    <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
-    </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+<section class="slide" id="brief-five-parts" data-lo="LO2" data-label="Five parts">
+  <div class="kicker">The delegation brief</div>
+  <h2>A brief has five parts, written before the assistant runs</h2>
+  <div class="prompt" data-tool="Notebook assistant">
+    <span class="seg c-teal">For Tahani Al-Qasim: the monthly on-time rate, October 2025 to September 2026, as a table and one chart.</span>
+    <span class="seg c-cyan">Use deliveries (one row per parcel) and customers. Month is the month of created_at. Do not join scans.</span>
+    <span class="seg c-purple">On time is D-2 for every month: delivered_at at or before promised_by; a dispatched parcel never delivered is late.</span>
+    <span class="seg c-amber">One query per step. No test shipments, no cancelled orders. Stop after each step and show its row count.</span>
+    <span class="seg c-coral">Twelve rows, 2025-10 to 2026-09. Deliveries sum to the dispatched, non-test parcels. No month moves more than 5 points.</span>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <div class="legend"><span class="c-teal">Question</span><span class="c-cyan">Data</span><span class="c-purple">Definitions</span><span class="c-amber">Constraints</span><span class="c-coral">Acceptance checks</span></div>
+  <aside class="notes"><p>This is the brief of Lab 1.3, shortened. Compare it with the one line of this morning: every assumption the room listed in Lab 1.1 is now a sentence in parts two to four. The fifth part is new, and it is the one a reviewer reads first: it says how anyone will know the work is right. Yasser Al-Madani, the analytics lead in the case, sends back any brief whose checks he cannot apply himself.</p></aside>
 </section>
 
-<section class="slide" id="s3-steps" data-lo="LO2">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="check-or-wish" data-lo="LO2" data-label="Check or wish">
+  <div class="kicker">The fifth part</div>
+  <h2>An acceptance check names a number, a count or a condition</h2>
+  <table class="t">
+    <tr><th>A wish</th><th>A check a reviewer can apply</th></tr>
+    <tr><td>The numbers should look reasonable</td><td>Every rate is between 0 and 1; no month differs from the one before by more than 5 points</td></tr>
+    <tr><td>Make sure nothing is double counted</td><td>The working table has one row per <code>delivery_id</code></td></tr>
+    <tr><td>Cover the whole year</td><td>Exactly 12 rows, 2025-10 to 2026-09</td></tr>
+    <tr><td>Use the right parcels</td><td>Deliveries sum to the dispatched, non-test parcels, counted by me</td></tr>
+  </table>
+  <div class="callout tip mt"><b>The test of a check.</b> Could a colleague apply it to the output without asking you a question?</div>
+  <aside class="notes"><p>That test is the evidence the second course outcome asks for. A wish is not wrong, it is unfinished: ask the room to turn "be careful with time zones" into a check. One good answer: no delivery has a scan time later than its delivered_at once three hours are added.</p></aside>
+</section>
+
+<section class="slide" id="expected-comes-from-you" data-lo="LO2 LO3" data-label="Your own count">
+  <div class="kicker">Independence</div>
+  <h2>The expected value comes from your query, never from the reply</h2>
+  <div class="cols cols-2">
+    <pre class="code s" data-file="Lab 1.3 · check_total"><code class="language-python">def check_total(result):
+    expected = U.one(con, """
+        SELECT COUNT(*)
+        FROM deliveries d
+        JOIN customers c
+          ON c.customer_id = d.customer_id
+        WHERE c.segment &lt;&gt; 'TEST'
+          AND d.status &lt;&gt; 'cancelled'""")
+    got = int(result["deliveries"].sum())
+    return got == expected, (got, expected)</code></pre>
+    <div class="stack">
+      <div class="card c-coral flat"><h4>A check that cannot fail</h4><p class="small mb0">"Ask the assistant to confirm its total" compares the answer with itself.</p></div>
+      <div class="card c-teal flat"><h4>Small, and yours</h4><p class="small mb0">Five lines of SQL you wrote and understand are worth more than fifty you read.</p></div>
+    </div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <aside class="notes"><p>This is the first appearance of the idea that carries Day 2: a second path that shares as little as possible with the first. Here the second path is tiny, one count. The count is 486,078 in the lab. Under the course's AI policy the checks are written by the participant, also in the AI-full labs.</p></aside>
+</section>
+
+<section class="slide" id="small-steps-with-checkpoints" data-lo="LO2" data-label="Small steps">
+  <div class="kicker">Constraints that pay</div>
+  <h2>Small steps with a stop after each find errors while they are small</h2>
+  <div class="flow">
+    <div class="step c-teal"><b>Step 1 · Working table</b>stop: rows, tests removed, cancelled removed</div>
+    <div class="arrow">→</div>
+    <div class="step c-cyan"><b>Step 2 · Monthly rate</b>stop: 12 rows, the total, the range</div>
+    <div class="arrow">→</div>
+    <div class="step c-purple"><b>Step 3 · Chart</b>stop: axis from zero, rates not counts</div>
+  </div>
+  <div class="cols cols-2 mt">
+    <div class="card c-teal flat"><h4>Stepwise</h4><p class="small mb0">An error is found one step after it is made, with one query to read.</p></div>
+    <div class="card c-coral flat"><h4>All at once</h4><p class="small mb0">An agent that runs ten steps hands you ten steps of code and one number.</p></div>
+  </div>
+  <aside class="notes"><p>With a coding agent the temptation is the long autonomous run. For analysis the cost is verification: every step that was not checked when it was made has to be checked at the end, with later steps built on it. The stop is cheap. In the lab the brief asks for the row count after each step; in the capstone the transcript shows whether the participant stopped.</p></aside>
+</section>
+
+<section class="slide" id="first-reply-fails-one-check" data-lo="LO2" data-label="One check fails">
+  <div class="kicker">Lab 1.3, measured</div>
+  <h2>The first reply said the right words and failed one check</h2>
+  <div class="cols cols-2">
+    <table class="t small">
+      <tr><th>Check</th><th>First reply</th><th>After one follow-up</th></tr>
+      <tr><td>Total equals dispatched parcels</td><td><em>496,046 against 486,078</em></td><td>486,078</td></tr>
+      <tr><td>Twelve months</td><td>pass</td><td>pass</td></tr>
+      <tr><td>Rates in range, no 5-point jump</td><td>pass</td><td>pass</td></tr>
+      <tr class="hl"><td>Yearly on-time rate</td><td>77.8%</td><td>79.4%</td></tr>
+    </table>
+    <div class="callout warn"><b>Its sentence was correct.</b> "Under D-2, without test shipments." The 9,968 cancelled orders in the denominator were visible only to the check.</div>
+  </div>
+  <aside class="notes"><p>From the lab's run: the first recorded reply's table sums to 496,046, which is all non-test deliveries including 9,968 cancelled orders; the second sums to 486,078 and its yearly rate, 0.7942, equals the generator's planted answer. Ask: which of the three checks would you have skipped under time pressure? Most say the total. It is the only one that failed.</p></aside>
+</section>
+
+<section class="slide" id="follow-up-names-the-check" data-lo="LO2" data-label="The follow-up">
+  <div class="kicker">When a check fails</div>
+  <h2>A follow-up names the check, the number it saw and the rule</h2>
+  <div class="chat">
+    <div class="msg user"><span class="who">Vague</span>This looks too low. Are you sure? Please double-check everything.</div>
+    <div class="msg ai bad"><span class="who">Assistant</span>You are right to question it. I have reviewed the query and it is correct. The rate is 77.8%.</div>
+    <div class="msg user"><span class="who">Precise</span>Check 1 failed: the deliveries add up to more than the dispatched parcels. Cancelled orders are in no rate. Fix step 2.</div>
+    <div class="msg ai good"><span class="who">Assistant</span>I had left cancelled orders in the denominator. They are removed; the total equals the dispatched parcels.</div>
+  </div>
+  <aside class="notes"><p>The first exchange is an illustration written for the course; the second is the recorded follow-up of Lab 1.3. Two failure patterns to name: asking "are you sure" invites either a confident repeat or a random change, and neither is evidence. And an assistant that agrees with you has not thereby become right: the three checks run again after the follow-up.</p></aside>
+</section>
+
+<section class="slide" id="check-acceptance" data-lo="LO2">
+  <div class="kicker">Checkpoint</div>
+  <h2>Which line is an acceptance check?</h2>
+  <div class="quiz" data-type="single" data-lo="LO2">
+    <p class="lead">A brief asks for late deliveries per city for the year. Which line can Yasser apply to the result without asking the author anything?</p>
+    <div class="opts">
+      <div class="opt" data-ok>Four rows, one per city, and the late counts sum to my own count of late dispatched parcels</div>
+      <div class="opt" data-why="A wish: it names no number or condition, so the reviewer must ask what careful means">Be careful not to double count parcels with several scans</div>
+      <div class="opt" data-why="A constraint on how the work is done, useful in the brief, but it does not say when the result is right">Use one query per step and stop after each step</div>
+      <div class="opt" data-why="Compares the answer with itself: the assistant's confirmation is not an independent value">Have the assistant confirm that its totals are correct</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> It names a count of rows and an expected total that comes from an independent query.</div>
+  </div>
+  <aside class="notes"><p>Answer: the first option. The second and third are good brief content in other parts (a prohibition, a constraint). The fourth is the tempting one for people who use chat assistants daily: point back to the slide on where the expected value comes from.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-1-3" data-auto="lab" data-lab="1.3">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>AI-full for running the brief; the three checks are written by the participant. The brief's first two parts are supplied, so the lab starts from a known state. Common problems: checks written as wishes (the helper lists them as gaps); the expected total taken from the reply's own table. Expected output: the first reply fails check_total with 496,046 against 486,078, the second passes all three with 0.7942. With a key, the live reply is run against the same checks at the end; its result will differ from person to person, which is tomorrow's last session.</p></aside>
 </section>
 
-<!-- Session 4 -->
-
+<!-- ======================= SESSION 4 ======================= -->
 <section class="slide section" id="s4" data-auto="section" data-session="4"></section>
 
-<section class="slide" id="s4-idea" data-lo="LO2">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
+<section class="slide" id="context-file-is-a-readme-for-agents" data-lo="LO2" data-label="Context file">
+  <div class="kicker">Project context</div>
+  <h2>A context file tells every request what the project already knows</h2>
   <div class="cols cols-2">
     <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
+      <li>A plain text file in the project that the assistant reads <b>before every request</b>.</li>
+      <li>One open convention is <code>AGENTS.md</code>: "a README for agents".</li>
+      <li>Written for software projects: build steps, tests, code style.</li>
+      <li>An analysis project needs different sections.</li>
     </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+    <table class="t small">
+      <tr><th>Section</th><th>For an analysis project</th></tr>
+      <tr><td>Data</td><td>Tables, what one row is, what the assistant may see</td></tr>
+      <tr><td>Definitions</td><td>Measures, denominators, exclusions, time</td></tr>
+      <tr><td>Conventions</td><td>Engine, style, what a result looks like</td></tr>
+      <tr><td>Checks</td><td>What to run and show before answering</td></tr>
+      <tr><td>Do not</td><td>Joins and outputs that are never right here</td></tr>
+    </table>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>Tools differ in the file name they read and where they look for it, and that changes from release to release: check your own tool's documentation this month. The idea is stable. In the lab the file is passed to the model with the request; in a coding agent or a notebook assistant it is picked up from the project folder. The agents.md site describes the format as used by over 60 thousand open-source projects. Sources: agents.md.</p></aside>
 </section>
 
-<section class="slide" id="s4-steps" data-lo="LO2">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="file-or-brief" data-lo="LO2" data-label="File or brief">
+  <div class="kicker">What goes where</div>
+  <h2>The file holds what is true for every request; the brief holds this one</h2>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>In the context file</h4>
+      <ul class="bullets small tight"><li>On time is D-2 for every month</li><li>Cancelled orders and test shipments are in no rate</li><li>Scan times are UTC</li><li>Never join scans to count parcels</li></ul></div>
+    <div class="card c-cyan"><h4>In the brief</h4>
+      <ul class="bullets small tight"><li>Tahani's question and her deadline</li><li>The steps of this task</li><li>The acceptance checks of this result</li><li>What to stop and show</li></ul></div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <div class="callout warn mt"><b>Neither holds rows or secrets.</b> A context file is sent with every request, to whatever model is configured.</div>
+  <aside class="notes"><p>A useful test: would the line still be true next month, for a different question on the same data? Then it belongs in the file. The warning anticipates Day 3: a context file that quotes three example complaints has just sent three customers' words to the hosted model with every request.</p></aside>
+</section>
+
+<section class="slide" id="rules-not-essays" data-lo="LO2" data-label="Rules">
+  <div class="kicker">How to write it</div>
+  <h2>Write rules a reply can be held to, not explanations</h2>
+  <div class="cols cols-2">
+    <pre class="code s" data-file="AGENTS.md · Lab 1.4"><code class="language-markdown">## Definitions
+- On time is D-2 for every month:
+  delivered_at &lt;= promised_by.
+- A dispatched parcel never delivered is late.
+- Never use on_time_flag across months.
+- Denominator: dispatched parcels
+  (delivered, failed or returned).
+- A parcel belongs to the month of created_at.
+
+## Do not
+- Do not join scans to count parcels.</code></pre>
+    <ul class="bullets small">
+      <li>One fact per line, in the words of the columns.</li>
+      <li>Each line can be checked against a reply.</li>
+      <li>Short: long files are followed less well and cost tokens on every request.</li>
+      <li>It has an owner and a date, like any definition.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The left side is part of the reference solution of Lab 1.4. Contrast with an essay version: "Historically the company measured on-time by calendar day, but in April the definition was tightened..." A reader learns from that; an assistant is not held to anything by it. The owner in the case is the analytics lead, and the definitions come from one document, data/docs/definitions.md.</p></aside>
+</section>
+
+<section class="slide" id="same-brief-two-runs" data-lo="LO2" data-label="Two runs">
+  <div class="kicker">Lab 1.4, measured</div>
+  <h2>One short brief, with and without the file</h2>
+  <table class="t">
+    <tr><th>"Monthly on-time rate for Tahani, whole year."</th><th class="num">Yearly rate</th><th class="num">Off by</th><th class="num">Checks passed</th></tr>
+    <tr><td>Without the context file</td><td class="num">86.7%</td><td class="num">7.3 points</td><td class="num">2 of 3</td></tr>
+    <tr><td>With the context file</td><td class="num">81.9%</td><td class="num">2.5 points</td><td class="num">2 of 3</td></tr>
+    <tr class="hl"><td>Written definition, recomputed</td><td class="num">79.4%</td><td class="num">0</td><td class="num">3 of 3</td></tr>
+  </table>
+  <div class="cols cols-2 mt">
+    <div class="card c-coral flat"><h4>Without</h4><p class="small mb0">UTC scan times against local promises, test shipments kept, a join to scans.</p></div>
+    <div class="card c-amber flat"><h4>With</h4><p class="small mb0">All of that fixed. One rule of the file ignored: delivered parcels only.</p></div>
+  </div>
+  <aside class="notes"><p>From the lab's run on the two recorded replies: 0.8673 and 0.8194 against 0.7942. Both fail the same check, the total: 483,324 and 471,099 against 486,078. Ask the room which reply is acceptable. Neither. "Closer" is not a result anyone can sign, and the acceptance check does not grade on distance.</p></aside>
+</section>
+
+<section class="slide" id="context-is-not-verification" data-lo="LO2 LO3" data-label="Not verification">
+  <div class="kicker">The limit</div>
+  <h2>A context file lowers the number of errors. It finds none</h2>
+  <div class="cols cols-2">
+    <div class="stack">
+      <div class="card c-teal flat"><h4>What it did</h4><p class="small mb0">Three of four errors did not happen. That is real, and cheap.</p></div>
+      <div class="card c-coral flat"><h4>What it cannot do</h4><p class="small mb0">Tell you whether a given reply followed it. The file stated the denominator rule; the reply broke it.</p></div>
+    </div>
+    <div class="callout tip"><b>Close the loop.</b> Every error that verification finds becomes a line in the file, or a check in the brief, or both. The file is the project's memory of its own mistakes.</div>
+  </div>
+  <aside class="notes"><p>This slide is the hinge between today and tomorrow. Today lowered the error rate before the run: a plan, a brief, a context file. Tomorrow finds the errors that still got through. A team that only does today's half ships plausible numbers with fewer, better-hidden errors.</p></aside>
+</section>
+
+<section class="slide" id="check-context-file" data-lo="LO2">
+  <div class="kicker">Checkpoint</div>
+  <h2>What does the context file change?</h2>
+  <div class="quiz" data-type="single" data-lo="LO2">
+    <p class="lead">Your project's context file states the on-time definition and the denominator. A reply arrives that says it followed both. What do you do with the reply's number?</p>
+    <div class="opts">
+      <div class="opt" data-why="Takes the reply's sentence as evidence: in the lab the reply said the right words and still broke the denominator rule">Report it, since the file was in place and the reply cites it</div>
+      <div class="opt" data-why="Confuses the file with a check: adding a line lowers the chance of the error and tells you nothing about this reply">Add a stricter line to the file, then report the number</div>
+      <div class="opt" data-ok>Apply the acceptance checks to it, exactly as without the file</div>
+      <div class="opt" data-why="Throws away a real gain: with the file three of four errors did not occur">Discard it and write the query yourself from the start</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> The file changes how often errors happen, not whether this reply has one. Only a check on the output answers that.</div>
+  </div>
+  <aside class="notes"><p>Answer: apply the checks. If the room picks the first option, return to the two-runs table: the reply with the file passed the same two checks and failed the same one.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-1-4" data-auto="lab" data-lab="1.4">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>AI-full. The lab starts from a supplied context file with two of five sections and its own copy of the three checks, so it does not need Lab 1.3. Task 2 is writing: steer people from paragraphs to one rule per line, taken from definitions.md. Expected: 0.8673 without the file, 0.8194 with it, both failing the total. The one word to find in the second reply is "delivered" in the status filter. With a key, the live reply with the participant's own file is run at the end and will vary.</p></aside>
 </section>
 
-<section class="slide" id="wrap-up">
-  <div class="kicker">Day 1 · wrap-up</div>
-  <h2>Three things to keep</h2>
+<!-- ======================= CLOSE ======================= -->
+<section class="slide" id="wrap-up" data-label="Day 1 recap">
+  <div class="kicker">Day 1 recap</div>
+  <h2>Decide before the run what you hand over and how you will know</h2>
   <div class="cols cols-3">
-    <div class="card c-teal"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
-    <div class="card c-coral"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
-    <div class="card c-purple"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
+    <div class="card c-teal"><h4>Read for choices</h4><p class="small mb0">A reply that runs has proved its syntax. The measure, the grain, the filters and the denominator are choices to list and test.</p></div>
+    <div class="card c-cyan"><h4>Delegate, assist, keep</h4><p class="small mb0">Sort steps by whether you can check them cheaply, whether judgement is the product and what is at stake.</p></div>
+    <div class="card c-coral"><h4>Brief and context</h4><p class="small mb0">State definitions and acceptance checks first. A context file lowers errors; only a check on the output finds them.</p></div>
   </div>
+  <aside class="notes"><p>Ask each table for the one assumption from Lab 1.1 they had never thought to state before today. Collect three. Then ask where the 79.4% came from: every time, from a query the analyst wrote and a document the organisation owns.</p></aside>
 </section>
 
-<section class="slide dark" id="next" data-label="Next">
-  <div class="kicker">Next</div>
-  <h2>Day 2: Verify</h2>
-  <p class="lead">REPLACE: what participants prepare before then; unfinished labs can be finished at home</p>
-  <aside class="notes">REPLACE: accounts, installs or reading participants need before the next unit</aside>
+<section class="slide dark" id="next" data-label="Tomorrow">
+  <div class="kicker">Tomorrow · Day 2</div>
+  <h2>Verify: the errors that got through</h2>
+  <p class="lead">Recompute a headline rate in SQL without the assistant and reconcile the gap, find four seeded errors in an assisted analysis, check a chart and a complaint summary against the data, and run one request five times.</p>
+  <aside class="notes"><p>Tomorrow's first three labs begin AI-off: the first recomputation is the participant's own. Each lab starts from supplied files, so an unfinished lab from today blocks nothing. Anyone without a model key can add one tonight; it is optional.</p></aside>
 </section>

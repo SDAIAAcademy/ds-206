@@ -5,7 +5,7 @@
 
 Data Science Track · SDAIA Academy · DS-206 · Level 200
 
-REPLACE: one line under the title: what participants can do after the course
+Delegate analysis steps to an assistant, prove every number another way, and hand over work a peer can rerun
 
 Participants analyse data with a coding assistant or agent in a notebook and stay accountable for every number. For a fictional courier company they decide which steps to delegate, brief the assistant with acceptance checks, prove results by recomputing key numbers another way, measure how answers vary between runs, decide which data may go to which assistant, and package an analysis that a peer reruns from logged prompts, code and data.
 
@@ -33,7 +33,7 @@ Participants analyse data with a coding assistant or agent in a notebook and sta
 | Day 1 | Delegate with intent | What assistants get wrong in analysis; Delegate, assist or keep; The delegation brief; Context files for a project | [`slides/day1.html`](slides/day1.html) |
 | Day 2 | Verify | Recompute it another way; Joins, filters and denominators; Charts and words; Ask it twice | [`slides/day2.html`](slides/day2.html) |
 | Day 3 | Reproduce and disclose | Which data may go where; Logging assisted work; The peer rerun; Disclosing assistance | [`slides/day3.html`](slides/day3.html) |
-| Capstone | Capstone project presentations |  | [`slides/capstone.html`](slides/capstone.html) |
+| Capstone | Capstone: the assisted analysis package and its defence |  | [`slides/capstone.html`](slides/capstone.html) |
 <!-- /academy:units -->
 
 ## Case study
@@ -47,18 +47,18 @@ Every lab is a notebook in `labs/`. Open it in Google Colab from the course page
 
 | | Session | Lab | File |
 |---|---|---|---|
-| 1.1 | Day 1 · Session 1 | Give an assistant a one-line request; list every assumption it made | [`D1_1_give_assistant_one.ipynb`](labs/D1_1_give_assistant_one.ipynb) |
-| 1.2 | Day 1 · Session 2 | Sort a ten-step plan into delegate, assist or keep, with reasons | [`D1_2_sort_ten_step.ipynb`](labs/D1_2_sort_ten_step.ipynb) |
-| 1.3 | Day 1 · Session 3 | Write a brief with acceptance checks for three steps and run it | [`D1_3_write_brief_acceptance.ipynb`](labs/D1_3_write_brief_acceptance.ipynb) |
-| 1.4 | Day 1 · Session 4 | Add a project context file, rerun a brief and compare outputs | [`D1_4_add_project_context.ipynb`](labs/D1_4_add_project_context.ipynb) |
-| 2.1 | Day 2 · Session 1 | Recompute an assistant's on-time rate in SQL and reconcile the gap | [`D2_1_recompute_assistant_s.ipynb`](labs/D2_1_recompute_assistant_s.ipynb) |
-| 2.2 | Day 2 · Session 2 | Find seeded join and filter errors in an assisted analysis | [`D2_2_find_seeded_join.ipynb`](labs/D2_2_find_seeded_join.ipynb) |
-| 2.3 | Day 2 · Session 3 | Check an assistant's chart and complaint summary against the data | [`D2_3_check_assistant_s.ipynb`](labs/D2_3_check_assistant_s.ipynb) |
-| 2.4 | Day 2 · Session 4 | Repeat one request five times; tabulate differences in code, numbers and conclusions | [`D2_4_repeat_one_request.ipynb`](labs/D2_4_repeat_one_request.ipynb) |
-| 3.1 | Day 3 · Session 1 | Decide which tables a local or a hosted assistant may process | [`D3_1_decide_which_tables.ipynb`](labs/D3_1_decide_which_tables.ipynb) |
-| 3.2 | Day 3 · Session 2 | Log prompts, model settings and outputs for one analysis | [`D3_2_log_prompts_model.ipynb`](labs/D3_2_log_prompts_model.ipynb) |
-| 3.3 | Day 3 · Session 3 | Rerun a supplied package from its logs; check the numbers match | [`D3_3_rerun_supplied_package.ipynb`](labs/D3_3_rerun_supplied_package.ipynb) |
-| 3.4 | Day 3 · Session 4 | Write the method and disclosure paragraph; choose the capstone question | [`D3_4_write_method_disclosure.ipynb`](labs/D3_4_write_method_disclosure.ipynb) |
+| 1.1 | Day 1 · Session 1 | One line in, six assumptions out | [`D1_1_one_line_request.ipynb`](labs/D1_1_one_line_request.ipynb) |
+| 1.2 | Day 1 · Session 2 | Delegate, assist or keep | [`D1_2_delegate_assist_keep.ipynb`](labs/D1_2_delegate_assist_keep.ipynb) |
+| 1.3 | Day 1 · Session 3 | A brief with acceptance checks | [`D1_3_delegation_brief.ipynb`](labs/D1_3_delegation_brief.ipynb) |
+| 1.4 | Day 1 · Session 4 | A project context file | [`D1_4_context_file.ipynb`](labs/D1_4_context_file.ipynb) |
+| 2.1 | Day 2 · Session 1 | Recompute and reconcile | [`D2_1_recompute_in_sql.ipynb`](labs/D2_1_recompute_in_sql.ipynb) |
+| 2.2 | Day 2 · Session 2 | Four seeded errors | [`D2_2_joins_filters.ipynb`](labs/D2_2_joins_filters.ipynb) |
+| 2.3 | Day 2 · Session 3 | A chart and a summary against the data | [`D2_3_charts_and_words.ipynb`](labs/D2_3_charts_and_words.ipynb) |
+| 2.4 | Day 2 · Session 4 | Five runs of one request | [`D2_4_ask_it_twice.ipynb`](labs/D2_4_ask_it_twice.ipynb) |
+| 3.1 | Day 3 · Session 1 | Hosted, local or neither | [`D3_1_which_data_where.ipynb`](labs/D3_1_which_data_where.ipynb) |
+| 3.2 | Day 3 · Session 2 | A run log | [`D3_2_run_log.ipynb`](labs/D3_2_run_log.ipynb) |
+| 3.3 | Day 3 · Session 3 | Rerun a supplied package | [`D3_3_peer_rerun.ipynb`](labs/D3_3_peer_rerun.ipynb) |
+| 3.4 | Day 3 · Session 4 | Method, disclosure and the capstone question | [`D3_4_disclosure.ipynb`](labs/D3_4_disclosure.ipynb) |
 <!-- /academy:labs -->
 
 ## Capstone
@@ -90,7 +90,36 @@ Each line is a capability; the examples are interchangeable.
 <!-- academy:sources -->
 ## Sources
 
-- REPLACE: every source the course cites, with its address, in course.json under "sources"; this list is written from there
+### Evidence on assisted work and skill
+
+- [Shen and Tamkin: How AI Impacts Skill Formation (2026)](https://arxiv.org/abs/2601.20245)
+- [Becker et al. (METR): Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity](https://arxiv.org/abs/2507.09089)
+- [Lee et al.: The Impact of Generative AI on Critical Thinking (Microsoft Research, CHI 2025)](https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking-self-reported-reductions-in-cognitive-effort-and-confidence-effects-from-a-survey-of-knowledge-workers/)
+
+### Assistants and agents in data analysis
+
+- [DABstep: Data Agent Benchmark for Multi-step Reasoning](https://arxiv.org/abs/2506.23719)
+- [BLADE: Benchmarking Language Model Agents for Data-Driven Science](https://arxiv.org/abs/2408.09667)
+- [Silberzahn et al.: Many Analysts, One Data Set (2018)](https://doi.org/10.1177/2515245917747646)
+
+### Tools and conventions
+
+- [AGENTS.md, the context-file convention](https://agents.md/)
+- [marimo: in-editor AI assistance](https://docs.marimo.io/guides/editor_features/ai_completion/)
+- [OpenCode documentation](https://opencode.ai/docs/)
+- [DuckDB documentation](https://duckdb.org/docs/)
+- [Ollama](https://ollama.com/)
+- [llama.cpp](https://github.com/ggml-org/llama.cpp)
+- [OpenRouter: models](https://openrouter.ai/models)
+
+### National references
+
+- [Generative AI Guidelines for Government (SDAIA)](https://sdaia.gov.sa/en/SDAIA/about/Files/GenAIGuidelinesForGovernmentENCompressed.pdf)
+- [Generative AI Guidelines for the Public (SDAIA)](https://sdaia.gov.sa/en/SDAIA/about/Files/GenerativeAIPublicEN.pdf)
+- [Data Classification Policy (NDMO, SDAIA)](https://sdaia.gov.sa/en/SDAIA/about/Documents/DataClassificationPolicy.pdf)
+- [Personal Data Protection Law (SDAIA)](https://sdaia.gov.sa/en/SDAIA/about/Documents/PersonalDataProtectionLaw.pdf)
+- [Implementing Regulation of the Personal Data Protection Law (SDAIA)](https://sdaia.gov.sa/en/SDAIA/about/Documents/ImplementingRegulationPersonalDataProtectionLaw.pdf)
+- [AI Ethics Principles (SDAIA)](https://sdaia.gov.sa/en/SDAIA/about/Documents/ai-principles.pdf)
 <!-- /academy:sources -->
 
 ### National references
