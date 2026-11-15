@@ -38,7 +38,11 @@ Participants analyse data with a coding assistant or agent in a notebook and sta
 
 ## Case study
 
-**REPLACE: the name of the fictional organisation every lab works on.** REPLACE: two sentences on the case study and its synthetic data
+**Hudhud Parcel (هدهد للطرود).** A fictional courier with hubs in Riyadh, Jeddah, Dammam and Madinah. Its operations director asks one question, "why are we late?", and an analyst answers it over three days with an assistant called Rafiq: Day 1 turns the request into a brief, Day 2 proves the assistant's numbers, Day 3 packages the work so that a peer can rerun it.
+
+The data is synthetic, built on the participant's machine from a fixed seed, and describes nobody: 500,000 deliveries over one year, with scans, route plans, driver shifts and 20,000 complaint texts in Arabic and English. Ten problems are planted in it, among them a definition of "on time" that changed in April, scans uploaded twice and one real effect in Dammam; `labs/README.md` lists them for trainers.
+
+**The assistant in the labs.** A request carries table and column names only, the reply is code, and the notebook runs it locally. Every lab runs in full without a key, on recorded replies that were scripted for the course and are labelled as such; with a key for a free hosted model, the same cells also show a live reply. No lab downloads or runs a model on the participant's machine.
 
 <!-- academy:labs -->
 ## Labs
@@ -65,7 +69,16 @@ Every lab is a notebook in `labs/`. Open it in Google Colab from the course page
 
 An assisted analysis package for a new question in a public repository with prompts, agent transcripts, code, verification notes and a README of headline numbers a peer reproduced; eight-minute defence
 
-**Submission:** REPLACE: what participants submit and how: a public repository link, or a shared folder for a course without code
+**Submission:** a link to a public repository built from `labs/capstone/starter`, holding the brief, the context file, the run log and transcripts, the code, the verification notes, the variability table, the data-handling table and a README whose headline numbers are written from the log. A peer's rerun log is committed in it before the defence. The repository holds synthetic course data only. The brief, the two-hour plan and the scoring guide are in `labs/capstone/README.md`.
+
+**Defence:** eight minutes without the assistant: five on the delegation choices and what verification found, then one headline number, chosen by the assessor, recomputed live.
+
+## Before and after the course
+
+- **Pre-work (two hours):** the setup check, an entry quiz on joins and group-bys, and an hour with an assistant used as a tutor: `labs/prework/README.md`.
+- **Follow-up task:** one assisted analysis at work or on open data, with a verification note for each headline number, sent to the trainer.
+- **Practice questions:** `assessments/bank.json`, 32 questions across the six outcomes, published on the practice page of the course site.
+- **The supervised check** (AI-off: find the errors in a printed assisted analysis and recompute two numbers in SQL) is an exam and is not in this repository.
 
 ## Prerequisites
 
@@ -122,9 +135,9 @@ Each line is a capability; the examples are interchangeable.
 - [AI Ethics Principles (SDAIA)](https://sdaia.gov.sa/en/SDAIA/about/Documents/ai-principles.pdf)
 <!-- /academy:sources -->
 
-### National references
+### How the national references are used
 
-- SDAIA Generative AI Guidelines: REPLACE: the address of the official text
-- NDMO Data Classification Policy: REPLACE: the address of the official text
-- Personal Data Protection Law and its implementing regulations: REPLACE: the address of the official text
-- SDAIA AI Ethics Principles: REPLACE: the address of the official text
+- **Generative AI Guidelines for Government and for the Public (SDAIA):** the basis of Day 3: what may be entered into a generative AI tool, keeping a record of an assisted analysis, marking and verifying generated code, and disclosing assistance.
+- **Data Classification Policy (NDMO):** the four levels behind the data-handling table of Lab 3.1. The assistant policy of Hudhud Parcel is fictional, written for the course on top of these levels, and says so.
+- **Personal Data Protection Law and its Implementing Regulation:** why complaint texts, phone numbers and driver records are treated as personal data in the labs. The course does not teach the law; FN-106 does.
+- **AI Ethics Principles (SDAIA):** accountability and transparency, which the course turns into two habits: the analyst signs every number, and every report says what an assistant did.

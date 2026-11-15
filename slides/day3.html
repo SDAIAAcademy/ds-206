@@ -184,7 +184,7 @@
     <tr><th>Step</th><th>What the log says</th><th>What a rerun lacks</th></tr>
     <tr><td>monthly_rate</td><td>A request, a query, "the notebook assistant"</td><td>Settings, context, data fingerprint, any check</td></tr>
     <tr><td>by_city</td><td>The request is "same but by city"</td><td>The code, context, data fingerprint; verified by "looked right"</td></tr>
-    <tr><td>chart</td><td>The code is "see notebook cell 14"</td><td>The request, the temperature, the data, the headline, any check</td></tr>
+    <tr><td>chart</td><td>The code is "see notebook cell 14"</td><td>The request, the context, the temperature, the data, the headline, any check</td></tr>
   </table>
   <div class="callout warn mt"><b>"Same but by city" is a request only inside one conversation.</b> A log line must stand without the lines around it.</div>
   <aside class="notes"><p>From the lab's first task: the helper lists the missing fields of each record. Nothing here is careless by the standards of a normal working week, which is the point. The third line shows the most common failure in notebooks: the code is "in the notebook", and the notebook has since been edited.</p></aside>
@@ -274,7 +274,7 @@
 </section>
 
 <section class="slide lab" id="lab-3-2" data-auto="lab" data-lab="3.2">
-  <aside class="notes"><p>AI-full. The step that is logged is the corrected monthly rate of Lab 1.3, supplied as a recorded reply, so the lab needs nothing from Day 1. Expected: the three old records lack fourteen fields between them; the new record lacks none; the rerun from the line gives 0.7942 with matching fingerprints. The log is written to artifacts/lab_3_2. Common problem: forgetting that context_sha is the hash of the context text, not the text.</p></aside>
+  <aside class="notes"><p>AI-full. The step that is logged is the corrected monthly rate of Lab 1.3, supplied as a recorded reply, so the lab needs nothing from Day 1. Expected: the three old records lack thirteen fields between them; the new record lacks none; the rerun from the line gives 0.7942 with matching fingerprints. The log is written to artifacts/lab_3_2. Common problem: forgetting that context_sha is the hash of the context text, not the text.</p></aside>
 </section>
 
 <!-- ======================= SESSION 3 ======================= -->

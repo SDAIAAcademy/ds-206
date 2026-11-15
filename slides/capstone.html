@@ -1,19 +1,41 @@
 <section class="slide title" id="title" data-auto="title">
-  <aside class="notes">Today is theirs: keep your own talking to the opening and the closing. Confirm the running order and the demo setup (screen sharing, accounts, a recorded backup) first.</aside>
+  <aside class="notes"><p>Today is theirs: keep your own talking to the opening and the closing. Before the room arrives, confirm that every participant has a public repository and a question, either one of the six or one you approved yesterday. The supervised, AI-off check of the course is run separately from this deck.</p></aside>
 </section>
 
 <section class="slide" id="agenda" data-label="Agenda">
   <div class="kicker">Capstone</div>
-  <h2>How the presentations run</h2>
+  <h2>How the day runs</h2>
   <div class="agenda">
-    <div class="item now"><div><b>Expectations and final prep</b><small>the rubric, a last rehearsal, then the first presentations</small></div></div>
-    <div class="item"><div><b>Presentations</b><small>each one timed, with questions after it</small></div></div>
-    <div class="item"><div><b>Review and closing</b><small>peer feedback, the trainer's review, what next</small></div></div>
+    <div class="item now"><div><b>Build the package</b><small>two hours, with the assistant: brief, delegate, verify, five runs, log, disclose</small></div></div>
+    <div class="item"><div><b>Peer rerun</b><small>thirty minutes on a colleague's package, from its log alone</small></div></div>
+    <div class="item"><div><b>Defences</b><small>eight minutes each, without the assistant, one number recomputed live</small></div></div>
+    <div class="item"><div><b>Review and closing</b><small>what the packages showed, the follow-up task</small></div></div>
   </div>
+  <aside class="notes"><p>Say the order aloud and write the pairs for the peer rerun on the board now, so that nobody reruns the package of the person who reruns theirs if the numbers allow it. Breaks are not slides: press B when the room needs one.</p></aside>
+</section>
+
+<section class="slide" id="the-package" data-label="The package">
+  <div class="kicker">What you hand over</div>
+  <h2>One question, one package, in a public repository</h2>
+  <div class="cols cols-2">
+    <ul class="bullets small">
+      <li><b>Start from</b> <code>labs/capstone/starter</code> and your choice from Lab 3.4.</li>
+      <li><b>Route first:</b> fill <code>data_handling.md</code> before the first request.</li>
+      <li><b>Log as you go:</b> every assisted step, with its transcript.</li>
+      <li><b>Recompute</b> each headline number without the assistant, and write its note.</li>
+      <li><b>Five runs</b> of one request, compared.</li>
+      <li><b>README:</b> numbers written from <code>headline.json</code>, and the disclosure paragraph.</li>
+    </ul>
+    <div class="stack">
+      <div class="card c-coral flat"><h4>Never in the repository</h4><p class="small mb0">A key, or a row or example value of a Restricted table, in any file or transcript.</p></div>
+      <div class="card c-teal flat"><h4>Before you hand it over</h4><p class="small mb0">Run <code>capstone/package.py check</code>. It lists what the package still lacks.</p></div>
+    </div>
+  </div>
+  <aside class="notes"><p>The two-hour plan, minute by minute, is in labs/capstone/README.md. The usual failure is spending ninety minutes on the analysis and leaving thirty for everything that is scored: say so now. A participant with no working key writes the code themselves, logs it as written by the analyst and says so in the disclosure; the package is scored the same way.</p></aside>
 </section>
 
 <section class="slide" id="rubric" data-label="The rubric">
-  <div class="kicker">How presentations are scored</div>
+  <div class="kicker">How packages are scored</div>
   <h2>The rubric</h2>
   <div class="bars">
     <div class="row"><span>Brief and delegation choices</span><div class="bar c-teal" style="--w:50%"></div><span class="val">15%</span></div>
@@ -22,73 +44,85 @@
     <div class="row"><span>Data handling and disclosure</span><div class="bar c-purple" style="--w:50%"></div><span class="val">15%</span></div>
     <div class="row"><span>Findings</span><div class="bar c-amber" style="--w:50%"></div><span class="val">15%</span></div>
   </div>
-  <div class="callout tip mt"><b>Show results from at least two measured runs.</b> A claim without a number is a plan, not a result.</div>
-  <aside class="notes">Walk through each criterion with one example of what full marks look like.</aside>
+  <div class="callout tip mt"><b>Findings are 15 of 100.</b> A smaller question with every headline number recomputed scores above a larger one that nobody checked.</div>
+  <aside class="notes"><p>Walk through each criterion with what full marks look like; the table is in labs/capstone/README.md. Verification: every headline number recomputed another way, with joins, filters and denominators checked. Reproducibility: the peer reaches every headline number from the log. A verified null result earns full marks for findings.</p></aside>
+</section>
+
+<section class="slide dark" id="build" data-label="Build">
+  <div class="kicker">Build the package</div>
+  <h1>Two hours</h1>
+  <div class="timer" data-minutes="120"></div>
+  <p class="lead">Commit as you go: the history is part of the evidence. Stop analysing when forty minutes remain.</p>
+  <aside class="notes"><p>Press T to start the timer. Walk the room in the first fifteen minutes and read briefs: a brief without a denominator now is a wrong number in an hour. Announce the forty-minute mark. Do not debug anyone's SQL for them; ask which check would find the problem.</p></aside>
+</section>
+
+<section class="slide dark" id="final-prep" data-label="Peer rerun">
+  <div class="kicker">Before the first defence</div>
+  <h1>Peer rerun · 30 minutes</h1>
+  <div class="timer" data-minutes="30"></div>
+  <p class="lead">Clone your colleague's repository. Run <code>capstone/package.py rerun</code>. Ask nothing. Commit the rerun log to their repository.</p>
+  <aside class="notes"><p>Press T to start the timer. The peer reports and does not repair. An author whose package is not reproduced may fix it before the defence, and the rerun log stays as it was written: a drift found and repaired is a good story for the defence, not a penalty.</p></aside>
 </section>
 
 <section class="slide" id="format" data-label="Format">
   <div class="kicker">Format</div>
-  <h2>8 minutes for each presentation</h2>
+  <h2>8 minutes for each defence, without the assistant</h2>
   <div class="cols cols-3">
-    <div class="card c-teal"><h4>1 · The problem</h4><p class="small mb0">Who, what, why now. One slide.</p></div>
-    <div class="card c-cyan"><h4>2 · What you built</h4><p class="small mb0">Design, decisions, trade-offs. Then the live demo.</p></div>
-    <div class="card c-coral"><h4>3 · What you measured</h4><p class="small mb0">Baseline, improvement, failures found, what comes next.</p></div>
+    <div class="card c-teal"><h4>1 · Choices · 2 minutes</h4><p class="small mb0">The question. What you delegated, what you kept, and where the data went.</p></div>
+    <div class="card c-cyan"><h4>2 · Evidence · 3 minutes</h4><p class="small mb0">What verification found, which conclusion held in five runs, what your peer's rerun said.</p></div>
+    <div class="card c-coral"><h4>3 · One number, live · 3 minutes</h4><p class="small mb0">The assessor chooses a headline number. You recompute it in SQL and explain any difference.</p></div>
   </div>
-  <div class="callout note mt"><b>Peer feedback.</b> After each talk, everyone writes one strength, one question and one suggestion.</div>
+  <div class="callout note mt"><b>Peer feedback.</b> After each defence, everyone writes one strength, one question and one suggestion.</div>
+  <aside class="notes"><p>The assistant is closed for the whole defence. Choose the number to recompute from the README before the participant starts speaking, and prefer the one the findings lean on. A recomputation that differs from the README is not a failure by itself: what is scored is whether the participant can explain the difference.</p></aside>
 </section>
 
 <section class="slide order" id="running-order" data-label="Running order">
   <div class="kicker">Running order</div>
-  <h2>Who presents when</h2>
+  <h2>Who defends when</h2>
   <table class="t small">
-    <tr><th>#</th><th>Presenter</th><th>Project</th></tr>
-    <tr><td>1</td><td><input placeholder="name"></td><td><input placeholder="Project"></td></tr>
-    <tr><td>2</td><td><input placeholder="name"></td><td><input placeholder="Project"></td></tr>
-    <tr><td>3</td><td><input placeholder="name"></td><td><input placeholder="Project"></td></tr>
-    <tr><td>4</td><td><input placeholder="name"></td><td><input placeholder="Project"></td></tr>
-    <tr><td>5</td><td><input placeholder="name"></td><td><input placeholder="Project"></td></tr>
-    <tr><td>6</td><td><input placeholder="name"></td><td><input placeholder="Project"></td></tr>
-    <tr><td>7</td><td><input placeholder="name"></td><td><input placeholder="Project"></td></tr>
-    <tr><td>8</td><td><input placeholder="name"></td><td><input placeholder="Project"></td></tr>
+    <tr><th>#</th><th>Presenter</th><th>Question</th></tr>
+    <tr><td>1</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>2</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>3</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>4</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>5</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>6</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>7</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>8</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
   </table>
-  <aside class="notes">Type the names in at the start; the fields can be edited live and are not saved, so keep the list in your notes too.</aside>
-</section>
-
-<section class="slide dark" id="final-prep" data-label="Before the first presentation">
-  <div class="kicker">Before the first presentation</div>
-  <h1>Final prep · 20 minutes</h1>
-  <div class="timer" data-minutes="20"></div>
-  <p class="lead">Rehearse once, record a backup, try the demo on this screen.</p>
-  <aside class="notes">Press T to start the timer. Breaks are not slides: press B when the room needs one.</aside>
+  <aside class="notes"><p>Type the names in at the start; the fields can be edited live and are not saved, so keep the list in your notes too.</p></aside>
 </section>
 
 <section class="slide dark presenting" id="now-presenting" data-label="Now presenting">
   <div class="kicker center">Now presenting</div>
-  <div class="center"><input placeholder="Presenter · project"></div>
+  <div class="center"><input placeholder="Presenter · question"></div>
   <div class="timers mt">
-    <div><h3>Talk and demo</h3><div class="timer" data-minutes="8"></div></div>
+    <div><h3>Defence and live recomputation</h3><div class="timer" data-minutes="8"></div></div>
   </div>
-  <aside class="notes">Type the presenter's name and press T to start the timer. Reuse this slide for every presenter.</aside>
+  <aside class="notes"><p>Type the presenter's name and press T to start the timer. Reuse this slide for every presenter. Name the headline number to recompute when five minutes have passed.</p></aside>
 </section>
 
 <section class="slide" id="review" data-label="Trainer review">
   <div class="kicker">Trainer review</div>
-  <h2>What the presentations showed</h2>
+  <h2>What the packages showed</h2>
   <div class="cols cols-3">
-    <div class="card c-teal"><h4>Strongest patterns</h4><p class="small mb0">What several projects got right.</p></div>
-    <div class="card c-coral"><h4>Common gaps</h4><p class="small mb0">What most projects would fix next.</p></div>
-    <div class="card c-purple"><h4>One surprise</h4><p class="small mb0">Something nobody expected.</p></div>
+    <div class="card c-teal"><h4>Strongest patterns</h4><p class="small mb0">Checks that found something, and disclosures that said what was not verified.</p></div>
+    <div class="card c-coral"><h4>Common gaps</h4><p class="small mb0">Numbers with no step, denominators left unstated, steps logged from memory.</p></div>
+    <div class="card c-purple"><h4>One surprise</h4><p class="small mb0">A conclusion that did not hold in five runs, or a null result that did.</p></div>
   </div>
-  <aside class="notes">Fill these in from your scoring notes during the last break. Name projects for strengths; keep gaps anonymous.</aside>
+  <aside class="notes"><p>Replace the three texts aloud with what you saw, from your scoring notes during the last break. Name packages for strengths; keep gaps anonymous.</p></aside>
 </section>
 
 <section class="slide" id="what-next" data-label="After the course">
   <div class="kicker">After the course</div>
   <h2>Keep going</h2>
   <ul class="bullets">
-    <li><b>Your project stays yours:</b> keep it reproducible and add the next improvement you named today</li>
-    <li><b>Next Academy course:</b> REPLACE: the course that follows this one</li>
+    <li><b>The follow-up task:</b> one assisted analysis at work or on open data, with a verification note for each headline number, sent to your trainer</li>
+    <li><b>Your package stays yours:</b> its layout is the template for the next analysis you sign</li>
+    <li><b>At work:</b> your organisation's own classification and assistant policy decide what may go where; the course's policy was written for a fictional company</li>
+    <li><b>Next in the Academy:</b> the other courses of the Data Science track at level 200, which lead to the DS Assistant badge</li>
   </ul>
+  <aside class="notes"><p>Say when the follow-up task is due and how it reaches you. Work data stays under the participant's own organisation's rules: recommend open data when there is any doubt.</p></aside>
 </section>
 
 <section class="slide dark" id="thanks" data-label="Thank you">
