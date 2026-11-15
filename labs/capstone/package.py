@@ -37,7 +37,7 @@ def read_claims(pkg: Path) -> list[dict]:
 def fmt(value) -> str:
     if value is None:
         return ""
-    return f"{value:.1%}" if isinstance(value, float) and 0 <= value <= 1 else f"{value:,}"
+    return f"{value * 100 + 1e-9:.1f}%" if isinstance(value, float) and 0 <= value <= 1 else f"{value:,}"
 
 
 def readme(pkg: Path) -> None:
