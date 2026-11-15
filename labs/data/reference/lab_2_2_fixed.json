@@ -1,0 +1,12 @@
+[
+ {
+  "long_route": false,
+  "parcels": 8462,
+  "on_time_rate": 0.7902387142519499
+ },
+ {
+  "long_route": true,
+  "parcels": 13620,
+  "on_time_rate": 0.6805433186490455
+ }
+]

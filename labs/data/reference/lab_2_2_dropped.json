@@ -1,0 +1,14 @@
+[
+ {
+  "reason": "driver on a split shift",
+  "parcels": 994
+ },
+ {
+  "reason": "never delivered: failed or returned",
+  "parcels": 688
+ },
+ {
+  "reason": "created on the last day",
+  "parcels": 236
+ }
+]

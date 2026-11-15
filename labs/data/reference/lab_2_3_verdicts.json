@@ -1,0 +1,22 @@
+{
+ "1": [
+  false,
+  "late is the most common at 36%; damaged is 23%, not half"
+ ],
+ "2": [
+  false,
+  "56% of complaints are in Arabic; the sample of 500 was 92% English"
+ ],
+ "3": [
+  false,
+  "fewest by count (3239), but the most per 1,000 parcels (60.3), so the conclusion does not follow"
+ ],
+ "4": [
+  true,
+  "late complaints from Dammam went from 94 to 144 a month"
+ ],
+ "5": [
+  false,
+  "late is 40% of Arabic complaints against 32% of English ones; damaged 18% against 28%"
+ ]
+}

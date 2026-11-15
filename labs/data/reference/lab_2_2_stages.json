@@ -1,0 +1,22 @@
+[
+ {
+  "stage": "deliveries, Rafiq's filters",
+  "rows": 21158,
+  "parcels": 21158
+ },
+ {
+  "stage": "+ join route_plans",
+  "rows": 22699,
+  "parcels": 21158
+ },
+ {
+  "stage": "+ left join driver_shifts",
+  "rows": 23778,
+  "parcels": 21158
+ },
+ {
+  "stage": "+ AND s.hours >= 8",
+  "rows": 21620,
+  "parcels": 20164
+ }
+]

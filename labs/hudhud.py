@@ -306,3 +306,27 @@ def keep(name: str, value) -> None:
     if path.suffix == ".json":
         value = json.dumps(value, indent=1, ensure_ascii=False, default=str) + "\n"
     path.write_text(value, encoding="utf-8", newline="\n")
+
+
+# ------------------------------------------------------------------ charts
+def draw(table: pd.DataFrame, spec: dict, name: str):
+    """Draw a line chart from a spec (x, y, series, ylim, title) and save it under artifacts/charts/."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots(figsize=(8, 3.6))
+    for key, part in table.groupby(spec["series"]):
+        ax.plot(part[spec["x"]], part[spec["y"]], marker="o", markersize=3, label=str(key))
+    if spec.get("ylim"):
+        ax.set_ylim(*spec["ylim"])
+    ax.set_title(spec.get("title", ""), loc="left", fontsize=11)
+    ax.set_ylabel(spec["y"].replace("_", " "))
+    ax.legend(frameon=False)
+    ax.spines[["top", "right"]].set_visible(False)
+    fig.autofmt_xdate()
+    out = ART / "charts"
+    out.mkdir(parents=True, exist_ok=True)
+    fig.savefig(out / f"{name}.png", dpi=110, bbox_inches="tight")
+    plt.close(fig)
+    print(f"chart saved: artifacts/charts/{name}.png")
+    return ax

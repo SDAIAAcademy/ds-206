@@ -18,5 +18,25 @@
   "produced": "Two replies to one short brief: 0.8673 without the context file and 0.8194 with it.",
   "checked": "The three acceptance checks of Lab 1.3 on both results, and a read of each query against definitions.md.",
   "wrong": "Without the file: UTC scans against local promises, tests kept, a join to scans (7.3 points off). With it: delivered parcels only, so failed parcels left the denominator (2.5 points off); the true rate is 0.7942."
+ },
+ "2.1": {
+  "produced": "A pandas analysis of Dammam by quarter: 0.8428 on time in 2026Q3 and the sentence 'a dip of under three points'.",
+  "checked": "Recomputed in SQL from definitions.md without an assistant (0.7226), then reconciled the 12.0-point gap in four steps until both numbers met.",
+  "wrong": "UTC scan times against local promises (-9.5 points), undelivered parcels missing from the denominator (-2.3); quarter and tests moved little. The real fall from Q2 is -7.4 points."
+ },
+ "2.2": {
+  "produced": "A SQL comparison of long and short routes in Dammam: 0.7026 against 0.8139 on 21,620 rows that it counted as parcels.",
+  "checked": "Row counts before and after each join, an anti-join of the scope against the joined rows, and the denominator written as a sentence and recomputed.",
+  "wrong": "Four errors. 1 plan versions fan out the join (row count). 2 a filter on driver_shifts made the left join inner and dropped split-shift drivers (row count, anti-join). 3 BETWEEN dropped the last day (anti-join). 4 delivered-only dropped failed parcels (anti-join, denominator). Corrected: 0.6805 against 0.7902 on 22,082 parcels."
+ },
+ "2.3": {
+  "produced": "A weekly chart titled 'Riyadh is the problem' and a five-sentence summary of complaints written from the first 500 rows of the export.",
+  "checked": "Recomputed the weekly series as rates with days per week, read the three encodings, and tested each sentence against category counts, language shares and complaints per 1,000 parcels.",
+  "wrong": "The chart plots counts on an axis from 300 with two partial weeks; by rate Dammam is worse (0.277 against 0.203). Four of five sentences fail: the sample was 92% English email, so Madinah and Arabic complaints were misstated."
+ },
+ "2.4": {
+  "produced": "Five replies to one request with the same context, model and settings: five different measures, code similarity to the first run from 0.37 to 1.0.",
+  "checked": "Ran all five on the data, tabulated measure, worst city, Dammam's value and cities marked worse, and counted the runs supporting each of three conclusions.",
+  "wrong": "Only 'Dammam got worse' held in all five; 'Dammam is worst' held in 4 and 'no other city got worse' in 3. The departing runs counted late parcels or used the system flag, against the context file."
  }
 }

@@ -1,0 +1,11 @@
+{
+ "kind": "line",
+ "x": "week",
+ "y": "late_rate",
+ "series": "city",
+ "ylim": [
+  0,
+  0.4
+ ],
+ "title": "Share of dispatched parcels delivered late, complete weeks since July 2026"
+}

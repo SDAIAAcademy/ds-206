@@ -103,6 +103,12 @@ add("1.4", "with_context", SHORT,
 
 
 def main() -> None:
+    import importlib
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    for module in ("rec_day2", "rec_day3"):
+        if (Path(__file__).resolve().parent / f"{module}.py").exists():
+            importlib.import_module(module).register(add)
     OUT.mkdir(parents=True, exist_ok=True)
     for lab, items in R.items():
         path = OUT / f"lab_{lab.replace('.', '_')}.json"

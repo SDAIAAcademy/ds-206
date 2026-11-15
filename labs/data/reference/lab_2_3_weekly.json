@@ -1,0 +1,226 @@
+[
+ {
+  "week": "2026-06-29",
+  "city": "Dammam",
+  "days": 5,
+  "dispatched": 1159,
+  "late": 346.0,
+  "late_rate": 0.2985332182916307
+ },
+ {
+  "week": "2026-06-29",
+  "city": "Riyadh",
+  "days": 5,
+  "dispatched": 2820,
+  "late": 556.0,
+  "late_rate": 0.1971631205673759
+ },
+ {
+  "week": "2026-07-06",
+  "city": "Dammam",
+  "days": 7,
+  "dispatched": 1625,
+  "late": 475.0,
+  "late_rate": 0.2923076923076923
+ },
+ {
+  "week": "2026-07-06",
+  "city": "Riyadh",
+  "days": 7,
+  "dispatched": 4059,
+  "late": 833.0,
+  "late_rate": 0.20522296132052228
+ },
+ {
+  "week": "2026-07-13",
+  "city": "Dammam",
+  "days": 7,
+  "dispatched": 1654,
+  "late": 455.0,
+  "late_rate": 0.2750906892382104
+ },
+ {
+  "week": "2026-07-13",
+  "city": "Riyadh",
+  "days": 7,
+  "dispatched": 4070,
+  "late": 842.0,
+  "late_rate": 0.20687960687960688
+ },
+ {
+  "week": "2026-07-20",
+  "city": "Dammam",
+  "days": 7,
+  "dispatched": 1621,
+  "late": 411.0,
+  "late_rate": 0.25354719309068474
+ },
+ {
+  "week": "2026-07-20",
+  "city": "Riyadh",
+  "days": 7,
+  "dispatched": 4184,
+  "late": 856.0,
+  "late_rate": 0.2045889101338432
+ },
+ {
+  "week": "2026-07-27",
+  "city": "Dammam",
+  "days": 7,
+  "dispatched": 1659,
+  "late": 442.0,
+  "late_rate": 0.2664255575647981
+ },
+ {
+  "week": "2026-07-27",
+  "city": "Riyadh",
+  "days": 7,
+  "dispatched": 3994,
+  "late": 798.0,
+  "late_rate": 0.19979969954932397
+ },
+ {
+  "week": "2026-08-03",
+  "city": "Dammam",
+  "days": 7,
+  "dispatched": 1681,
+  "late": 498.0,
+  "late_rate": 0.2962522308149911
+ },
+ {
+  "week": "2026-08-03",
+  "city": "Riyadh",
+  "days": 7,
+  "dispatched": 4199,
+  "late": 837.0,
+  "late_rate": 0.1993331745653727
+ },
+ {
+  "week": "2026-08-10",
+  "city": "Dammam",
+  "days": 7,
+  "dispatched": 1626,
+  "late": 449.0,
+  "late_rate": 0.27613776137761376
+ },
+ {
+  "week": "2026-08-10",
+  "city": "Riyadh",
+  "days": 7,
+  "dispatched": 4217,
+  "late": 800.0,
+  "late_rate": 0.18970832345269148
+ },
+ {
+  "week": "2026-08-17",
+  "city": "Dammam",
+  "days": 7,
+  "dispatched": 1711,
+  "late": 466.0,
+  "late_rate": 0.27235534774985387
+ },
+ {
+  "week": "2026-08-17",
+  "city": "Riyadh",
+  "days": 7,
+  "dispatched": 4143,
+  "late": 815.0,
+  "late_rate": 0.1967173545739802
+ },
+ {
+  "week": "2026-08-24",
+  "city": "Dammam",
+  "days": 7,
+  "dispatched": 1716,
+  "late": 523.0,
+  "late_rate": 0.30477855477855476
+ },
+ {
+  "week": "2026-08-24",
+  "city": "Riyadh",
+  "days": 7,
+  "dispatched": 4271,
+  "late": 876.0,
+  "late_rate": 0.20510419105595878
+ },
+ {
+  "week": "2026-08-31",
+  "city": "Dammam",
+  "days": 7,
+  "dispatched": 1672,
+  "late": 454.0,
+  "late_rate": 0.2715311004784689
+ },
+ {
+  "week": "2026-08-31",
+  "city": "Riyadh",
+  "days": 7,
+  "dispatched": 4257,
+  "late": 876.0,
+  "late_rate": 0.20577871740662437
+ },
+ {
+  "week": "2026-09-07",
+  "city": "Dammam",
+  "days": 7,
+  "dispatched": 1663,
+  "late": 433.0,
+  "late_rate": 0.2603728202044498
+ },
+ {
+  "week": "2026-09-07",
+  "city": "Riyadh",
+  "days": 7,
+  "dispatched": 4353,
+  "late": 919.0,
+  "late_rate": 0.2111187686652883
+ },
+ {
+  "week": "2026-09-14",
+  "city": "Dammam",
+  "days": 7,
+  "dispatched": 1800,
+  "late": 494.0,
+  "late_rate": 0.27444444444444444
+ },
+ {
+  "week": "2026-09-14",
+  "city": "Riyadh",
+  "days": 7,
+  "dispatched": 4291,
+  "late": 902.0,
+  "late_rate": 0.2102074108599394
+ },
+ {
+  "week": "2026-09-21",
+  "city": "Dammam",
+  "days": 7,
+  "dispatched": 1721,
+  "late": 473.0,
+  "late_rate": 0.2748402091807089
+ },
+ {
+  "week": "2026-09-21",
+  "city": "Riyadh",
+  "days": 7,
+  "dispatched": 4159,
+  "late": 813.0,
+  "late_rate": 0.19547968261601348
+ },
+ {
+  "week": "2026-09-28",
+  "city": "Dammam",
+  "days": 3,
+  "dispatched": 774,
+  "late": 207.0,
+  "late_rate": 0.26744186046511625
+ },
+ {
+  "week": "2026-09-28",
+  "city": "Riyadh",
+  "days": 3,
+  "dispatched": 1980,
+  "late": 386.0,
+  "late_rate": 0.19494949494949496
+ }
+]

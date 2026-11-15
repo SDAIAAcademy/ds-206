@@ -1,0 +1,48 @@
+{
+ "cats": [
+  {
+   "category": "late",
+   "complaints": 7288,
+   "share": 0.3644
+  },
+  {
+   "category": "damaged",
+   "complaints": 4516,
+   "share": 0.2258
+  },
+  {
+   "category": "refund_cod",
+   "complaints": 2676,
+   "share": 0.1338
+  },
+  {
+   "category": "wrong_address",
+   "complaints": 1996,
+   "share": 0.0998
+  },
+  {
+   "category": "other",
+   "complaints": 1862,
+   "share": 0.0931
+  },
+  {
+   "category": "driver_behaviour",
+   "complaints": 1662,
+   "share": 0.0831
+  }
+ ],
+ "langs": [
+  {
+   "language": "ar",
+   "complaints": 11177,
+   "late_share": 0.3964391160418717,
+   "damaged_share": 0.18341236467746264
+  },
+  {
+   "language": "en",
+   "complaints": 8823,
+   "late_share": 0.3238127620990593,
+   "damaged_share": 0.27949676980618837
+  }
+ ]
+}

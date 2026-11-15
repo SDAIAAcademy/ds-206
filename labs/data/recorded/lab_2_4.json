@@ -1,0 +1,52 @@
+{
+ "run_1": {
+  "request": "Since July 2026, which city has the worst on-time performance, and which cities got worse than before July? Set result to one row per city with the columns city, before, since and worse, and headline to worst_city and measure.",
+  "context": "the project's AGENTS.md",
+  "text": "Dammam is worst since July (72.3% on time) and the only city that got worse.",
+  "settings": {
+   "temperature": 0.7,
+   "top_p": 1.0
+  },
+  "code": "result = con.sql(\"\"\"\n    SELECT d.city,\n           AVG(CASE WHEN d.created_at <  DATE '2026-07-01' THEN CASE WHEN d.delivered_at <= d.promised_by THEN 1.0 ELSE 0.0 END END) AS before,\n           AVG(CASE WHEN d.created_at >= DATE '2026-07-01' THEN CASE WHEN d.delivered_at <= d.promised_by THEN 1.0 ELSE 0.0 END END) AS since\n    FROM deliveries d\n    JOIN customers c ON c.customer_id = d.customer_id\n    WHERE c.segment <> 'TEST' AND d.status <> 'cancelled'\n    GROUP BY d.city ORDER BY d.city\n\"\"\").df()\nresult[\"worse\"] = result.since < result.before - 0.01\nheadline = {\"worst_city\": result.sort_values(\"since\").city.iloc[0], \"measure\": \"D-2, dispatched parcels\"}"
+ },
+ "run_2": {
+  "request": "Since July 2026, which city has the worst on-time performance, and which cities got worse than before July? Set result to one row per city with the columns city, before, since and worse, and headline to worst_city and measure.",
+  "context": "the project's AGENTS.md",
+  "text": "Dammam is worst since July (74.6% of delivered parcels on time) and the only city that got worse.",
+  "settings": {
+   "temperature": 0.7,
+   "top_p": 1.0
+  },
+  "code": "result = con.sql(\"\"\"\n    SELECT d.city,\n           AVG(CASE WHEN d.created_at <  DATE '2026-07-01' THEN CASE WHEN d.delivered_at <= d.promised_by THEN 1.0 ELSE 0.0 END END) AS before,\n           AVG(CASE WHEN d.created_at >= DATE '2026-07-01' THEN CASE WHEN d.delivered_at <= d.promised_by THEN 1.0 ELSE 0.0 END END) AS since\n    FROM deliveries d\n    JOIN customers c ON c.customer_id = d.customer_id\n    WHERE c.segment <> 'TEST' AND d.status = 'delivered'\n    GROUP BY d.city ORDER BY d.city\n\"\"\").df()\nresult[\"worse\"] = result.since < result.before - 0.01\nheadline = {\"worst_city\": result.sort_values(\"since\").city.iloc[0], \"measure\": \"D-2, delivered parcels\"}"
+ },
+ "run_3": {
+  "request": "Since July 2026, which city has the worst on-time performance, and which cities got worse than before July? Set result to one row per city with the columns city, before, since and worse, and headline to worst_city and measure.",
+  "context": "the project's AGENTS.md",
+  "text": "Riyadh is worst since July with the most late parcels per month, and every city got worse.",
+  "settings": {
+   "temperature": 0.7,
+   "top_p": 1.0
+  },
+  "code": "result = con.sql(\"\"\"\n    WITH late AS (\n        SELECT d.city, d.created_at >= DATE '2026-07-01' AS since, COUNT(*) AS n\n        FROM deliveries d\n        JOIN customers c ON c.customer_id = d.customer_id\n        WHERE c.segment <> 'TEST' AND d.status <> 'cancelled'\n          AND NOT COALESCE(d.delivered_at <= d.promised_by, FALSE)\n        GROUP BY ALL\n    )\n    SELECT city,\n           SUM(CASE WHEN NOT since THEN n END) / 9.0 AS before,\n           SUM(CASE WHEN since THEN n END) / 3.0 AS since\n    FROM late GROUP BY city ORDER BY city\n\"\"\").df()\nresult[\"worse\"] = result.since > result.before * 1.05\nheadline = {\"worst_city\": result.sort_values(\"since\", ascending=False).city.iloc[0], \"measure\": \"late parcels per month\"}"
+ },
+ "run_4": {
+  "request": "Since July 2026, which city has the worst on-time performance, and which cities got worse than before July? Set result to one row per city with the columns city, before, since and worse, and headline to worst_city and measure.",
+  "context": "the project's AGENTS.md",
+  "text": "Dammam is worst since July (72.3% on time), and all four cities got clearly worse.",
+  "settings": {
+   "temperature": 0.7,
+   "top_p": 1.0
+  },
+  "code": "result = con.sql(\"\"\"\n    SELECT d.city,\n           AVG(CASE WHEN d.created_at <  DATE '2026-07-01' THEN d.on_time_flag END) AS before,\n           AVG(CASE WHEN d.created_at >= DATE '2026-07-01' THEN d.on_time_flag END) AS since\n    FROM deliveries d\n    JOIN customers c ON c.customer_id = d.customer_id\n    WHERE c.segment <> 'TEST' AND d.status <> 'cancelled'\n    GROUP BY d.city ORDER BY d.city\n\"\"\").df()\nresult[\"worse\"] = result.since < result.before - 0.01\nheadline = {\"worst_city\": result.sort_values(\"since\").city.iloc[0], \"measure\": \"system flag\"}"
+ },
+ "run_5": {
+  "request": "Since July 2026, which city has the worst on-time performance, and which cities got worse than before July? Set result to one row per city with the columns city, before, since and worse, and headline to worst_city and measure.",
+  "context": "the project's AGENTS.md",
+  "text": "Dammam is worst since July and the only city below its April to June level.",
+  "settings": {
+   "temperature": 0.7,
+   "top_p": 1.0
+  },
+  "code": "result = con.sql(\"\"\"\n    SELECT d.city,\n           AVG(CASE WHEN d.created_at <  DATE '2026-07-01' THEN CASE WHEN d.delivered_at <= d.promised_by THEN 1.0 ELSE 0.0 END END) AS before,\n           AVG(CASE WHEN d.created_at >= DATE '2026-07-01' THEN CASE WHEN d.delivered_at <= d.promised_by THEN 1.0 ELSE 0.0 END END) AS since\n    FROM deliveries d\n    JOIN customers c ON c.customer_id = d.customer_id\n    WHERE c.segment <> 'TEST' AND d.status <> 'cancelled' AND d.created_at >= DATE '2026-04-01'\n    GROUP BY d.city ORDER BY d.city\n\"\"\").df()\nresult[\"worse\"] = result.since < result.before - 0.02\nheadline = {\"worst_city\": result.sort_values(\"since\").city.iloc[0], \"measure\": \"D-2, dispatched, against April to June\"}"
+ }
+}

@@ -276,6 +276,11 @@ def reference(t: dict[str, pd.DataFrame]) -> dict:
     per_city = disp.groupby("city").size()
     dq = disp[disp["city"] == "Dammam"].assign(q=lambda x: x["created_at"].dt.to_period("Q").astype(str))
     r4 = lambda x: round(float(x), 4)
+    plans = t["route_plans"].sort_values("version").groupby(["hub_id", "plan_date", "route_id"]).tail(1)
+    q3 = disp[(disp["city"] == "Dammam") & (disp["created_at"] >= pd.Timestamp("2026-07-01"))].merge(
+        plans[["hub_id", "plan_date", "route_id", "planned_stops"]], left_on=["hub_id", "route_date", "route_id"],
+        right_on=["hub_id", "plan_date", "route_id"], how="left")
+    q3["long"] = np.where(q3["planned_stops"] > 60, "long", "short")
     return {
         "rows": {k: int(len(v)) for k, v in t.items()},
         "n_test": int((d["segment"] == "TEST").sum()), "n_cancelled": int((real["status"] == "cancelled").sum()),
@@ -286,6 +291,7 @@ def reference(t: dict[str, pd.DataFrame]) -> dict:
         "on_time_by_month": {k: r4(v) for k, v in disp.groupby("month")["ok"].mean().items()},
         "late_count_by_city": {k: int(v) for k, v in (~disp["ok"]).groupby(disp["city"]).sum().items()},
         "dammam_by_quarter": {k: r4(v) for k, v in dq.groupby("q")["ok"].mean().items()},
+        "dammam_q3_long_short": {k: [int(len(g)), r4(g["ok"].mean())] for k, g in q3.groupby("long")},
         "flag_rate": r4(flag["on_time_flag"].astype(float).mean()),
         "flag_rate_all_rows": r4(d["on_time_flag"].fillna(0).astype(float).mean()),
         "flag_by_month": {k: r4(v) for k, v in flag.groupby("month")["on_time_flag"].apply(lambda s: s.astype(float).mean()).items()},

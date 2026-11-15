@@ -1,0 +1,20 @@
+{
+ "chart": {
+  "request": "Chart late deliveries since July for Riyadh and Dammam.",
+  "context": "",
+  "text": "Here is the weekly chart. Riyadh has far more late deliveries than Dammam, and both fall sharply in the last week.",
+  "settings": {
+   "temperature": 0.7
+  },
+  "code": "result = con.sql(\"\"\"\n    SELECT CAST(date_trunc('week', d.created_at) AS DATE) AS week, d.city, COUNT(*) AS late_deliveries\n    FROM deliveries d\n    WHERE d.created_at >= DATE '2026-07-01' AND d.city IN ('Riyadh', 'Dammam')\n      AND d.status <> 'cancelled'\n      AND NOT COALESCE(d.delivered_at <= d.promised_by, FALSE)\n    GROUP BY ALL ORDER BY week, d.city\n\"\"\").df()\nchart = {\"kind\": \"line\", \"x\": \"week\", \"y\": \"late_deliveries\", \"series\": \"city\", \"ylim\": [300, 1000],\n         \"title\": \"Late deliveries per week: Riyadh is the problem\"}\nheadline = {\"riyadh_weekly_mean\": result[result.city == \"Riyadh\"].late_deliveries.mean(),\n            \"dammam_weekly_mean\": result[result.city == \"Dammam\"].late_deliveries.mean()}"
+ },
+ "summary": {
+  "request": "Summarise what customers complain about, by city and language.",
+  "context": "",
+  "text": "1. Damaged parcels are the most common complaint, about half of all complaints. 2. Most complaints are written in English. 3. Madinah has the fewest complaints, so it needs the least attention. 4. Late-delivery complaints from Dammam rose after June. 5. Arabic and English complaints raise the same issues in the same proportions.",
+  "settings": {
+   "temperature": 0.7
+  },
+  "code": "sample = con.sql(\"SELECT city, language, category, text FROM complaints LIMIT 500\").df()\nresult = sample.groupby(\"category\").size().rename(\"complaints\").reset_index().sort_values(\"complaints\", ascending=False)\nheadline = {\"rows_read\": len(sample), \"damaged_share\": float((sample.category == \"damaged\").mean()),\n            \"english_share\": float((sample.language == \"en\").mean())}"
+ }
+}
