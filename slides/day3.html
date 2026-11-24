@@ -69,7 +69,7 @@
     <tr><td>route_plans</td><td>Restricted</td><td>no</td><td><span class="pill c-cyan">local</span></td><td>complaints by district</td><td>Restricted</td><td>yes</td><td><span class="pill c-cyan">local</span></td></tr>
   </table>
   <div class="callout note mt"><b>The course's main table is Restricted.</b> Every request you sent in two days was about <code>deliveries</code>. The next slide says why that was allowed.</div>
-  <aside class="notes"><p>This is the evidence of the fifth course outcome: a data-handling table consistent with the classification policy. Show it briefly before the lab, or after it for a strong room. Drivers goes to no assistant because it holds a government identity number (P-7); analysis that needs drivers uses a view without that column.</p></aside>
+  <aside class="notes"><p>This is the evidence of the fifth course outcome: a data-handling table consistent with the classification policy. In the session, point at the shape of it for half a minute and go on; walk through it in the debrief after the lab. Drivers goes to no assistant because it holds a government identity number (P-7); analysis that needs drivers uses a view without that column.</p></aside>
 </section>
 
 <section class="slide" id="schema-is-not-rows" data-lo="LO5" data-label="Schema and rows">
@@ -149,14 +149,14 @@
     <div class="arrow">→</div>
     <div class="step c-coral"><b>Screen</b>before the reply goes anywhere</div>
     <div class="arrow">→</div>
-    <div class="step c-teal"><b>Onward</b>a report, the log, a hosted request</div>
+    <div class="step c-teal"><b>Onward</b>a report, the run log, the package</div>
   </div>
   <div class="cols cols-3 mt">
     <div class="card c-teal"><h4>Pass</h4><p class="small mb0">No identifier found. The reply goes on unchanged.</p></div>
     <div class="card c-cyan"><h4>Mask</h4><p class="small mb0">A mobile becomes <code>[mobile]</code>. The reply goes on; the masks are counted.</p></div>
     <div class="card c-coral"><h4>Block and alert</h4><p class="small mb0">An identity number withholds the whole reply and raises an alert.</p></div>
   </div>
-  <aside class="notes"><p>Two minutes. P-6 lets the local assistant read complaint rows, so whatever it writes can repeat a phone number or worse. The screen is the course's own practice, written in the spirit of P-8: requests are logged, replies are screened. Say what a screen does not do: it finds identifiers that have a shape. Names have none, which is why replies built from complaint texts stay inside the company even after screening. Stretch A of Lab 3.1 builds a screen on its own ten known cases.</p></aside>
+  <aside class="notes"><p>One minute. P-6 lets the local assistant read complaint rows, so whatever it writes can repeat a phone number or worse. The screen is the course's own practice, written in the spirit of P-8: requests are logged, replies are screened. Say what a screen does not do: it finds identifiers that have a shape. Names have none, which is why replies built from complaint texts stay inside the company even after screening. Stretch A of Lab 3.1 builds a screen on its own ten known cases.</p></aside>
 </section>
 
 <section class="slide" id="known-cases-decide" data-lo="LO5" data-label="Known cases">
@@ -174,7 +174,7 @@
     <tr><td>An identity number, spaced</td><td>block</td><td><em>pass</em></td><td>block</td><td>block</td></tr>
     <tr class="hl"><td>Right, of 8</td><td></td><td>5</td><td>7</td><td>8</td></tr>
   </table>
-  <aside class="notes"><p>Three minutes. Eight reply drafts the local assistant wrote for the Jeddah customer-care team, screened three ways. A uses the patterns on the text as written. B makes digits Western and deletes anything between two digits. C makes digits Western, reads 00966 or +966 before a 5 as 0, and removes only spaces and dashes inside a number. Ask the room which screen they would deploy and why not B, which caught every personal draft. Answer: C. A lets three personal drafts through. B reads "05/03/2026, 14 parcels" as a mobile: a false alarm masks a useful reply, and a screen that cries wolf gets switched off. The known cases are kept and rerun whenever the screen changes. Figures from labs/_tools/make_known_replies.py.</p></aside>
+  <aside class="notes"><p>Two minutes. Eight reply drafts the local assistant wrote for the Jeddah customer-care team, screened three ways. A uses the patterns on the text as written. B makes digits Western and deletes anything between two digits. C makes digits Western, reads 00966 or +966 before a 5 as 0, and removes only spaces and dashes inside a number. Ask the room which screen they would deploy and why not B, which caught every personal draft. Answer: C. A lets three personal drafts through. B reads "05/03/2026, 14 parcels" as a mobile: a false alarm masks a useful reply, and a screen that cries wolf gets switched off. The known cases are kept and rerun whenever the screen changes. Figures from labs/_tools/make_known_replies.py.</p></aside>
 </section>
 
 <section class="slide" id="an-alert-without-the-value" data-lo="LO5" data-label="Alerts">
@@ -193,7 +193,7 @@
       <li>Masks are counted, not alerted. A rising count is a reason to read the requests.</li>
     </ul>
   </div>
-  <aside class="notes"><p>Two minutes. Ask first: which line should not exist? Line 2 quotes part of the number it blocked. Then the diagnosis: the screen worked, so something upstream did not. Follow the alert back to the request and the guard decision that let the drivers table through. In the case, the data protection officer named in the policy receives the alerts.</p></aside>
+  <aside class="notes"><p>One minute. Ask first: which line should not exist? Line 2 quotes part of the number it blocked. Then the diagnosis: the screen worked, so something upstream did not. Follow the alert back to the request and the guard decision that let the drivers table through. In the case, the data protection officer named in the policy receives the alerts.</p></aside>
 </section>
 
 <section class="slide" id="check-destination" data-lo="LO5">

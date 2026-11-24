@@ -222,7 +222,7 @@ note = U.note("3.1", **parts)
 #
 # **A · Screen what comes back.** The guard checks what leaves the notebook. Under P-6 the local assistant
 # reads complaint rows, so its replies can quote them. Before a reply goes anywhere (a report, the run log,
-# a request to the hosted assistant), a screen reads it: it masks a mobile number, blocks a reply that
+# the published package), a screen reads it: it masks a mobile number, blocks a reply that
 # carries an identity number, and raises an alert for each block. The alert names the reply, the rule and
 # how many matches; it never holds the matched value. A screen is trusted when it gives every one of a set
 # of known cases its known verdict, the clean ones included.

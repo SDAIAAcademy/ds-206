@@ -8,4 +8,5 @@
 - Added: Lab 3.1 stretch A, a screen for ten known replies with its reference solution and checks; the
   known cases are written by `labs/_tools/make_known_replies.py`.
 - Added: a practice question on deciding whether a screen is ready to use (day 3, session 1).
-- Tightened: `levels-in-one-slide` and the notes of `a-guard-before-every-request` (day 3).
+- Tightened: `levels-in-one-slide`, and the notes of `the-data-handling-table` and
+  `a-guard-before-every-request` (day 3).
