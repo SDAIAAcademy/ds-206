@@ -1,0 +1,62 @@
+{
+ "k01": [
+  "pass",
+  "Of 412 Madinah complaints in September, 151 are about late delivery and 88 about a missed call before arrival.",
+  null
+ ],
+ "k02": [
+  "mask",
+  "The most repeated complaint is from a customer who asks to be called back on [mobile] about two missed attempts.",
+  null
+ ],
+ "k03": [
+  "mask",
+  "أكثر الشكاوى تكرارًا من عميل يطلب الاتصال به على [mobile] بعد محاولتي تسليم فاشلتين.",
+  null
+ ],
+ "k04": [
+  "mask",
+  "Three complaints quote the same mobile, [mobile], and all three concern one district.",
+  null
+ ],
+ "k05": [
+  "mask",
+  "تذكر إحدى الشكاوى رقم الجوال [mobile] وتطلب تغيير موعد التسليم.",
+  null
+ ],
+ "k06": [
+  "block",
+  "",
+  {
+   "reply": "k06",
+   "rule": "P-7",
+   "found": "identity number",
+   "count": 1
+  }
+ ],
+ "k07": [
+  "mask",
+  "Two customers left numbers in their complaints: [mobile] and [mobile].",
+  null
+ ],
+ "k08": [
+  "pass",
+  "On 05/04/2026, 37 parcels missed their promised day, against a September daily average of 22.",
+  null
+ ],
+ "k09": [
+  "pass",
+  "أغلب الشكاوى المكتوبة بالعربية تخص التأخير، وأقلها يخص تلف الطرود.",
+  null
+ ],
+ "k10": [
+  "block",
+  "",
+  {
+   "reply": "k10",
+   "rule": "P-7",
+   "found": "identity number",
+   "count": 1
+  }
+ ]
+}

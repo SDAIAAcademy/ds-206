@@ -42,6 +42,10 @@ folder hold the code. All figures were computed on the course's own synthetic da
 - **3.1** Hosted: `hubs` and the aggregate of on-time rate by city and month. Neither: `drivers`.
   Local: the other seven items. 31.5% of complaint texts carry a mobile number. Two of the six test
   requests are blocked: complaint rows to hosted (P-4) and driver rows to local (P-7).
+  Stretch A: the pattern of task 3 used as it is gives 5 of the 10 known replies their verdict and lets
+  5 through (a spaced mobile, a +966 mobile, a mobile in Arabic-Indic digits, two identity numbers). The
+  reference screen gives all 10 their verdict with no false alarm: 4 pass, 4 masked, 2 blocked with two
+  alerts that hold no value. The known cases are written by `_tools/make_known_replies.py`.
 - **3.2** The helper lists what each of the three old records lacks. The new record lacks nothing; the
   rerun from the log line gives 0.7942 with matching fingerprints.
 - **3.3** All three logged steps rerun on matching fingerprints. Trace: matched, matched, drifted

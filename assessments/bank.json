@@ -757,6 +757,35 @@
       "weight": 1
     },
     {
+      "id": "q-dat-06",
+      "type": "single",
+      "prompt": "A screen for the local assistant's replies is run on twelve replies whose verdicts are known. Five carry a mobile written 05 and eight digits, two carry one written with +966, five carry none. It masks the five, lets the two through unchanged and flags none of the clean five. What do you decide?",
+      "options": [
+        "Not ready: fix the +966 form, then rerun the screen on all twelve replies",
+        "Ready: it caught most numbers and raised no false alarm on clean text",
+        "Ready, provided each alert quotes the number so that a person can check it",
+        "Not ready, and never will be: a screen must find every name in a reply"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A screen is trusted when every known case gets its verdict; a missed form is fixed and the whole set is run again, clean cases included.",
+      "misconceptions": [
+        "",
+        "Two personal replies passing unchanged is a leak, whatever the share caught",
+        "An alert that quotes the value spreads the personal data it was meant to stop",
+        "A screen is tested on the identifiers it claims to find; names are why replies built from texts stay local"
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": "day3",
+      "session": 1,
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1
+    },
+    {
       "id": "q-rep-01",
       "type": "single",
       "prompt": "A log line reads: request \"same but by city\", code \"see notebook cell 14\". What can a peer do with it?",

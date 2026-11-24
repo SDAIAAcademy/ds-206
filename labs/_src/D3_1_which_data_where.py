@@ -17,7 +17,7 @@
 # - [ ] 3 · Find the personal data in the complaint texts (4 min)
 # - [ ] 4 · Write the guard and test it (4 min)
 # - [ ] 5 · Write the verification note (4 min)
-# - [ ] ✱ Stretch · Build an aggregate of complaints that may go to the hosted assistant
+# - [ ] ✱ Stretch · Screen the local assistant's replies on ten known cases, or build a Public aggregate of complaints
 
 # %%
 import os, sys, subprocess
@@ -218,14 +218,90 @@ note = U.note("3.1", **parts)
 # %% [markdown]
 # ## ✱ Stretch
 #
-# Build an aggregate of complaints that could be classified Public under P-3: no personal column, no cell
-# under 20. Which grouping columns can you keep? Who would have to approve it?
+# Two options. Do one.
 #
+# **A · Screen what comes back.** The guard checks what leaves the notebook. Under P-6 the local assistant
+# reads complaint rows, so its replies can quote them. Before a reply goes anywhere (a report, the run log,
+# a request to the hosted assistant), a screen reads it: it masks a mobile number, blocks a reply that
+# carries an identity number, and raises an alert for each block. The alert names the reply, the rule and
+# how many matches; it never holds the matched value. A screen is trusted when it gives every one of a set
+# of known cases its known verdict, the clean ones included.
+#
+# **B · An aggregate.** Build an aggregate of complaints that could be classified Public under P-3: no
+# personal column, no cell under 20. Which grouping columns can you keep? Who would have to approve it?
+
+# %%
+import re
+
+known = U.load("recorded/lab_3_1_known.json")  # ten scripted replies of the local assistant, each with its verdict
+MOBILE = r"05[0-9]{8}"
+
+
+def screen_v1(text: str) -> str:
+    """The pattern of task 3, used as it is."""
+    return "mask" if re.search(MOBILE, text) else "pass"
+
+
+def tally(verdicts: dict) -> dict:
+    return {"right": sum(verdicts[k["id"]] == k["expected"] for k in known),
+            "missed": sum(k["expected"] != "pass" and verdicts[k["id"]] == "pass" for k in known),
+            "false_alarms": sum(k["expected"] == "pass" and verdicts[k["id"]] != "pass" for k in known)}
+
+
+v1 = {k["id"]: screen_v1(k["text"]) for k in known}
+print(pd.DataFrame({"case": list(v1), "expected": [k["expected"] for k in known], "v1": list(v1.values())}).to_string(index=False))
+print("v1 against the known cases:", tally(v1))
+
+# %% [markdown]
+# **Look at** the cases v1 lets through and what they share: the same numbers, written another way.
+#
+# ✏️ **Exercise (stretch A)** · `screen(case, text)` returns `(verdict, text_out, alert)`.
+# First make the text comparable: Arabic-Indic digits to Western ones (`str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")`),
+# `+966` or `00966` before a 5 read as `0`, and a space or a dash between two digits removed, and nothing
+# else (the slash of a date stays). Then an identity number, ten digits starting with 1 or 2
+# (`(?<!\d)[12]\d{9}(?!\d)`), blocks the reply: `text_out` is `""` and `alert` is
+# `{"reply": case, "rule": "P-7", "found": "identity number", "count": n}`. Otherwise every mobile becomes
+# `[mobile]` (verdict `"mask"`), or the reply passes unchanged with no alert.
+
+# %%
+def screen(case: str, text: str) -> tuple[str, str, dict | None]:
+    # BEGIN SOLUTION
+    t = text.translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789"))
+    t = re.sub(r"(?:\+|00)966[ -]?(?=5)", "0", t)
+    t = re.sub(r"(?<=\d)[ -](?=\d)", "", t)
+    ids = re.findall(r"(?<!\d)[12]\d{9}(?!\d)", t)
+    if ids:
+        return "block", "", {"reply": case, "rule": "P-7", "found": "identity number", "count": len(ids)}
+    masked, n = re.subn(MOBILE, "[mobile]", t)
+    return ("mask", masked, None) if n else ("pass", text, None)
+    # END SOLUTION
+
+# %%
+# Check, with a safety net
+try:
+    screened = {k["id"]: screen(k["id"], k["text"]) for k in known}
+except NotImplementedError:
+    screened = {c: tuple(v) for c, v in U.load("reference/lab_3_1_screen.json").items()}
+U.keep("lab_3_1_screen.json", screened)
+verdicts = {c: v[0] for c, v in screened.items()}
+alerts = [v[2] for v in screened.values() if v[2]]
+print(pd.DataFrame({"case": list(verdicts), "expected": [k["expected"] for k in known], "screen": list(verdicts.values())}).to_string(index=False))
+print("screen against the known cases:", tally(verdicts))
+for a in alerts:
+    print("ALERT", a)
+U.check(tally(verdicts)["right"] == len(known), "the screen gives all ten known cases their verdict, the clean ones included")
+U.check(len(alerts) == sum(k["expected"] == "block" for k in known), "one alert for each blocked reply")
+U.check(not any(re.search(r"\d{8}", str(a)) for a in alerts), "no alert holds the value it found")
+U.check(not any(re.search(MOBILE, v[1].replace(" ", "")) for v in screened.values() if v[0] == "mask"), "no masked reply still carries a mobile")
+
+# %% [markdown]
 # ## Check yourself
 #
 # 1. `deliveries` is Restricted, and the labs sent requests about it to a hosted model. Which rule allowed that?
 # 2. Why does the drivers table go to no assistant, when a local one never leaves the company?
 # 3. A colleague masks the phone numbers in the complaint texts. May the texts go to the hosted assistant now?
+# 4. The screen of stretch A blocks a reply that carries an identity number. What does that block tell you
+#    about the requests upstream?
 #
 # <details><summary>Answers</summary>
 #
@@ -234,6 +310,8 @@ note = U.note("3.1", **parts)
 #    it. The local assistant gets a view without the column.
 # 3. No. The texts still hold names and what a person wrote; the table stays Restricted. Masking lowers
 #    the harm of a leak, not the level.
+# 4. An identity number can only reach a reply if a request carried the drivers table, which P-7 sends to
+#    no assistant. The block stops the leak; the alert sends someone to find the request the guard let through.
 #
 # </details>
 #

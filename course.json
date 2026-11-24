@@ -3,7 +3,7 @@
   "engine": "1",
   "id": "ds-206",
   "code": "DS-206",
-  "version": "2027.1.0",
+  "version": "2027.2.0",
   "lang": "en",
   "title": {
     "en": "Analysis with AI Assistants: Delegate, Verify, Reproduce",
@@ -454,7 +454,7 @@
                 "minutes": 4
               }
             ],
-            "stretch": "Build an aggregate of complaints that may go to the hosted assistant"
+            "stretch": "Screen the local assistant's replies on ten known cases, or build a Public aggregate of complaints"
           }
         },
         {

@@ -90,7 +90,8 @@ policy is written for the course; it is not a national text.
 tables. The notebooks are generated from the percent-format sources in `_src/` by `_tools/py2nb.py`
 (`uv run python _tools/py2nb.py` from `labs/`), which also writes `solutions/`. Edit the sources, not
 the notebooks. `_tools/make_recorded.py`, `rec_day2.py` and `rec_day3.py` write the recorded replies,
-and `_tools/make_package.py` builds the package that Lab 3.3 reruns.
+`_tools/make_package.py` builds the package that Lab 3.3 reruns, and `_tools/make_known_replies.py`
+writes the known cases of Lab 3.1's screen and computes the screen example of the Day 3 slides.
 
 Set `HUDHUD_QUICK=1` to shorten the cells that call a live model (two live runs in Lab 2.4, not five).
 
