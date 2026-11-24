@@ -1,0 +1,52 @@
+[
+ {
+  "id": "k01",
+  "expected": "pass",
+  "text": "Of 412 Madinah complaints in September, 151 are about late delivery and 88 about a missed call before arrival."
+ },
+ {
+  "id": "k02",
+  "expected": "mask",
+  "text": "The most repeated complaint is from a customer who asks to be called back on 0500012030 about two missed attempts."
+ },
+ {
+  "id": "k03",
+  "expected": "mask",
+  "text": "أكثر الشكاوى تكرارًا من عميل يطلب الاتصال به على 050 001 9949 بعد محاولتي تسليم فاشلتين."
+ },
+ {
+  "id": "k04",
+  "expected": "mask",
+  "text": "Three complaints quote the same mobile, +966 50 002 7868, and all three concern one district."
+ },
+ {
+  "id": "k05",
+  "expected": "mask",
+  "text": "تذكر إحدى الشكاوى رقم الجوال ٠٥٠٠٠٣٥٧٨٧ وتطلب تغيير موعد التسليم."
+ },
+ {
+  "id": "k06",
+  "expected": "block",
+  "text": "The late parcels of the week cluster on one driver, identity number 1000106936, on the evening shift."
+ },
+ {
+  "id": "k07",
+  "expected": "mask",
+  "text": "Two customers left numbers in their complaints: 0500043706 and 0500051625."
+ },
+ {
+  "id": "k08",
+  "expected": "pass",
+  "text": "On 05/04/2026, 37 parcels missed their promised day, against a September daily average of 22."
+ },
+ {
+  "id": "k09",
+  "expected": "pass",
+  "text": "أغلب الشكاوى المكتوبة بالعربية تخص التأخير، وأقلها يخص تلف الطرود."
+ },
+ {
+  "id": "k10",
+  "expected": "block",
+  "text": "تتكرر الشكاوى على مندوب واحد رقم هويته ١٠٠٠٢١١٦٦٥ في الوردية المسائية."
+ }
+]

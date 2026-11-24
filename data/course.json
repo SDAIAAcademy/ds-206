@@ -2,9 +2,9 @@
   "v": 1,
   "engine": "1.0.0",
   "build": {
-    "at": "2026-11-15T11:06:15Z",
-    "version": "2027.1.0",
-    "commit": "2e1881e"
+    "at": "2026-11-24T17:20:36Z",
+    "version": "2027.2.0",
+    "commit": "8f871bb"
   },
   "lang": "en",
   "dir": "ltr",
@@ -15,7 +15,7 @@
   "course": {
     "id": "ds-206",
     "code": "DS-206",
-    "version": "2027.1.0",
+    "version": "2027.2.0",
     "title": "Analysis with AI Assistants: Delegate, Verify, Reproduce",
     "tagline": "Delegate analysis steps to an assistant, prove every number another way, and hand over work a peer can rerun",
     "description": "Participants analyse data with a coding assistant or agent in a notebook and stay accountable for every number. For a fictional courier company they decide which steps to delegate, brief the assistant with acceptance checks, prove results by recomputing key numbers another way, measure how answers vary between runs, decide which data may go to which assistant, and package an analysis that a peer reruns from logged prompts, code and data.",
@@ -510,7 +510,7 @@
                   "minutes": 4
                 }
               ],
-              "stretch": "Build an aggregate of complaints that may go to the hosted assistant"
+              "stretch": "Screen the local assistant's replies on ten known cases, or build a Public aggregate of complaints"
             }
           },
           {

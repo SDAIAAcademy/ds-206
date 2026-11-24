@@ -1,7 +1,7 @@
 ---
 course: "Analysis with AI Assistants: Delegate, Verify, Reproduce"
 code: "DS-206"
-version: "2027.1.0"
+version: "2027.2.0"
 scope: "course"
 language: "en"
 view: "trainee"
@@ -1108,14 +1108,12 @@ Data Science Track · 3 teaching days + capstone day · 4 sessions · 4 labs · 
 *What you already know*
 
 - **From Responsible Data and AI Practice (FN-106).**
-  - Four national levels: Top Secret, Secret, Restricted, Public
-  - The level follows the impact of unauthorised disclosure
+  - Four national levels, set by the impact of disclosure
   - Generative AI tools: data classified Public only
-  - Three destinations: a hosted service, a model you run, or no model
+  - Three destinations: hosted, a model you run, or none
 - **What an analysis adds.**
-  - Eight tables, joined, each with its own owner
-  - An assistant that reads whatever the notebook hands it
-  - Results, samples and error messages that travel back into prompts
+  - Eight joined tables, each with its own owner
+  - Results and errors that travel back into prompts
   - Aggregates you create, which need a level too
 
 #### [day3#a-table-takes-its-highest-column] A table takes the level of its most sensitive column
@@ -1211,6 +1209,53 @@ def guard(tables, to, what):
 | Rows of complaints, to local | allowed |
 | Rows of drivers, to local | *blocked, P-7* |
 
+#### [day3#screen-what-comes-back] The guard checks what leaves. A screen checks what comes back
+
+*The other direction*
+
+1. **Rows** complaints, to the local assistant (P-6)
+2. **Reply** may quote what it read
+3. **Screen** before the reply goes anywhere
+4. **Onward** a report, the run log, the package
+
+- **Pass.** No identifier found. The reply goes on unchanged.
+- **Mask.** A mobile becomes `[mobile]`. The reply goes on; the masks are counted.
+- **Block and alert.** An identity number withholds the whole reply and raises an alert.
+
+#### [day3#known-cases-decide] Run it on replies whose right verdict you already know
+
+*Before you trust a screen*
+
+| The draft holds | Right | A | B | C |
+| --- | --- | --- | --- | --- |
+| No phone or identity number | pass | pass | pass | pass |
+| A mobile, written plain | mask | mask | mask | mask |
+| A mobile, with dashes | mask | *pass* | mask | mask |
+| A mobile, with 00966 | mask | *pass* | mask | mask |
+| A driver's identity number | block | block | block | block |
+| A date, then a count | pass | pass | *mask* | pass |
+| Counts in Arabic digits | pass | pass | pass | pass |
+| An identity number, spaced | block | *pass* | block | block |
+| Right, of 8 |  | 5 | 7 | 8 |
+
+#### [day3#an-alert-without-the-value] An alert says which reply and which rule, never the value
+
+*What a block leaves behind*
+
+```json
+// file: alerts.jsonl · two lines
+{"n": 1, "reply": "j5", "rule": "P-7",
+ "found": "identity number", "count": 1}
+{"n": 2, "reply": "j8", "rule": "P-7",
+ "found": "identity number", "count": 1,
+ "detail": "1 0•• ••• •••"}
+```
+
+- Line 2 is itself a leak: the alert log is read by more people than the reply was.
+- Each alert goes to the data protection officer, with the request it answers.
+- A block is a symptom. An identity number in a reply means a request carried `drivers`, which P-7 sends nowhere.
+- Masks are counted, not alerted. A rising count is a reason to read the requests.
+
 #### [day3#check-destination] What may the hosted assistant receive?
 
 *Checkpoint*
@@ -1235,7 +1280,7 @@ Decide which tables a local or a hosted assistant may process, prove one decisio
 - [ ] Find the personal data in the complaint texts (4 min)
 - [ ] Write the guard and test it (4 min)
 - [ ] Write the verification note (4 min)
-- [ ] ✱ Stretch: Build an aggregate of complaints that may go to the hosted assistant
+- [ ] ✱ Stretch: Screen the local assistant's replies on ten known cases, or build a Public aggregate of complaints
 
 ### Session 2: Logging assisted work
 

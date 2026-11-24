@@ -2,9 +2,9 @@
   "v": 1,
   "engine": "1.0.0",
   "build": {
-    "at": "2026-11-15T11:06:15Z",
-    "version": "2027.1.0",
-    "commit": "2e1881e"
+    "at": "2026-11-24T17:20:36Z",
+    "version": "2027.2.0",
+    "commit": "8f871bb"
   },
   "lang": "en",
   "dir": "ltr",
@@ -789,7 +789,7 @@
       "n": 5,
       "session": 1,
       "title": "The level decides the destination. Today the unit is a table of your analysis",
-      "text": "What you already know The level decides the destination. Today the unit is a table of your analysis From Responsible Data and AI Practice (FN-106) Four national levels: Top Secret, Secret, Restricted, Public The level follows the impact of unauthorised disclosure Generative AI tools: data classified Public only Three destinations: a hosted service, a model you run, or no model What an analysis adds Eight tables, joined, each with its own owner An assistant that reads whatever the notebook hands it Results, samples and error messages that travel back into prompts Aggregates you create, which need a level too",
+      "text": "What you already know The level decides the destination. Today the unit is a table of your analysis From Responsible Data and AI Practice (FN-106) Four national levels, set by the impact of disclosure Generative AI tools: data classified Public only Three destinations: hosted, a model you run, or none What an analysis adds Eight joined tables, each with its own owner Results and errors that travel back into prompts Aggregates you create, which need a level too",
       "href": "../slides/day3.html#levels-in-one-slide"
     },
     {
@@ -848,8 +848,35 @@
     },
     {
       "deck": "day3",
-      "id": "check-destination",
+      "id": "screen-what-comes-back",
       "n": 12,
+      "session": 1,
+      "title": "The guard checks what leaves. A screen checks what comes back",
+      "text": "The other direction The guard checks what leaves. A screen checks what comes back Rows complaints, to the local assistant (P-6) → Reply may quote what it read → Screen before the reply goes anywhere → Onward a report, the run log, the package Pass No identifier found. The reply goes on unchanged. Mask A mobile becomes [mobile]. The reply goes on; the masks are counted. Block and alert An identity number withholds the whole reply and raises an alert.",
+      "href": "../slides/day3.html#screen-what-comes-back"
+    },
+    {
+      "deck": "day3",
+      "id": "known-cases-decide",
+      "n": 13,
+      "session": 1,
+      "title": "Run it on replies whose right verdict you already know",
+      "text": "Before you trust a screen Run it on replies whose right verdict you already know The draft holds Right A B C No phone or identity number pass pass pass pass A mobile, written plain mask mask mask mask A mobile, with dashes mask pass mask mask A mobile, with 00966 mask pass mask mask A driver's identity number block block block block A date, then a count pass pass mask pass Counts in Arabic digits pass pass pass pass An identity number, spaced block pass block block Right, of 8 5 7 8",
+      "href": "../slides/day3.html#known-cases-decide"
+    },
+    {
+      "deck": "day3",
+      "id": "an-alert-without-the-value",
+      "n": 14,
+      "session": 1,
+      "title": "An alert says which reply and which rule, never the value",
+      "text": "What a block leaves behind An alert says which reply and which rule, never the value {\"n\": 1, \"reply\": \"j5\", \"rule\": \"P-7\", \"found\": \"identity number\", \"count\": 1} {\"n\": 2, \"reply\": \"j8\", \"rule\": \"P-7\", \"found\": \"identity number\", \"count\": 1, \"detail\": \"1 0•• ••• •••\"} Line 2 is itself a leak: the alert log is read by more people than the reply was. Each alert goes to the data protection officer, with the request it answers. A block is a symptom. An identity number in a reply means a request carried drivers, which P-7 sends nowhere. Masks are counted, not alerted. A rising count is a reason to read the requests.",
+      "href": "../slides/day3.html#an-alert-without-the-value"
+    },
+    {
+      "deck": "day3",
+      "id": "check-destination",
+      "n": 15,
       "session": 1,
       "title": "What may the hosted assistant receive?",
       "text": "Checkpoint What may the hosted assistant receive? You want a hosted assistant to help explain why split-shift drivers have more failed deliveries. Under Hudhud's policy, what may you send it? Rows of driver_shifts, since driver_id is not a name Twenty sample rows of deliveries joined to shifts The drivers table with names masked The schema of both tables, and an aggregate its owner classified Public",
@@ -858,16 +885,16 @@
     {
       "deck": "day3",
       "id": "lab-3-1",
-      "n": 13,
+      "n": 16,
       "session": 1,
       "title": "Hosted, local or neither",
-      "text": "Lab 3.1 · 25 min Hosted, local or neither Decide which tables a local or a hosted assistant may process, prove one decision on the data and enforce all of them in code. D3_1_which_data_where.ipynb Read the assistant policy and the table catalogue 5 min Classify each table and choose its destination 8 min Find the personal data in the complaint texts 4 min Write the guard and test it 4 min Write the verification note 4 min ✱ Stretch: Build an aggregate of complaints that may go to the hosted assistant",
+      "text": "Lab 3.1 · 25 min Hosted, local or neither Decide which tables a local or a hosted assistant may process, prove one decision on the data and enforce all of them in code. D3_1_which_data_where.ipynb Read the assistant policy and the table catalogue 5 min Classify each table and choose its destination 8 min Find the personal data in the complaint texts 4 min Write the guard and test it 4 min Write the verification note 4 min ✱ Stretch: Screen the local assistant's replies on ten known cases, or build a Public aggregate of complaints",
       "href": "../slides/day3.html#lab-3-1"
     },
     {
       "deck": "day3",
       "id": "s2",
-      "n": 14,
+      "n": 17,
       "session": 2,
       "title": "Logging assisted work",
       "text": "Session 2 Logging assisted work List what a log record must hold for a step to be rerun Write a log record with a data fingerprint for one assisted step Find what an incomplete log lacks before someone else has to 02",
@@ -876,7 +903,7 @@
     {
       "deck": "day3",
       "id": "what-a-rerun-needs",
-      "n": 15,
+      "n": 18,
       "session": 2,
       "title": "A rerun needs nine things from every assisted step",
       "text": "The run log A rerun needs nine things from every assisted step Field Why a peer needs it Field Why a peer needs it step To match it to a number in the report code The thing that is rerun request Word for word: what was asked data A fingerprint: was it this data? context A hash of the context file in force headline What the step produced then model Name and version: services change verified by The check, or its absence settings Temperature, a seed if supported Logged by the notebook, not typed afterwards. A log written from memory is a story about a log.",
@@ -885,7 +912,7 @@
     {
       "deck": "day3",
       "id": "a-log-that-cannot-be-rerun",
-      "n": 16,
+      "n": 19,
       "session": 2,
       "title": "Each line made sense on the day it was written",
       "text": "Lab 3.2, the supplied log Each line made sense on the day it was written Step What the log says What a rerun lacks monthly_rate A request, a query, \"the notebook assistant\" Settings, context, data fingerprint, any check by_city The request is \"same but by city\" The code, context, data fingerprint; verified by \"looked right\" chart The code is \"see notebook cell 14\" The request, the context, the temperature, the data, the headline, any check \"Same but by city\" is a request only inside one conversation. A log line must stand without the lines around it.",
@@ -894,7 +921,7 @@
     {
       "deck": "day3",
       "id": "fingerprint-the-data",
-      "n": 17,
+      "n": 20,
       "session": 2,
       "title": "A fingerprint identifies the data without storing it",
       "text": "Was it this data? A fingerprint identifies the data without storing it def fingerprint(table): row = con.sql(\"\"\" SELECT COUNT(*), SUM(delivery_id), CAST(MIN(created_at) AS VARCHAR), CAST(MAX(created_at) AS VARCHAR) FROM deliveries\"\"\").fetchall()[0] return {\"rows\": int(row[0]), \"sha\": U.sha([str(x) for x in row])} The peer's rerun gives Fingerprint So The same number same Reproduced Another number same The code or the environment differs Another number different The data changed: late corrections, a new export The same number different Luck. Look again",
@@ -903,7 +930,7 @@
     {
       "deck": "day3",
       "id": "one-log-record",
-      "n": 18,
+      "n": 21,
       "session": 2,
       "title": "One line per step, complete on its own",
       "text": "Lab 3.2, the record you write One line per step, complete on its own {\"step\": \"monthly_rate\", \"request\": \"Follow the brief below. Do step 2: the monthly on-time rate.\", \"context_sha\": \"a699f7c0c555\", \"model\": \"google/gemma-4-31b-it:free\", \"settings\": {\"temperature\": 0.7}, \"code\": \"result = con.sql(\\\"\\\"\\\"SELECT strftime(d.created_at, '%Y-%m') AS month, ...\", \"data\": {\"deliveries\": {\"rows\": 500000, \"sha\": \"...\"}, \"customers\": {\"rows\": 3005, \"sha\": \"...\"}}, \"headline\": {\"on_time_rate\": 0.7942}, \"verified_by\": \"three acceptance checks passed (3 of 3): total, months, rates\"}",
@@ -912,7 +939,7 @@
     {
       "deck": "day3",
       "id": "rerun-from-the-line-alone",
-      "n": 19,
+      "n": 22,
       "session": 2,
       "title": "Prove the log by rerunning from the line alone",
       "text": "The test of a log Prove the log by rerunning from the line alone 1 · Read the line back from the file, not from memory → 2 · Run its code in a fresh connection → 3 · Compare headlines 0.7942 and 0.7942 → 4 · Compare fingerprints the data is the data You are your own first peer. If you cannot rerun your step from its log line today, nobody will next month.",
@@ -921,7 +948,7 @@
     {
       "deck": "day3",
       "id": "a-log-is-published",
-      "n": 20,
+      "n": 23,
       "session": 2,
       "title": "A log must be safe to publish",
       "text": "The log leaves with the package A log must be safe to publish In the log Requests and replies, as sent Code Fingerprints and headline numbers What was sent: \"schema only\" Never in the log Rows or example values of Restricted data Keys and tokens A transcript in which a row was pasted Outputs that print personal data The capstone repository is public. Its transcripts are the evidence of how you worked, and of what the assistant was shown.",
@@ -930,7 +957,7 @@
     {
       "deck": "day3",
       "id": "check-log",
-      "n": 21,
+      "n": 24,
       "session": 2,
       "title": "What does this log line lack?",
       "text": "Checkpoint What does this log line lack? A log line holds the step name, the full request, the model, temperature 0.2, the code and the headline number. A peer reruns the code and gets a different number. What can the peer not decide? Whether the model's settings were the same Whether the data changed or the computation did Whether the request was the one the report describes Whether the right code was rerun",
@@ -939,7 +966,7 @@
     {
       "deck": "day3",
       "id": "lab-3-2",
-      "n": 22,
+      "n": 25,
       "session": 2,
       "title": "A run log",
       "text": "Lab 3.2 · 25 min A run log Log prompts, model settings and outputs for one analysis, with a fingerprint of the data it ran on. D3_2_run_log.ipynb Read an incomplete log and list what a rerun lacks 5 min Write the log record and the data fingerprint 9 min Run one analysis through the logger and check the log 7 min Write the verification note 4 min ✱ Stretch: Change one row of a table and show that the fingerprint changes",
@@ -948,7 +975,7 @@
     {
       "deck": "day3",
       "id": "s3",
-      "n": 23,
+      "n": 26,
       "session": 3,
       "title": "The peer rerun",
       "text": "Session 3 The peer rerun Rerun a package from its log without asking its author Classify each headline number as matched, drifted or without a step Write a rerun log that an assessor can read in two minutes 03",
@@ -957,7 +984,7 @@
     {
       "deck": "day3",
       "id": "reproduced-means",
-      "n": 24,
+      "n": 27,
       "session": 3,
       "title": "Reproduced: a peer reaches the headline numbers from the package alone",
       "text": "A definition Reproduced: a peer reaches the headline numbers from the package alone A peer Someone who did not do the work and does not share your notebook's memory. The headline numbers The ones in the README and the report: what a reader will quote. From the package alone The log, the code and the data. No question to the author, no \"run cell 14 first\". Reproduced is not correct. A rerun shows that the numbers come from the logged steps. The verification notes are what argue that the steps are right.",
@@ -966,7 +993,7 @@
     {
       "deck": "day3",
       "id": "anatomy-of-a-package",
-      "n": 25,
+      "n": 28,
       "session": 3,
       "title": "The package of an assisted analysis",
       "text": "What is in the repository The package of an assisted analysis File Holds From README.md The question, the headline numbers, the method and disclosure paragraph Today brief.md, AGENTS.md What was delegated and under which rules Day 1 run_log.jsonl, transcripts/ Every assisted step, and the conversations as they happened Today headline.json Each headline number with the step and key it comes from Today notes.md, variability.md A verification note per headline number; five runs of one request Day 2 data_handling.md Each table's level and destination Today rerun_log.md Written by the peer, not by you Today",
@@ -975,7 +1002,7 @@
     {
       "deck": "day3",
       "id": "three-outcomes-for-a-number",
-      "n": 26,
+      "n": 29,
       "session": 3,
       "title": "Every headline number ends in one of three states",
       "text": "Tracing Every headline number ends in one of three states Matched A logged step produces it, and the rerun gives the same value. Drifted A logged step claims to produce it, and the rerun gives another value. The text and the code have parted. No step Nothing in the log produces it. It was typed, copied or computed somewhere else. Trace from the report backwards. Start from each number a reader will quote and ask which line of the log made it.",
@@ -984,7 +1011,7 @@
     {
       "deck": "day3",
       "id": "the-rerun-of-the-dammam-package",
-      "n": 27,
+      "n": 30,
       "session": 3,
       "title": "Three steps rerun. Two of four numbers are reproduced",
       "text": "Lab 3.3, measured Three steps rerun. Two of four numbers are reproduced Headline number in the README Claimed Rerun Status Dammam on-time rate, third quarter of 2026 72.26% 72.26% matched Dammam on-time rate, second quarter of 2026 79.67% 79.67% matched On-time rate on long routes, July to September 68.41% 68.05% drifted Late complaints from Dammam per month since July 144 no step All three logged steps reran to their logged headline, on data with matching fingerprints. The package is still not reproduced: readers quote the README.",
@@ -993,7 +1020,7 @@
     {
       "deck": "day3",
       "id": "probably-right-is-not-reproduced",
-      "n": 28,
+      "n": 31,
       "session": 3,
       "title": "The number with no step is probably right. It still fails",
       "text": "The fourth number The number with no step is probably right. It still fails 144 late-delivery complaints from Dammam per month since July: the value Lab 2.3 also found A peer can confirm only what can be rerun. A number with no step rests on the author's word, which is what a package exists to replace. Next quarter someone updates the package: this number will silently stay 144. The repair takes five minutes: write the query, log it.",
@@ -1002,7 +1029,7 @@
     {
       "deck": "day3",
       "id": "numbers-in-text-come-from-the-log",
-      "n": 29,
+      "n": 32,
       "session": 3,
       "title": "Numbers in the text are written by the log, not typed",
       "text": "Preventing drift Numbers in the text are written by the log, not typed {\"name\": \"On-time rate on long routes\", \"value\": 0.6805, \"step\": \"long_short\", \"key\": \"long\"} Each headline number names its step and key. The README table is generated from this file, after the last run. A number with no step cannot be entered. A change to a query changes the README in the same commit. Drift is a process problem. Nobody intends to leave an old number in a README. Remove the typing and the drift goes with it.",
@@ -1011,7 +1038,7 @@
     {
       "deck": "day3",
       "id": "the-peers-part",
-      "n": 30,
+      "n": 33,
       "session": 3,
       "title": "The peer reruns, traces and writes. The author repairs",
       "text": "How a peer works The peer reruns, traces and writes. The author repairs The peer Uses the package only, and asks nothing Reruns every logged step Traces every headline number Writes a rerun log: what matched, what did not The peer does not Fix the package quietly Pass a number because it \"looks right\" Rerun the request through an assistant Judge the conclusion: that is the review, a different task",
@@ -1020,7 +1047,7 @@
     {
       "deck": "day3",
       "id": "check-rerun",
-      "n": 31,
+      "n": 34,
       "session": 3,
       "title": "Is this package reproduced?",
       "text": "Checkpoint Is this package reproduced? A peer reruns a package. Every logged step runs and gives its logged headline. The README's main number, 18.2%, appears in no step's headline; the nearest is 18.9%. What does the rerun log say? Reproduced: all steps rerun to their logged values Reproduced within tolerance: 18.2% and 18.9% are close Not reproduced: the main number does not come from any logged step Reproduced after the peer corrected the README to 18.9%",
@@ -1029,7 +1056,7 @@
     {
       "deck": "day3",
       "id": "lab-3-3",
-      "n": 32,
+      "n": 35,
       "session": 3,
       "title": "Rerun a supplied package",
       "text": "Lab 3.3 · 25 min Rerun a supplied package Rerun a supplied package from its logs and check that the numbers match its README. D3_3_peer_rerun.ipynb Read the package's README and its log 4 min Rerun every logged step on your data 8 min Compare with the claimed numbers and trace each one 9 min Write the rerun log as the note 4 min ✱ Stretch: Write the missing step and log it so the package passes",
@@ -1038,7 +1065,7 @@
     {
       "deck": "day3",
       "id": "s4",
-      "n": 33,
+      "n": 36,
       "session": 4,
       "title": "Disclosing assistance",
       "text": "Session 4 Disclosing assistance Derive the assisted steps of an analysis from its log Write a method and disclosure paragraph that the log supports Choose a capstone question and route its tables before starting 04",
@@ -1047,7 +1074,7 @@
     {
       "deck": "day3",
       "id": "why-a-report-says-so",
-      "n": 34,
+      "n": 37,
       "session": 4,
       "title": "A disclosure lets the reader decide how much to rely on each part",
       "text": "Disclosure A disclosure lets the reader decide how much to rely on each part Which numbers did an assistant touch? What was it shown? How was each one checked, and which were not? Who answers for them? For government entities The national guidelines ask them to be transparent about content created with generative AI. For anyone who writes code with it The guidelines for the public advise marking generated code as such, and verifying it.",
@@ -1056,7 +1083,7 @@
     {
       "deck": "day3",
       "id": "five-parts-of-a-disclosure",
-      "n": 35,
+      "n": 38,
       "session": 4,
       "title": "Five things, in one paragraph",
       "text": "What it states Five things, in one paragraph Part The question it answers From Tool Which assistant, which model, which settings? The log Steps What did it draft or produce? The log Data seen Schema, aggregates or rows, and of what level? The data-handling table Verification How was each step checked? Which was not? The verification notes Accountability Who decided, and who signs? You Four of the five are copied from files you already have. A disclosure is hard to write only when the log does not exist.",
@@ -1065,7 +1092,7 @@
     {
       "deck": "day3",
       "id": "the-draft-against-the-log",
-      "n": 36,
+      "n": 39,
       "session": 4,
       "title": "Two sentences, eight problems",
       "text": "Lab 3.4, the draft found in the package Two sentences, eight problems The draftAI tools were used for minor formatting in this analysis. All numbers were verified by the analyst. Names no assistant and no model Names no step Does not say what the assistant saw Does not say who is accountable Calls assistance on headline numbers \"minor\" Claims all numbers verified: the chart step has no check The second sentence is false, and the log proves it. A disclosure that overstates verification is worse than none.",
@@ -1074,7 +1101,7 @@
     {
       "deck": "day3",
       "id": "a-paragraph-the-log-supports",
-      "n": 37,
+      "n": 40,
       "session": 4,
       "title": "A paragraph the log supports",
       "text": "The reference paragraph A paragraph the log supports Three steps of this analysis were drafted by an AI coding assistant (rafiq-recorded-1, temperature 0.2): the quarterly on-time rate for Dammam, the comparison of long and short routes, and the weekly chart. The assistant was shown table and column names only; no rows and no personal data left the notebook. The quarterly rate was recomputed in SQL without the assistant and reconciled; the route comparison was checked with row counts, an anti-join and a stated denominator. The weekly chart was not independently verified and is illustrative. The definition of on time, the reading of the results and the recommendation are the analyst's, who is accountable for every number in this report.",
@@ -1083,7 +1110,7 @@
     {
       "deck": "day3",
       "id": "an-unverified-step-has-two-honest-options",
-      "n": 38,
+      "n": 41,
       "session": 4,
       "title": "An unverified step has two honest options",
       "text": "When the log shows a gap An unverified step has two honest options Verify it before the report goes out Recompute the series, read the encodings, write the note. Fifteen minutes for a chart. Say that it was not verified Name the step and say how to read it: illustrative, not a source for numbers. There is no third option. Leaving the step out of the paragraph, or folding it into \"all numbers were verified\", is the failure the defence looks for.",
@@ -1092,7 +1119,7 @@
     {
       "deck": "day3",
       "id": "mark-assisted-code",
-      "n": 39,
+      "n": 42,
       "session": 4,
       "title": "The repository shows which code was assisted, and how",
       "text": "Disclosure below the report The repository shows which code was assisted, and how In the code A header comment on an assisted query: drafted by the assistant, the log step, the check that passed. In the history Commits that separate \"assistant draft\" from \"repair after check\", so the diff is the verification. In the transcripts The conversations as they happened, including the replies that were rejected. The rejected replies are evidence in your favour. A transcript with no failed check suggests no check was run.",
@@ -1101,7 +1128,7 @@
     {
       "deck": "day3",
       "id": "choosing-the-capstone-question",
-      "n": 40,
+      "n": 43,
       "session": 4,
       "title": "Choose a question you can verify in two hours",
       "text": "Tomorrow Choose a question you can verify in two hours Cash on delivery and second attempts, by city Split shifts and failed deliveries Express against standard, each on its own cut-off Complaint categories after late and after on-time parcels Replanned routes against routes planned once Failed and returned parcels by merchant segment Before you choose Which tables does it need, and where may they go? What is the one rate, and out of what? Which step will you keep? A smaller question, fully verified scores above a larger one with a headline nobody recomputed. The rubric gives verification 30 of 100.",
@@ -1110,7 +1137,7 @@
     {
       "deck": "day3",
       "id": "check-disclosure",
-      "n": 41,
+      "n": 44,
       "session": 4,
       "title": "Which disclosure is honest?",
       "text": "Checkpoint Which disclosure is honest? A log shows two assisted steps: a rate that was recomputed by hand, and a summary of complaint categories that was not checked. Which sentence belongs in the report? The rate was recomputed without the assistant; the summary was not verified and is indicative All assisted results were verified by the analyst AI assistance was used in parts of this analysis The rate was drafted by an assistant and recomputed by hand",
@@ -1119,7 +1146,7 @@
     {
       "deck": "day3",
       "id": "lab-3-4",
-      "n": 42,
+      "n": 45,
       "session": 4,
       "title": "Method, disclosure and the capstone question",
       "text": "Lab 3.4 · 25 min Method, disclosure and the capstone question Write the method and disclosure paragraph from the log, test it against the log, and choose the capstone question. D3_4_disclosure.ipynb List the assisted steps from the log 5 min Write the method and disclosure paragraph 8 min Test the paragraph against the log; write the note 5 min Choose the capstone question and route its tables 7 min ✱ Stretch: Rewrite the paragraph in Arabic for an Arabic report",
@@ -1128,7 +1155,7 @@
     {
       "deck": "day3",
       "id": "wrap-up",
-      "n": 43,
+      "n": 46,
       "session": 4,
       "title": "Leave behind what a colleague needs to stand where you stood",
       "text": "Day 3 recap Leave behind what a colleague needs to stand where you stood Route first: a table takes its highest column; rows of Restricted tables never go to a hosted assistant; a guard enforces it. Log as you go: request, context, model, settings, code, data fingerprint, headline, check. Reproduced means a peer reaches the README's numbers from the package alone: matched, drifted or no step. Disclose the tool, the steps, the data seen, the verification and who signs, and say what was not verified. Delegate, verify, reproduce. The assistant drafts. You decide what it may do, prove what it did, and own what you sign.",
@@ -1137,7 +1164,7 @@
     {
       "deck": "day3",
       "id": "next",
-      "n": 44,
+      "n": 47,
       "session": 4,
       "title": "Two hours to build the package, eight minutes to defend it",
       "text": "Tomorrow · Capstone Two hours to build the package, eight minutes to defend it Start from labs/capstone. Brief, delegate, verify, repeat five times, log, disclose. A peer reruns your package. In the defence you recompute one headline number, chosen by the assessor, without the assistant.",

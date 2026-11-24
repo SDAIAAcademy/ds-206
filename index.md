@@ -1,7 +1,7 @@
 ---
 course: "Analysis with AI Assistants: Delegate, Verify, Reproduce"
 code: "DS-206"
-version: "2027.1.0"
+version: "2027.2.0"
 language: "en"
 view: "trainee"
 source: "https://sdaiaacademy.github.io/ds-206/index.html"
@@ -183,4 +183,4 @@ An individual assisted analysis of a new question about Hudhud Parcel, built in 
 
 SDAIA Academy · Data Science Track · Analysis with AI Assistants: Delegate, Verify, Reproduce
 
-Course version 2027.1.0 · engine 1.0.0 · built 2026-11-15 · commit 2e1881e
+Course version 2027.2.0 · engine 1.0.0 · built 2026-11-24 · commit 8f871bb
